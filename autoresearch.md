@@ -111,4 +111,8 @@ The **current executable baseline** starts from `premise_gate` because that is t
 - Patched `modal_app.py` to support direct path execution with absolute-import fallback.
 - Second smoke launch got through image build, but Modal aborted because the benchmark harness was writing `modal_run.log` into the workspace while the local workspace snapshot was still being used for build/input hashing.
 - Patched `autoresearch.sh` so the live Modal log is written under `/tmp` during execution and only moved into the workspace after the run completes.
-- Pending rerun: `bash autoresearch.sh smoke`
+- Third smoke launch passed local preflight and Modal image build, but the remote container still failed before any `premise_gate` task executed.
+- Current blocker: the remote Modal container cannot import `Draft_Results`, so the suite entrypoint fails with `ModuleNotFoundError: No module named 'Draft_Results'` and retries.
+- I terminated the stuck local wrapper process after confirming it was not making forward progress.
+- Patched `modal_app.py` so it bootstraps `/workspace` import paths before module imports and resolves the workspace root safely in both local and remote contexts.
+- Pending rerun: `bash autoresearch.sh smoke`.

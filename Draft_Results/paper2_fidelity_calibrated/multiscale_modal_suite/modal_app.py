@@ -2,25 +2,52 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 from pathlib import Path
 
 import modal
+
+APP_NAME = "gemma-multiscale-modal-suite"
+REMOTE_WORKSPACE = "/workspace"
+REMOTE_RESULTS = "/artifacts/multiscale_modal_suite"
+
+
+def _bootstrap_import_paths() -> None:
+    candidates: list[Path] = []
+
+    remote_root = Path(os.environ.get("MULTISCALE_WORKSPACE_ROOT", REMOTE_WORKSPACE))
+    candidates.extend(
+        [
+            remote_root,
+            remote_root / "Draft_Results",
+            remote_root / "Draft_Results" / "paper2_fidelity_calibrated",
+        ]
+    )
+
+    here = Path(__file__).resolve()
+    for candidate in [here.parent, *here.parents]:
+        if (candidate / "Draft_Results").exists() and (candidate / "research").exists():
+            candidates.extend(
+                [
+                    candidate,
+                    candidate / "Draft_Results",
+                    candidate / "Draft_Results" / "paper2_fidelity_calibrated",
+                ]
+            )
+            break
+
+    for candidate in candidates:
+        if candidate.exists() and str(candidate) not in sys.path:
+            sys.path.insert(0, str(candidate))
+
+
+_bootstrap_import_paths()
 
 try:
     from .runner import execute_task, resolve_tasks, write_plan
     from .suite_spec import SuiteTask
     from .verify_suite import run_verification
 except ImportError:  # pragma: no cover - support `modal run path/to/modal_app.py`
-    import sys
-
-    SUITE_DIR = Path(__file__).resolve().parent
-    PAPER2_DIR = SUITE_DIR.parent
-    DRAFT_RESULTS_DIR = PAPER2_DIR.parent
-    WORKSPACE_DIR = DRAFT_RESULTS_DIR.parent
-    for extra in [WORKSPACE_DIR, DRAFT_RESULTS_DIR, PAPER2_DIR, SUITE_DIR]:
-        if str(extra) not in sys.path:
-            sys.path.insert(0, str(extra))
-
     from Draft_Results.paper2_fidelity_calibrated.multiscale_modal_suite.runner import (  # type: ignore
         execute_task,
         resolve_tasks,
@@ -34,10 +61,20 @@ except ImportError:  # pragma: no cover - support `modal run path/to/modal_app.p
     )
 
 
-APP_NAME = "gemma-multiscale-modal-suite"
-WORKSPACE_ROOT = Path(__file__).resolve().parents[3]
-REMOTE_WORKSPACE = "/workspace"
-REMOTE_RESULTS = "/artifacts/multiscale_modal_suite"
+def _resolve_workspace_root() -> Path:
+    env_root = Path(os.environ.get("MULTISCALE_WORKSPACE_ROOT", REMOTE_WORKSPACE))
+    if (env_root / "Draft_Results").exists() and (env_root / "research").exists():
+        return env_root
+
+    here = Path(__file__).resolve()
+    for candidate in [here.parent, *here.parents]:
+        if (candidate / "Draft_Results").exists() and (candidate / "research").exists():
+            return candidate
+
+    return env_root
+
+
+WORKSPACE_ROOT = _resolve_workspace_root()
 
 app = modal.App(APP_NAME)
 
