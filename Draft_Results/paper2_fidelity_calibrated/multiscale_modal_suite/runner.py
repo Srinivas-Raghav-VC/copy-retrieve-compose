@@ -10,7 +10,7 @@ from typing import Iterable
 
 from .legacy_commands import build_command, default_results_root
 from .result_schema import TaskManifest
-from .suite_spec import RESULTS_ROOT, SuiteTask, build_suite_plan
+from .suite_spec import SuiteTask, build_suite_plan, resolve_results_root
 
 
 def _now_utc() -> str:
@@ -47,7 +47,7 @@ def write_plan(path: Path, tasks: list[SuiteTask]) -> None:
     payload = {
         "status": "plan_only",
         "created_at_utc": _now_utc(),
-        "execution_results_root": str(RESULTS_ROOT),
+        "execution_results_root": str(resolve_results_root()),
         "packet_location": str(path),
         "tasks": [task.to_dict() for task in tasks],
     }

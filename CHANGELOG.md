@@ -14,4 +14,6 @@
 - Current blocking error in the remote container: `ModuleNotFoundError: No module named 'Draft_Results'` while importing the multiscale Modal suite entrypoint.
 - I terminated the stuck local wrapper process after confirming it was only retrying the same remote import failure, so we do not keep burning time on a non-progressing run.
 - Patched `modal_app.py` again so it bootstraps `/workspace` import paths before module imports and resolves the workspace root safely in both local and remote contexts.
-- Next step: rerun the smoke baseline and see whether the remote Modal container can now import the suite and actually execute `premise_gate` tasks.
+- The next smoke run got further: local preflight passed, the Modal app started, and tasks were launched, but the task payloads still carried the local results root (`/mnt/d/...`) instead of the remote volume root.
+- Patched the multiscale suite result-root handling so task expansion and plan writing resolve `MULTISCALE_RESULTS_ROOT` at runtime instead of freezing the local path at import time.
+- Next step: rerun the smoke baseline and see whether the remote Modal tasks can now write into the remote artifacts volume and complete cleanly.

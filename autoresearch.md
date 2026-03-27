@@ -115,4 +115,6 @@ The **current executable baseline** starts from `premise_gate` because that is t
 - Current blocker: the remote Modal container cannot import `Draft_Results`, so the suite entrypoint fails with `ModuleNotFoundError: No module named 'Draft_Results'` and retries.
 - I terminated the stuck local wrapper process after confirming it was not making forward progress.
 - Patched `modal_app.py` so it bootstraps `/workspace` import paths before module imports and resolves the workspace root safely in both local and remote contexts.
+- The next smoke run got further: local preflight passed, the Modal app started, and tasks launched, but the task payloads still used the local results root (`/mnt/d/...`) instead of the remote Modal volume root.
+- Patched the multiscale suite result-root handling so task expansion and plan writing resolve `MULTISCALE_RESULTS_ROOT` at runtime rather than freezing the local path at import time.
 - Pending rerun: `bash autoresearch.sh smoke`.

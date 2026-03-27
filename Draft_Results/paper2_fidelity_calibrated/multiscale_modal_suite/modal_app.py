@@ -11,6 +11,9 @@ APP_NAME = "gemma-multiscale-modal-suite"
 REMOTE_WORKSPACE = "/workspace"
 REMOTE_RESULTS = "/artifacts/multiscale_modal_suite"
 
+os.environ.setdefault("MULTISCALE_WORKSPACE_ROOT", REMOTE_WORKSPACE)
+os.environ.setdefault("MULTISCALE_RESULTS_ROOT", REMOTE_RESULTS)
+
 
 def _bootstrap_import_paths() -> None:
     candidates: list[Path] = []

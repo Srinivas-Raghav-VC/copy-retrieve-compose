@@ -9,12 +9,18 @@ from typing import Iterable
 SUITE_DIR = Path(__file__).resolve().parent
 PAPER2_DIR = SUITE_DIR.parent
 WORKSPACE_ROOT = PAPER2_DIR.parents[2]
-RESULTS_ROOT = Path(
-    os.environ.get(
-        "MULTISCALE_RESULTS_ROOT",
-        str(PAPER2_DIR / "results" / "multiscale_modal_suite"),
+
+
+def resolve_results_root() -> Path:
+    return Path(
+        os.environ.get(
+            "MULTISCALE_RESULTS_ROOT",
+            str(PAPER2_DIR / "results" / "multiscale_modal_suite"),
+        )
     )
-)
+
+
+RESULTS_ROOT = resolve_results_root()
 
 
 @dataclass(frozen=True)
@@ -310,7 +316,7 @@ def expand_template(template: TaskTemplate) -> list[SuiteTask]:
                 n_select=template.n_select,
                 n_eval=template.n_eval,
                 smoke_n_eval=template.smoke_n_eval,
-                out_dir=str(RESULTS_ROOT),
+                out_dir=str(resolve_results_root()),
                 outputs=_expand_outputs(template, model_label, pair_label),
                 extra_args=template.extra_args,
                 evidence_goal=template.evidence_goal,
@@ -332,7 +338,7 @@ def expand_template(template: TaskTemplate) -> list[SuiteTask]:
                     n_select=template.n_select,
                     n_eval=template.n_eval,
                     smoke_n_eval=template.smoke_n_eval,
-                    out_dir=str(RESULTS_ROOT),
+                    out_dir=str(resolve_results_root()),
                     outputs=_expand_outputs(template, model, pair),
                     extra_args=template.extra_args,
                     evidence_goal=template.evidence_goal,
