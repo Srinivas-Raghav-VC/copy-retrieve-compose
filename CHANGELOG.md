@@ -16,4 +16,7 @@
 - Patched `modal_app.py` again so it bootstraps `/workspace` import paths before module imports and resolves the workspace root safely in both local and remote contexts.
 - The next smoke run got further: local preflight passed, the Modal app started, and tasks were launched, but the task payloads still carried the local results root (`/mnt/d/...`) instead of the remote volume root.
 - Patched the multiscale suite result-root handling so task expansion and plan writing resolve `MULTISCALE_RESULTS_ROOT` at runtime instead of freezing the local path at import time.
-- Next step: rerun the smoke baseline and see whether the remote Modal tasks can now write into the remote artifacts volume and complete cleanly.
+- After that fix, the remote tasks finally executed, and the real scientific blocker surfaced: `run_premise_gate.py` failed because the Aksharantar pairs had no usable external records inside the Modal workspace.
+- Materialized explicit external JSONL sources plus provenance sidecars for `aksharantar_hin_latin` and `aksharantar_tel_latin` under `Draft_Results/data/transliteration/` so the smoke benchmark has real external data to consume.
+- Also fixed `autoresearch.sh` to download the Modal volume from the correct root path (`/`) instead of the mount path inside the container.
+- Next step: rerun the smoke baseline now that both the external data prerequisite and the volume-download path are fixed.

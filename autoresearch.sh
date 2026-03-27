@@ -6,7 +6,7 @@ OUTDIR="${2:-research/results/autoresearch/loop1_cross_scale_anchor/${MODE}}"
 FORCE_FLAG="${FORCE_FLAG:---force}"
 TASK_IDS="premise_gate__270m__aksharantar_hin_latin,premise_gate__270m__aksharantar_tel_latin,premise_gate__1b__aksharantar_hin_latin,premise_gate__1b__aksharantar_tel_latin,premise_gate__4b__aksharantar_hin_latin,premise_gate__4b__aksharantar_tel_latin"
 VOLUME_NAME="gemma-multiscale-results"
-REMOTE_RESULTS_ROOT="/artifacts/multiscale_modal_suite"
+REMOTE_VOLUME_PATH="/"
 
 mkdir -p "$OUTDIR"
 
@@ -34,7 +34,7 @@ mv "$TMP_MODAL_LOG" "$OUTDIR/modal_run.log"
 
 echo "[loop1] downloading Modal artifacts"
 mkdir -p "$OUTDIR/volume"
-modal volume get "$VOLUME_NAME" "$REMOTE_RESULTS_ROOT" "$OUTDIR/volume" --force
+modal volume get "$VOLUME_NAME" "$REMOTE_VOLUME_PATH" "$OUTDIR/volume" --force
 
 echo "[loop1] scoring cross-scale premise gate"
 python3 experiments/score_cross_scale_anchor.py \

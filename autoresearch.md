@@ -117,4 +117,7 @@ The **current executable baseline** starts from `premise_gate` because that is t
 - Patched `modal_app.py` so it bootstraps `/workspace` import paths before module imports and resolves the workspace root safely in both local and remote contexts.
 - The next smoke run got further: local preflight passed, the Modal app started, and tasks launched, but the task payloads still used the local results root (`/mnt/d/...`) instead of the remote Modal volume root.
 - Patched the multiscale suite result-root handling so task expansion and plan writing resolve `MULTISCALE_RESULTS_ROOT` at runtime rather than freezing the local path at import time.
+- After that fix, the remote tasks finally executed and exposed the first real benchmark blocker: `run_premise_gate.py` could not find usable external Aksharantar records in the Modal workspace.
+- Materialized explicit external JSONL sources plus provenance sidecars for Hindi and Telugu under `Draft_Results/data/transliteration/` so the smoke benchmark has real external data to consume.
+- Also fixed `autoresearch.sh` to download the Modal volume from the volume root (`/`) rather than the in-container mount path.
 - Pending rerun: `bash autoresearch.sh smoke`.
