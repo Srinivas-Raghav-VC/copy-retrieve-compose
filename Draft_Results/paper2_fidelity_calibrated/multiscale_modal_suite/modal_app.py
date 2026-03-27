@@ -9,6 +9,7 @@ import modal
 try:
     from .runner import execute_task, resolve_tasks, write_plan
     from .suite_spec import SuiteTask
+    from .verify_suite import run_verification
 except ImportError:  # pragma: no cover - support `modal run path/to/modal_app.py`
     import sys
 
@@ -28,7 +29,9 @@ except ImportError:  # pragma: no cover - support `modal run path/to/modal_app.p
     from Draft_Results.paper2_fidelity_calibrated.multiscale_modal_suite.suite_spec import (  # type: ignore
         SuiteTask,
     )
-from .verify_suite import run_verification
+    from Draft_Results.paper2_fidelity_calibrated.multiscale_modal_suite.verify_suite import (  # type: ignore
+        run_verification,
+    )
 
 
 APP_NAME = "gemma-multiscale-modal-suite"
