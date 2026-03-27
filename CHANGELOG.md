@@ -19,4 +19,7 @@
 - After that fix, the remote tasks finally executed, and the real scientific blocker surfaced: `run_premise_gate.py` failed because the Aksharantar pairs had no usable external records inside the Modal workspace.
 - Materialized explicit external JSONL sources plus provenance sidecars for `aksharantar_hin_latin` and `aksharantar_tel_latin` under `Draft_Results/data/transliteration/` so the smoke benchmark has real external data to consume.
 - Also fixed `autoresearch.sh` to download the Modal volume from the correct root path (`/`) instead of the mount path inside the container.
-- Next step: rerun the smoke baseline now that both the external data prerequisite and the volume-download path are fixed.
+- Smoke baseline then completed successfully across all 6 cross-scale premise-gate tasks.
+- Baseline smoke result: `premise_gap_exact_mean = 0.0347`, `premise_gap_cer_mean = 0.3036`, with the clearest positive anchor at `4b × Telugu` (`exact_match: 0.000 -> 0.292`, CI excludes zero).
+- Negative/flat signals also matter: `270m` is flat on both languages, `1b × Hindi` worsens under `icl64`, and `4b × Hindi` is already strong zero-shot with almost no exact-match gain from ICL.
+- Next step: run the same six-task premise-gate benchmark in full mode (`n_eval=200`) to check whether the `4b × Telugu` anchor and the cross-scale pattern survive beyond smoke scale.
