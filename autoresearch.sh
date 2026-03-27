@@ -28,7 +28,9 @@ elif [[ "$MODE" != "full" ]]; then
   exit 2
 fi
 
-modal "${MODAL_ARGS[@]}" | tee "$OUTDIR/modal_run.log"
+TMP_MODAL_LOG="$(mktemp /tmp/loop1-modal-run-XXXXXX.log)"
+modal "${MODAL_ARGS[@]}" | tee "$TMP_MODAL_LOG"
+mv "$TMP_MODAL_LOG" "$OUTDIR/modal_run.log"
 
 echo "[loop1] downloading Modal artifacts"
 mkdir -p "$OUTDIR/volume"

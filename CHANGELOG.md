@@ -8,4 +8,6 @@
 - Began repairing the multiscale Modal suite so a smoke baseline can run before deeper iterations.
 - First smoke launch failed immediately because `modal run path/to/modal_app.py` executed the file as a script and the suite used package-relative imports.
 - Patched `modal_app.py` to support direct path execution with absolute-import fallback.
+- Second smoke launch got through image build, but `modal run` aborted because `autoresearch.sh` was teeing build logs into a file inside the workspace, and Modal detected that the workspace changed during build.
+- Patched `autoresearch.sh` to write the live Modal log to `/tmp` during build and move it into the workspace only after the command completes.
 - Next step: rerun the smoke baseline and see whether the current suite wiring and Modal environment are actually operational.
