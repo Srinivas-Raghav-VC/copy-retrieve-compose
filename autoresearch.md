@@ -107,4 +107,6 @@ The **current executable baseline** starts from `premise_gate` because that is t
 - Created fresh autoresearch session files.
 - Chosen branch/environment: Modal + git branch.
 - Began wiring the multiscale Modal suite into a runnable baseline for the cross-scale premise gate.
-- Pending baseline: `bash autoresearch.sh smoke`
+- First smoke launch failed immediately because `modal_app.py` was being executed as a script by `modal run`, while the suite file assumed package-relative imports.
+- Patched `modal_app.py` to support direct path execution with absolute-import fallback.
+- Pending rerun: `bash autoresearch.sh smoke`

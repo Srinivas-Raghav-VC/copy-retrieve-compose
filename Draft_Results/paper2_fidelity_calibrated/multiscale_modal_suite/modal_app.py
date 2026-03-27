@@ -6,8 +6,28 @@ from pathlib import Path
 
 import modal
 
-from .runner import execute_task, resolve_tasks, write_plan
-from .suite_spec import SuiteTask
+try:
+    from .runner import execute_task, resolve_tasks, write_plan
+    from .suite_spec import SuiteTask
+except ImportError:  # pragma: no cover - support `modal run path/to/modal_app.py`
+    import sys
+
+    SUITE_DIR = Path(__file__).resolve().parent
+    PAPER2_DIR = SUITE_DIR.parent
+    DRAFT_RESULTS_DIR = PAPER2_DIR.parent
+    WORKSPACE_DIR = DRAFT_RESULTS_DIR.parent
+    for extra in [WORKSPACE_DIR, DRAFT_RESULTS_DIR, PAPER2_DIR, SUITE_DIR]:
+        if str(extra) not in sys.path:
+            sys.path.insert(0, str(extra))
+
+    from Draft_Results.paper2_fidelity_calibrated.multiscale_modal_suite.runner import (  # type: ignore
+        execute_task,
+        resolve_tasks,
+        write_plan,
+    )
+    from Draft_Results.paper2_fidelity_calibrated.multiscale_modal_suite.suite_spec import (  # type: ignore
+        SuiteTask,
+    )
 from .verify_suite import run_verification
 
 
