@@ -128,4 +128,17 @@ The **current executable baseline** starts from `premise_gate` because that is t
   - `270m` appears flat on both languages
   - `1b × aksharantar_hin_latin` worsens under `icl64`
   - `4b × aksharantar_hin_latin` is already fairly strong zero-shot and shows little exact-match rescue
-- Next planned iteration: rerun the same six-task benchmark in full mode (`n_eval=200`) to see whether the smoke-scale anchor survives.
+- Full six-task premise-gate run (`n_eval=200`) completed successfully.
+- Full findings:
+  - `premise_gap_exact_mean = 0.065`
+  - `premise_gap_cer_mean = 0.2567`
+  - strongest positive anchor remains `4b × aksharantar_tel_latin` with `exact_match 0.000 -> 0.335` and strong CER improvement (`2.380 -> 0.247`), CI-supported
+  - `270m` remains flat on both languages across explicit-ZS, `icl8`, and `icl64`
+  - `1b × aksharantar_hin_latin` shows high-N fragility: explicit-ZS beats `icl64`, while `icl8` is less harmful, suggesting a long-context problem rather than a total inability to use examples
+  - `1b × aksharantar_tel_latin` does not gain exact match, and `icl64` is slightly worse than explicit-ZS on CER
+  - `4b × aksharantar_hin_latin` is already strong under explicit-ZS and gains only moderately from ICL (`0.300 -> 0.360` EM)
+- Interpretation status:
+  - established from this iteration: the cross-scale premise landscape is structured, not random
+  - supported but provisional: `4b × Telugu` is the best positive mechanistic anchor
+  - supported but provisional: `1b × Hindi` is a useful fragility / high-N anchor
+- Recommended next iteration: targeted robustness / control comparisons on `4b × Telugu` and `1b × Hindi`, especially low-shot vs high-shot and helpful-vs-control variants.

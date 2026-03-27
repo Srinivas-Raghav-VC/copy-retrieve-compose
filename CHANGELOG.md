@@ -22,4 +22,11 @@
 - Smoke baseline then completed successfully across all 6 cross-scale premise-gate tasks.
 - Baseline smoke result: `premise_gap_exact_mean = 0.0347`, `premise_gap_cer_mean = 0.3036`, with the clearest positive anchor at `4b × Telugu` (`exact_match: 0.000 -> 0.292`, CI excludes zero).
 - Negative/flat signals also matter: `270m` is flat on both languages, `1b × Hindi` worsens under `icl64`, and `4b × Hindi` is already strong zero-shot with almost no exact-match gain from ICL.
-- Next step: run the same six-task premise-gate benchmark in full mode (`n_eval=200`) to check whether the `4b × Telugu` anchor and the cross-scale pattern survive beyond smoke scale.
+- Full six-task premise-gate run (`n_eval=200`) completed successfully.
+- Full result strengthened the same overall picture: `premise_gap_exact_mean = 0.065`, `premise_gap_cer_mean = 0.2567`, `ci_positive_exact_tasks = 1`, `runbook_gate_positive_tasks = 4`.
+- The most robust positive anchor is still `4b × Telugu` (`exact_match: 0.000 -> 0.335`, CER `2.380 -> 0.247`, both CI-supported).
+- Additional insight from the full packets: `1b × Hindi` is not uniformly bad at low shot; `icl8` is closer to explicit-ZS, but `icl64` is materially worse on CER and script compliance, suggesting high-N fragility rather than a blanket inability to use examples.
+- `270m` remains effectively flat under explicit-ZS, `icl8`, and `icl64`, which supports a capability-floor interpretation for this setup.
+- `4b × Hindi` is already strong under explicit-ZS and gets only a moderate boost from ICL (`0.300 -> 0.360` EM), consistent with reduced ICL dependence once the base capability is present.
+- Loop 1 therefore achieved its behavioral-goal milestone: we now have a structured cross-scale anchor landscape rather than noise.
+- Recommended next step: move to a targeted robustness / control phase centered on `4b × Telugu` (positive anchor) and `1b × Hindi` (high-N fragility anchor), using low-shot vs high-shot and helpful-vs-control comparisons.
