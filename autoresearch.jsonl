@@ -3,3 +3,5 @@
 {"ts": "2026-03-29T06:25:29Z", "loop": "loop2", "event": "vm_reachable", "status": "ok", "host": "10.10.0.215", "hostname": "2f399cd77c0c", "python": "3.8.5"}
 {"ts": "2026-03-29T06:27:25Z", "loop": "loop2", "event": "run_attempt", "mode": "loop2_smoke", "status": "failed_remote_missing_rsync", "exit_code": 12, "note": "remote VM reachable but lacks rsync; sync failed before remote benchmark execution"}
 {"ts": "2026-03-29T06:27:25Z", "loop": "loop2", "event": "patch", "status": "applied", "note": "replaced rsync-based VM sync/fetch with tar-over-SSH in autoresearch.sh"}
+{"ts": "2026-03-29T06:31:36Z", "loop": "loop2", "event": "run_attempt", "mode": "loop2_smoke", "status": "failed_missing_hf_auth", "exit_code": 1, "note": "remote benchmark started but model load failed with gated repo 401 for google/gemma-3-1b-it"}
+{"ts": "2026-03-29T06:31:36Z", "loop": "loop2", "event": "patch", "status": "applied", "note": "copied existing local Hugging Face token file to VM and confirmed remote model_info access to google/gemma-3-1b-it"}

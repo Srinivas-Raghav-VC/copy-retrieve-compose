@@ -40,4 +40,6 @@
 - Retried connectivity and the VM became reachable again (`hostname=2f399cd77c0c`, `Python 3.8.5`).
 - First smoke launch on the reachable VM failed immediately because the remote machine does not have `rsync`; the old sync path assumed remote `rsync` availability.
 - Patched `autoresearch.sh` to use tar-over-SSH syncing and artifact download instead of `rsync`, which fits this VM better.
-- Next step in progress: relaunch `bash autoresearch.sh loop2_smoke` with the approved VM environment before making any scientific changes.
+- Second smoke launch reached the remote benchmark body and then failed on `1b × Hindi × n_icl=8` because the VM lacked Hugging Face authentication for gated Gemma 3 checkpoints (`401` on `google/gemma-3-1b-it`).
+- Repaired VM HF auth by copying the already-configured local Hugging Face token file into the VM's standard token path and confirmed remote access to `google/gemma-3-1b-it` with `huggingface_hub`.
+- Next step in progress: relaunch `bash autoresearch.sh loop2_smoke` with working VM auth before making any scientific changes.
