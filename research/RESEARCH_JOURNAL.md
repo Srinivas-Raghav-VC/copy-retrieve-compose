@@ -46,6 +46,10 @@
 - A bounded `1B` threshold test at `n_icl ∈ {48,56,64}` on Hindi/Telugu (`research/results/autoresearch/loop2_vm_controls/threshold_1b_seed42/`) does **not** restore exact-match wins by shrinking the prompt. All six threshold cells remain non-positive on `helpful_control_exact_margin`, and none beat zero-shot on exact match.
 - Within that threshold test, Telugu soft metrics improve as `n_icl` increases from `48 -> 56 -> 64` even though visibility should worsen, suggesting that partial truncation is not the dominant explanation for the `1B` failure regime.
 - Within that same threshold test, Hindi remains weak even when the prompt is shortened, and the `n_icl=48` cell is pathologically bad on CER, reinforcing the suspicion that `1B × Hindi` has an additional instability beyond pure window visibility.
+- Re-analysis of the existing raw Loop 2 control artifacts (`outputs/loop2_failure_modes_2026-03-29.md`) shows that the `1B` failure regime is not unitary across languages:
+  - `1B × Hindi × n_icl=64` already fails at early target selection (helpful ICL reduces first-token probability and first-entry correctness versus zero-shot, with many Latin/source-like outputs).
+  - `1B × Telugu × n_icl=64` succeeds at early target selection but fails at later query-specific continuation (helpful ICL makes the first token highly likely and usually script-correct, yet exact match stays at zero because the model often outputs a prompt-bank target string).
+- `4B × Telugu × n_icl=64` remains the clean positive anchor under the same decomposition: it improves both early target selection and whole-word continuation, and its residual mistakes are mostly near-misses rather than prompt-bank copies.
 
 ## Open questions
 - Does the phenomenon genuinely show strong high-N degradation under the stricter multilingual Phase 0A setup, or does the current `>=0.10` degradation threshold need recalibration before declaring the problem statement verified?
@@ -59,6 +63,8 @@
 - Are the new `1B` threshold findings (`48/56/64`) seed-robust, or is the apparent mid-shot Hindi instability partly driven by seed-specific word selection?
 - Why does `1B × Telugu` improve substantially on CER / script compliance as `n_icl` grows even while more of the bank falls outside the local window, yet still fail to convert those gains into exact-match wins?
 - For `1B × Hindi`, where in the computation does the visible ICL signal fail: target-token selection, whole-word continuation, late-layer normalization, or something else?
+- For `1B × Hindi`, what is the dominant wrong first-token competitor under helpful ICL: a Latin/source-copy token, a script-valid but wrong Devanagari token, or an in-context-bank retrieval token?
+- For `1B × Telugu`, are the copied prompt-bank targets mainly the nearest orthographic neighbors to the query, or is the bank-copy behavior driven by some other retrieval heuristic (position, recency, tokenization overlap, or target frequency)?
 
 ## Retired claims
 - Retired: "N up to 96 can be evaluated from frozen 16-example snapshots by deterministic repetition" as research-valid evidence. This is now considered debug-only and not acceptable for scientific claims.

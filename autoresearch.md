@@ -382,3 +382,27 @@ VM_PASS='***' bash autoresearch.sh loop2_full
   - retire the simple "just too many examples fell out of the window" explanation as the primary story.
   - keep visibility as a contributing architectural factor, especially for `1B × Telugu`.
   - next bounded mechanistic step should focus on **where** the `1B` computation fails given visible evidence, not on squeezing prompt length further.
+- Follow-up analysis completed from existing Loop 2 raw control artifacts, written to `outputs/loop2_failure_modes_2026-03-29.md` and `outputs/loop2_failure_modes_2026-03-29.json`.
+- Decomposition result from that follow-up:
+  - `1B × Hindi × n_icl=64` is already failing at the **first target token**: helpful ICL lowers both target first-token probability and first-entry correctness relative to zero-shot, and many outputs are Latin/source-like (`50%` Latin-script, `40%` exact source copies).
+  - `1B × Telugu × n_icl=64` is **not** mainly a first-token failure: helpful ICL drives first-token probability from near-zero to `0.869` and first-entry correctness to `0.900`, but exact match stays at `0.000`.
+  - `1B × Telugu × n_icl=64` often emits a prompt-bank target string instead of the query-specific answer: `80%` of helpful predictions are exact copies of one of the 64 ICL-bank targets, and `88.9%` of the `first-correct but exact-wrong` cases are bank copies.
+  - `4B × Telugu × n_icl=64` remains the clean positive anchor because it gets both early target selection and later whole-word continuation mostly right; its remaining errors are mostly near-misses rather than bank copies.
+- Interpretation after the failure-mode follow-up:
+  - established: the `1B` failure story is **not unitary** across languages.
+  - established: `1B Hindi` looks like an early routing / target-selection problem.
+  - established: `1B Telugu` looks like a later retrieval-composition / continuation problem.
+- Recommended next bounded experiments now differ by language:
+  - `1B Hindi`: small first-token competition audit to inspect the top wrong competitor token and whether it is Latin/source-like or a wrong Devanagari bank token.
+  - `1B Telugu`: prompt-bank copy audit with nearest-neighbor controls to test whether the model is retrieving a similar in-context target rather than composing the correct query-specific continuation.
+- Added new bounded audit code for the first-token step:
+  - `experiments/first_token_competition_audit.py`
+  - `experiments/run_vm_first_token_competition_audit.sh`
+- Current run in progress:
+  - process: `proc_11`
+  - name: `first-token-competition-v1`
+  - tasks: `1b:aksharantar_hin_latin:64`, `1b:aksharantar_tel_latin:64`, `4b:aksharantar_tel_latin:64`
+  - budget: `max_items=30`, `seed=42`
+- Oracle for this audit:
+  - for each task and each condition (`zs`, `icl_helpful`, `icl_corrupt`), record the correct first target token probability, the top-1 predicted first token, its script bucket, and the target-vs-best-competitor logit gap.
+  - minimal decision rule: if `1B Hindi` helpful prompts often lose the first target token to Latin/source-like top-1 competitors, the early-routing hypothesis gains support; if `1B Telugu` already wins the first token cleanly, that reinforces the later continuation / retrieval-composition hypothesis.

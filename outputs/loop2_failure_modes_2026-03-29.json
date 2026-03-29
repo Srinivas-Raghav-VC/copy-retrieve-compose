@@ -1,0 +1,2600 @@
+{
+  "cells": [
+    {
+      "run_type": "core",
+      "path": "/mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/loop2_full/raw/1b/aksharantar_hin_latin/nicl8/neutral_filler_recency_controls.json",
+      "model": "1b",
+      "pair": "aksharantar_hin_latin",
+      "n_icl": 8,
+      "zs": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 76.9,
+        "mean_first_prob": 0.6288510039110103,
+        "mean_first_logit": 21.6125,
+        "mean_joint_logprob": -15.08094763159752,
+        "mean_target_pos1_nll": 1.0556034048708776,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.06666666666666667,
+        "mean_akshara_cer": 0.7427777777777779,
+        "mean_script_compliance": 0.8817857142857143,
+        "mean_first_entry_correct": 0.7666666666666667,
+        "mean_continuation_fidelity": 0.8444099378881987
+      },
+      "helpful": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 149.9,
+        "mean_first_prob": 0.4299941744228514,
+        "mean_first_logit": 21.7,
+        "mean_joint_logprob": -13.331347637375195,
+        "mean_target_pos1_nll": 1.4576386714975038,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.1,
+        "mean_akshara_cer": 0.8327777777777778,
+        "mean_script_compliance": 0.8605820105820106,
+        "mean_first_entry_correct": 0.6,
+        "mean_continuation_fidelity": 0.8620370370370369
+      },
+      "corrupt": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 149.9,
+        "mean_first_prob": 0.5959533305916315,
+        "mean_first_logit": 20.841666666666665,
+        "mean_joint_logprob": -12.932078655560812,
+        "mean_target_pos1_nll": 1.0513653995338246,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.06666666666666667,
+        "mean_akshara_cer": 0.8052777777777778,
+        "mean_script_compliance": 0.8337518037518037,
+        "mean_first_entry_correct": 0.7333333333333333,
+        "mean_continuation_fidelity": 0.9181818181818181
+      },
+      "deltas": {
+        "helpful_minus_zs_first_prob": -0.19885682948815891,
+        "helpful_minus_zs_first_entry_correct": -0.16666666666666674,
+        "helpful_minus_zs_exact_match": 0.03333333333333334,
+        "helpful_minus_zs_akshara_cer": 0.08999999999999997,
+        "helpful_minus_corrupt_first_prob": -0.16595915616878004,
+        "helpful_minus_corrupt_first_entry_correct": -0.1333333333333333,
+        "helpful_minus_corrupt_exact_match": 0.03333333333333334,
+        "helpful_minus_corrupt_akshara_cer": 0.02750000000000008
+      },
+      "helpful_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 0,
+        "source_copy_rate": 0.0,
+        "latinish_count": 2,
+        "latinish_rate": 0.06666666666666667,
+        "bank_copy_count": 1,
+        "bank_copy_rate": 0.03333333333333333,
+        "first_correct_but_wrong_count": 15,
+        "first_correct_but_wrong_rate": 0.5,
+        "first_correct_but_wrong_bank_copy_count": 1,
+        "first_correct_but_wrong_bank_copy_rate": 0.06666666666666667,
+        "examples": [
+          {
+            "word_ood": "aadarshen",
+            "gold": "आदर्शें",
+            "prediction": "आधारشرين",
+            "akshara_cer": 2.0,
+            "continuation_fidelity": 3.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadarpurvak",
+            "gold": "आदरपूर्वक",
+            "prediction": "आदपुरवैक",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aagatam",
+            "gold": "आगतम",
+            "prediction": "आगता",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6666666666666666,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhirit",
+            "gold": "आधिरित",
+            "prediction": "आदिरित",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhaarmulya",
+            "gold": "आधारमूल्य",
+            "prediction": "आधाराम्य",
+            "akshara_cer": 0.6,
+            "continuation_fidelity": 0.75,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadyaaksharon",
+            "gold": "आद्याक्षरों",
+            "prediction": "आद्याैकशरोन",
+            "akshara_cer": 1.25,
+            "continuation_fidelity": 1.6666666666666667,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhaap",
+            "gold": "आधाप",
+            "prediction": "आधारप",
+            "akshara_cer": 0.3333333333333333,
+            "continuation_fidelity": 0.5,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhaamaanjhi",
+            "gold": "आधामांझी",
+            "prediction": "आदमांजह",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          }
+        ]
+      },
+      "corrupt_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 0,
+        "source_copy_rate": 0.0,
+        "latinish_count": 2,
+        "latinish_rate": 0.06666666666666667,
+        "bank_copy_count": 2,
+        "bank_copy_rate": 0.06666666666666667,
+        "first_correct_but_wrong_count": 20,
+        "first_correct_but_wrong_rate": 0.6666666666666666,
+        "first_correct_but_wrong_bank_copy_count": 2,
+        "first_correct_but_wrong_bank_copy_rate": 0.1,
+        "examples": [
+          {
+            "word_ood": "aadarshen",
+            "gold": "आदर्शें",
+            "prediction": "आधारिक",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.5,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadarpurvak",
+            "gold": "आदरपूर्वक",
+            "prediction": "आदपुरवैक",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aagatam",
+            "gold": "आगतम",
+            "prediction": "आगताम",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhirit",
+            "gold": "आधिरित",
+            "prediction": "आदिरित",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhaarmulya",
+            "gold": "आधारमूल्य",
+            "prediction": "आदरामाय्य",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadyaaksharon",
+            "gold": "आद्याक्षरों",
+            "prediction": "आदयाक्षरोन",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.3333333333333333,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhyaapika",
+            "gold": "आध्यापिका",
+            "prediction": "आद्यपिका",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadikaalin",
+            "gold": "आदिकालीन",
+            "prediction": "आदिकीलीन",
+            "akshara_cer": 0.2,
+            "continuation_fidelity": 0.25,
+            "bank_copy": false
+          }
+        ]
+      }
+    },
+    {
+      "run_type": "core",
+      "path": "/mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/loop2_full/raw/1b/aksharantar_hin_latin/nicl64/neutral_filler_recency_controls.json",
+      "model": "1b",
+      "pair": "aksharantar_hin_latin",
+      "n_icl": 64,
+      "zs": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 76.63333333333334,
+        "mean_first_prob": 0.5793185148805233,
+        "mean_first_logit": 20.75,
+        "mean_joint_logprob": -14.67159145673116,
+        "mean_target_pos1_nll": 1.7827761683380232,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.06666666666666667,
+        "mean_akshara_cer": 0.7050793650793652,
+        "mean_script_compliance": 0.9261904761904761,
+        "mean_first_entry_correct": 0.6,
+        "mean_continuation_fidelity": 0.7962962962962963
+      },
+      "helpful": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 656.6333333333333,
+        "mean_first_prob": 0.48130098731132115,
+        "mean_first_logit": 23.458333333333332,
+        "mean_joint_logprob": -15.141293523538236,
+        "mean_target_pos1_nll": 2.9975150942820012,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.3426984126984125,
+        "mean_script_compliance": 0.48666666666666664,
+        "mean_first_entry_correct": 0.5,
+        "mean_continuation_fidelity": 0.7544444444444445
+      },
+      "corrupt": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 656.6333333333333,
+        "mean_first_prob": 0.600353647296334,
+        "mean_first_logit": 21.985416666666666,
+        "mean_joint_logprob": -13.918608768781025,
+        "mean_target_pos1_nll": 2.339819706615041,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.1540476190476192,
+        "mean_script_compliance": 0.6619047619047618,
+        "mean_first_entry_correct": 0.7,
+        "mean_continuation_fidelity": 1.0007936507936508
+      },
+      "deltas": {
+        "helpful_minus_zs_first_prob": -0.09801752756920218,
+        "helpful_minus_zs_first_entry_correct": -0.09999999999999998,
+        "helpful_minus_zs_exact_match": -0.06666666666666667,
+        "helpful_minus_zs_akshara_cer": 0.6376190476190473,
+        "helpful_minus_corrupt_first_prob": -0.11905265998501285,
+        "helpful_minus_corrupt_first_entry_correct": -0.19999999999999996,
+        "helpful_minus_corrupt_exact_match": 0.0,
+        "helpful_minus_corrupt_akshara_cer": 0.1886507936507933
+      },
+      "helpful_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 12,
+        "source_copy_rate": 0.4,
+        "latinish_count": 15,
+        "latinish_rate": 0.5,
+        "bank_copy_count": 8,
+        "bank_copy_rate": 0.26666666666666666,
+        "first_correct_but_wrong_count": 15,
+        "first_correct_but_wrong_rate": 0.5,
+        "first_correct_but_wrong_bank_copy_count": 8,
+        "first_correct_but_wrong_bank_copy_rate": 0.5333333333333333,
+        "examples": [
+          {
+            "word_ood": "aadeshpaalak",
+            "gold": "आदेशपालक",
+            "prediction": "आदेशप्रताप",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadhikarik",
+            "gold": "आधिकरिक",
+            "prediction": "आधिपतिक",
+            "akshara_cer": 0.4,
+            "continuation_fidelity": 0.5,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aabhyantarikaran",
+            "gold": "आभ्यंतरीकरण",
+            "prediction": "आभ्यन्तरिकृत",
+            "akshara_cer": 0.8571428571428571,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadhyatmakta",
+            "gold": "आध्यात्मकता",
+            "prediction": "आध्यदेश",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadarahi",
+            "gold": "आदरही",
+            "prediction": "आदिशक्तिका",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.3333333333333333,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aagyakarita",
+            "gold": "आज्ञाकारिता",
+            "prediction": "आजीकारिता",
+            "akshara_cer": 0.2,
+            "continuation_fidelity": 0.25,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadmiyon",
+            "gold": "आदमियों",
+            "prediction": "आदमियोंको",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadhunita",
+            "gold": "आधुनिता",
+            "prediction": "आदित्य",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          }
+        ]
+      },
+      "corrupt_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 6,
+        "source_copy_rate": 0.2,
+        "latinish_count": 8,
+        "latinish_rate": 0.26666666666666666,
+        "bank_copy_count": 9,
+        "bank_copy_rate": 0.3,
+        "first_correct_but_wrong_count": 21,
+        "first_correct_but_wrong_rate": 0.7,
+        "first_correct_but_wrong_bank_copy_count": 9,
+        "first_correct_but_wrong_bank_copy_rate": 0.42857142857142855,
+        "examples": [
+          {
+            "word_ood": "aadeshpaalak",
+            "gold": "आदेशपालक",
+            "prediction": "आदिशपाल",
+            "akshara_cer": 0.3333333333333333,
+            "continuation_fidelity": 0.4,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhikarik",
+            "gold": "आधिकरिक",
+            "prediction": "आधिपत्यों",
+            "akshara_cer": 0.6,
+            "continuation_fidelity": 0.75,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aabhyantarikaran",
+            "gold": "आभ्यंतरीकरण",
+            "prediction": "आदिशक्तिका",
+            "akshara_cer": 0.8571428571428571,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadhyatmakta",
+            "gold": "आध्यात्मकता",
+            "prediction": "आदिशक्तिका",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadarahi",
+            "gold": "आदरही",
+            "prediction": "आदिशक्तिका",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.3333333333333333,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadalgachchh",
+            "gold": "आदलगच्छ",
+            "prediction": "आदगचchh",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.25,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aagyakarita",
+            "gold": "आज्ञाकारिता",
+            "prediction": "आदिशक्तिका",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadmiyon",
+            "gold": "आदमियों",
+            "prediction": "आदमिyon",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          }
+        ]
+      }
+    },
+    {
+      "run_type": "core",
+      "path": "/mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/loop2_full/raw/1b/aksharantar_tel_latin/nicl8/neutral_filler_recency_controls.json",
+      "model": "1b",
+      "pair": "aksharantar_tel_latin",
+      "n_icl": 8,
+      "zs": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 75.46666666666667,
+        "mean_first_prob": 0.002454175918440645,
+        "mean_first_logit": 12.375,
+        "mean_joint_logprob": -27.619562911987305,
+        "mean_target_pos1_nll": 6.479554144541423,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.0994312169312168,
+        "mean_script_compliance": 0.7791666666666667,
+        "mean_first_entry_correct": 0.0,
+        "mean_continuation_fidelity": null
+      },
+      "helpful": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 170.46666666666667,
+        "mean_first_prob": 0.27790040144701983,
+        "mean_first_logit": 19.895833333333332,
+        "mean_joint_logprob": -20.940684668223064,
+        "mean_target_pos1_nll": 2.509321619942784,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 0.8223677248677249,
+        "mean_script_compliance": 0.9666666666666667,
+        "mean_first_entry_correct": 0.23333333333333334,
+        "mean_continuation_fidelity": 0.6408163265306123
+      },
+      "corrupt": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 170.46666666666667,
+        "mean_first_prob": 0.4672789047872811,
+        "mean_first_logit": 18.889583333333334,
+        "mean_joint_logprob": -19.36755739847819,
+        "mean_target_pos1_nll": 1.645131666958332,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 0.8142724867724868,
+        "mean_script_compliance": 1.0,
+        "mean_first_entry_correct": 0.43333333333333335,
+        "mean_continuation_fidelity": 0.8934065934065933
+      },
+      "deltas": {
+        "helpful_minus_zs_first_prob": 0.27544622552857917,
+        "helpful_minus_zs_first_entry_correct": 0.23333333333333334,
+        "helpful_minus_zs_exact_match": 0.0,
+        "helpful_minus_zs_akshara_cer": -0.2770634920634919,
+        "helpful_minus_corrupt_first_prob": -0.1893785033402613,
+        "helpful_minus_corrupt_first_entry_correct": -0.2,
+        "helpful_minus_corrupt_exact_match": 0.0,
+        "helpful_minus_corrupt_akshara_cer": 0.008095238095238155
+      },
+      "helpful_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 0,
+        "source_copy_rate": 0.0,
+        "latinish_count": 1,
+        "latinish_rate": 0.03333333333333333,
+        "bank_copy_count": 3,
+        "bank_copy_rate": 0.1,
+        "first_correct_but_wrong_count": 7,
+        "first_correct_but_wrong_rate": 0.23333333333333334,
+        "first_correct_but_wrong_bank_copy_count": 3,
+        "first_correct_but_wrong_bank_copy_rate": 0.42857142857142855,
+        "examples": [
+          {
+            "word_ood": "aadaalanedi",
+            "gold": "ఆడాలనేది",
+            "prediction": "ఆడాడనే",
+            "akshara_cer": 0.4,
+            "continuation_fidelity": 0.5,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharinchinatlu",
+            "gold": "ఆచరించినట్లు",
+            "prediction": "ఆచరించినవాడు",
+            "akshara_cer": 0.3333333333333333,
+            "continuation_fidelity": 0.4,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanalone",
+            "gold": "ఆచరణలోనే",
+            "prediction": "ఆచారలొ",
+            "akshara_cer": 0.6666666666666666,
+            "continuation_fidelity": 0.8,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharinchavalasindi",
+            "gold": "ఆచరించవలసింది",
+            "prediction": "ఆచరించినవాడు",
+            "akshara_cer": 0.625,
+            "continuation_fidelity": 0.7142857142857143,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanaatmakamainaa",
+            "gold": "ఆచరణాత్మకమైనా",
+            "prediction": "ఆచారమేకమైన",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.5714285714285714,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadaayamvunna",
+            "gold": "ఆదాయంవున్న",
+            "prediction": "ఆడవనవ",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharinchinanduku",
+            "gold": "ఆచరించినందుకు",
+            "prediction": "ఆచరించినవారు",
+            "akshara_cer": 0.42857142857142855,
+            "continuation_fidelity": 0.5,
+            "bank_copy": false
+          }
+        ]
+      },
+      "corrupt_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 0,
+        "source_copy_rate": 0.0,
+        "latinish_count": 0,
+        "latinish_rate": 0.0,
+        "bank_copy_count": 4,
+        "bank_copy_rate": 0.13333333333333333,
+        "first_correct_but_wrong_count": 13,
+        "first_correct_but_wrong_rate": 0.43333333333333335,
+        "first_correct_but_wrong_bank_copy_count": 4,
+        "first_correct_but_wrong_bank_copy_rate": 0.3076923076923077,
+        "examples": [
+          {
+            "word_ood": "aachaaryadharmaaniki",
+            "gold": "ఆచార్యధర్మానికి",
+            "prediction": "ఆచారద్రీమానకై",
+            "akshara_cer": 0.7142857142857143,
+            "continuation_fidelity": 0.8333333333333334,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aachaaraannipaatinchadam",
+            "gold": "ఆచారాన్నిపాటించడం",
+            "prediction": "ఆచరణపనిచేయడం",
+            "akshara_cer": 0.875,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadaalanedi",
+            "gold": "ఆడాలనేది",
+            "prediction": "ఆచారలడి",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharinchinatlu",
+            "gold": "ఆచరించినట్లు",
+            "prediction": "ఆచరణవాదే",
+            "akshara_cer": 0.6666666666666666,
+            "continuation_fidelity": 0.8,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharistunnaarane",
+            "gold": "ఆచరిస్తున్నారనే",
+            "prediction": "ఆచారస్తనారనే",
+            "akshara_cer": 0.5714285714285714,
+            "continuation_fidelity": 0.6666666666666666,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharanalone",
+            "gold": "ఆచరణలోనే",
+            "prediction": "ఆడాలొ",
+            "akshara_cer": 0.8333333333333334,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadaallandariki",
+            "gold": "ఆడాళ్లందరికి",
+            "prediction": "ఆడాడరి",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharinchavalasindi",
+            "gold": "ఆచరించవలసింది",
+            "prediction": "ఆచరణసాధ్యమైన",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 0.8571428571428571,
+            "bank_copy": true
+          }
+        ]
+      }
+    },
+    {
+      "run_type": "core",
+      "path": "/mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/loop2_full/raw/1b/aksharantar_tel_latin/nicl64/neutral_filler_recency_controls.json",
+      "model": "1b",
+      "pair": "aksharantar_tel_latin",
+      "n_icl": 64,
+      "zs": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 75.6,
+        "mean_first_prob": 0.0016938187882866865,
+        "mean_first_logit": 12.425,
+        "mean_joint_logprob": -24.475234206517538,
+        "mean_target_pos1_nll": 6.819919411341349,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.0677910052910053,
+        "mean_script_compliance": 0.8666666666666667,
+        "mean_first_entry_correct": 0.0,
+        "mean_continuation_fidelity": null
+      },
+      "helpful": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 876.6,
+        "mean_first_prob": 0.8686298467529316,
+        "mean_first_logit": 21.36875,
+        "mean_joint_logprob": -14.218272813161214,
+        "mean_target_pos1_nll": 0.3246596743978444,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 0.7505291005291005,
+        "mean_script_compliance": 0.9,
+        "mean_first_entry_correct": 0.9,
+        "mean_continuation_fidelity": 0.6735449735449736
+      },
+      "corrupt": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 876.6,
+        "mean_first_prob": 0.8334982763354977,
+        "mean_first_logit": 21.5875,
+        "mean_joint_logprob": -17.410834789276123,
+        "mean_target_pos1_nll": 0.55459447851966,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.168399470899471,
+        "mean_script_compliance": 0.8777777777777778,
+        "mean_first_entry_correct": 0.8666666666666667,
+        "mean_continuation_fidelity": 1.0433150183150182
+      },
+      "deltas": {
+        "helpful_minus_zs_first_prob": 0.866936027964645,
+        "helpful_minus_zs_first_entry_correct": 0.9,
+        "helpful_minus_zs_exact_match": 0.0,
+        "helpful_minus_zs_akshara_cer": -0.31726190476190486,
+        "helpful_minus_corrupt_first_prob": 0.03513157041743398,
+        "helpful_minus_corrupt_first_entry_correct": 0.033333333333333326,
+        "helpful_minus_corrupt_exact_match": 0.0,
+        "helpful_minus_corrupt_akshara_cer": -0.41787037037037045
+      },
+      "helpful_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 2,
+        "source_copy_rate": 0.06666666666666667,
+        "latinish_count": 3,
+        "latinish_rate": 0.1,
+        "bank_copy_count": 24,
+        "bank_copy_rate": 0.8,
+        "first_correct_but_wrong_count": 27,
+        "first_correct_but_wrong_rate": 0.9,
+        "first_correct_but_wrong_bank_copy_count": 24,
+        "first_correct_but_wrong_bank_copy_rate": 0.8888888888888888,
+        "examples": [
+          {
+            "word_ood": "aadaallameeda",
+            "gold": "ఆడాళ్ళమీద",
+            "prediction": "ఆడాళ్లదీ",
+            "akshara_cer": 0.6,
+            "continuation_fidelity": 0.75,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanaatmakathatho",
+            "gold": "ఆచరణాత్మకతతో",
+            "prediction": "ఆచరణాత్మకమైనదో",
+            "akshara_cer": 0.375,
+            "continuation_fidelity": 0.42857142857142855,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanaatmamgaa",
+            "gold": "ఆచరణాత్మంగా",
+            "prediction": "ఆచరించడం",
+            "akshara_cer": 0.6666666666666666,
+            "continuation_fidelity": 0.8,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharinchabadedi",
+            "gold": "ఆచరించబడేది",
+            "prediction": "ఆచరింపదగిన",
+            "akshara_cer": 0.5714285714285714,
+            "continuation_fidelity": 0.6666666666666666,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aabharanamgaano",
+            "gold": "ఆభరణంగానో",
+            "prediction": "ఆభరణాల్లోనో",
+            "akshara_cer": 0.3333333333333333,
+            "continuation_fidelity": 0.4,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaamannadaanipaine",
+            "gold": "ఆడామన్నదానిపైనే",
+            "prediction": "ఆదాచేసిన",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 0.8571428571428571,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharinchutalo",
+            "gold": "ఆచరించుటలో",
+            "prediction": "ఆచరింపదగిన",
+            "akshara_cer": 0.6666666666666666,
+            "continuation_fidelity": 0.8,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aachaaravyavahaaramula",
+            "gold": "ఆచారవ్యవహారముల",
+            "prediction": "ఆచారవ్యాహారములము",
+            "akshara_cer": 0.3333333333333333,
+            "continuation_fidelity": 0.375,
+            "bank_copy": false
+          }
+        ]
+      },
+      "corrupt_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 3,
+        "source_copy_rate": 0.1,
+        "latinish_count": 3,
+        "latinish_rate": 0.1,
+        "bank_copy_count": 25,
+        "bank_copy_rate": 0.8333333333333334,
+        "first_correct_but_wrong_count": 26,
+        "first_correct_but_wrong_rate": 0.8666666666666667,
+        "first_correct_but_wrong_bank_copy_count": 25,
+        "first_correct_but_wrong_bank_copy_rate": 0.9615384615384616,
+        "examples": [
+          {
+            "word_ood": "aadaallameeda",
+            "gold": "ఆడాళ్ళమీద",
+            "prediction": "ఆచరణలోపెట్టాలని",
+            "akshara_cer": 1.6,
+            "continuation_fidelity": 2.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanaatmakathatho",
+            "gold": "ఆచరణాత్మకతతో",
+            "prediction": "ఆచారిలు",
+            "akshara_cer": 0.875,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanaatmamgaa",
+            "gold": "ఆచరణాత్మంగా",
+            "prediction": "ఆచరణలోనూ",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharinchabadedi",
+            "gold": "ఆచరించబడేది",
+            "prediction": "ఆచరణరూపమిచ్చి",
+            "akshara_cer": 0.8571428571428571,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaamannadaanipaine",
+            "gold": "ఆడామన్నదానిపైనే",
+            "prediction": "ఆచరణకీ",
+            "akshara_cer": 0.875,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharinchutalo",
+            "gold": "ఆచరించుటలో",
+            "prediction": "ఆచరణలోపెట్టాలని",
+            "akshara_cer": 1.1666666666666667,
+            "continuation_fidelity": 1.4,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aachaaravyavahaaramula",
+            "gold": "ఆచారవ్యవహారముల",
+            "prediction": "ఆచరణాత్మకమైనదో",
+            "akshara_cer": 0.7777777777777778,
+            "continuation_fidelity": 0.875,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aachaaramidi",
+            "gold": "ఆచారమిది",
+            "prediction": "ఆచారాలపైనే",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          }
+        ]
+      }
+    },
+    {
+      "run_type": "core",
+      "path": "/mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/loop2_full/raw/4b/aksharantar_hin_latin/nicl64/neutral_filler_recency_controls.json",
+      "model": "4b",
+      "pair": "aksharantar_hin_latin",
+      "n_icl": 64,
+      "zs": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 76.63333333333334,
+        "mean_first_prob": 0.8372758223930181,
+        "mean_first_logit": 49.354166666666664,
+        "mean_joint_logprob": -9.763638592658996,
+        "mean_target_pos1_nll": 1.518743739294761,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.36666666666666664,
+        "mean_akshara_cer": 0.31666666666666665,
+        "mean_script_compliance": 0.98,
+        "mean_first_entry_correct": 0.9,
+        "mean_continuation_fidelity": 0.43209876543209874
+      },
+      "helpful": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 656.6333333333333,
+        "mean_first_prob": 0.8710852185484631,
+        "mean_first_logit": 49.3,
+        "mean_joint_logprob": -8.405053624109753,
+        "mean_target_pos1_nll": 0.750304293853215,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.36666666666666664,
+        "mean_akshara_cer": 0.3196031746031746,
+        "mean_script_compliance": 0.9666666666666667,
+        "mean_first_entry_correct": 0.9333333333333333,
+        "mean_continuation_fidelity": 0.4702380952380953
+      },
+      "corrupt": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 656.6333333333333,
+        "mean_first_prob": 0.8656978071334985,
+        "mean_first_logit": 32.80625,
+        "mean_joint_logprob": -5.879562108963728,
+        "mean_target_pos1_nll": 0.8646365590813881,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.23333333333333334,
+        "mean_akshara_cer": 0.3935714285714286,
+        "mean_script_compliance": 0.9577777777777777,
+        "mean_first_entry_correct": 0.9666666666666667,
+        "mean_continuation_fidelity": 0.5856321839080461
+      },
+      "deltas": {
+        "helpful_minus_zs_first_prob": 0.03380939615544498,
+        "helpful_minus_zs_first_entry_correct": 0.033333333333333326,
+        "helpful_minus_zs_exact_match": 0.0,
+        "helpful_minus_zs_akshara_cer": 0.0029365079365079594,
+        "helpful_minus_corrupt_first_prob": 0.005387411414964571,
+        "helpful_minus_corrupt_first_entry_correct": -0.033333333333333326,
+        "helpful_minus_corrupt_exact_match": 0.1333333333333333,
+        "helpful_minus_corrupt_akshara_cer": -0.07396825396825402
+      },
+      "helpful_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 0,
+        "source_copy_rate": 0.0,
+        "latinish_count": 0,
+        "latinish_rate": 0.0,
+        "bank_copy_count": 1,
+        "bank_copy_rate": 0.03333333333333333,
+        "first_correct_but_wrong_count": 17,
+        "first_correct_but_wrong_rate": 0.5666666666666667,
+        "first_correct_but_wrong_bank_copy_count": 1,
+        "first_correct_but_wrong_bank_copy_rate": 0.058823529411764705,
+        "examples": [
+          {
+            "word_ood": "aaegi",
+            "gold": "आएगी",
+            "prediction": "आगी",
+            "akshara_cer": 0.3333333333333333,
+            "continuation_fidelity": 0.5,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhikarik",
+            "gold": "आधिकरिक",
+            "prediction": "आधिरिक",
+            "akshara_cer": 0.2,
+            "continuation_fidelity": 0.25,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aafatakaal",
+            "gold": "आफ़तकाल",
+            "prediction": "आफटकाल",
+            "akshara_cer": 0.4,
+            "continuation_fidelity": 0.5,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhyatmakta",
+            "gold": "आध्यात्मकता",
+            "prediction": "आध्यात्मकटा",
+            "akshara_cer": 0.2,
+            "continuation_fidelity": 0.25,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aagyakarita",
+            "gold": "आज्ञाकारिता",
+            "prediction": "आग्यकारिता",
+            "akshara_cer": 0.2,
+            "continuation_fidelity": 0.25,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aahalya",
+            "gold": "आहल्या",
+            "prediction": "आहिल्या",
+            "akshara_cer": 0.3333333333333333,
+            "continuation_fidelity": 0.5,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadhunita",
+            "gold": "आधुनिता",
+            "prediction": "आधुनिकता",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aagehun",
+            "gold": "आगेहुँ",
+            "prediction": "आगेहून",
+            "akshara_cer": 0.6666666666666666,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          }
+        ]
+      },
+      "corrupt_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 0,
+        "source_copy_rate": 0.0,
+        "latinish_count": 0,
+        "latinish_rate": 0.0,
+        "bank_copy_count": 1,
+        "bank_copy_rate": 0.03333333333333333,
+        "first_correct_but_wrong_count": 22,
+        "first_correct_but_wrong_rate": 0.7333333333333333,
+        "first_correct_but_wrong_bank_copy_count": 1,
+        "first_correct_but_wrong_bank_copy_rate": 0.045454545454545456,
+        "examples": [
+          {
+            "word_ood": "aaegi",
+            "gold": "आएगी",
+            "prediction": "आगी",
+            "akshara_cer": 0.3333333333333333,
+            "continuation_fidelity": 0.5,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhikarik",
+            "gold": "आधिकरिक",
+            "prediction": "आधिकर",
+            "akshara_cer": 0.4,
+            "continuation_fidelity": 0.5,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aabhyantarikaran",
+            "gold": "आभ्यंतरीकरण",
+            "prediction": "आभ्यन्तरिकरण",
+            "akshara_cer": 0.42857142857142855,
+            "continuation_fidelity": 0.5,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aafatakaal",
+            "gold": "आफ़तकाल",
+            "prediction": "आफटाकाल",
+            "akshara_cer": 0.4,
+            "continuation_fidelity": 0.5,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhyatmakta",
+            "gold": "आध्यात्मकता",
+            "prediction": "आध्यात्मक",
+            "akshara_cer": 0.2,
+            "continuation_fidelity": 0.25,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aagyakarita",
+            "gold": "आज्ञाकारिता",
+            "prediction": "आग्यकारिता",
+            "akshara_cer": 0.2,
+            "continuation_fidelity": 0.25,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadmiyon",
+            "gold": "आदमियों",
+            "prediction": "आदमीयो",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6666666666666666,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aahalya",
+            "gold": "आहल्या",
+            "prediction": "आहिल्या",
+            "akshara_cer": 0.3333333333333333,
+            "continuation_fidelity": 0.5,
+            "bank_copy": true
+          }
+        ]
+      }
+    },
+    {
+      "run_type": "core",
+      "path": "/mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/loop2_full/raw/4b/aksharantar_tel_latin/nicl64/neutral_filler_recency_controls.json",
+      "model": "4b",
+      "pair": "aksharantar_tel_latin",
+      "n_icl": 64,
+      "zs": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 75.6,
+        "mean_first_prob": 0.0020076561767095203,
+        "mean_first_logit": 27.166666666666668,
+        "mean_joint_logprob": -23.486886056264243,
+        "mean_target_pos1_nll": 12.551820556322733,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 2.4307936507936505,
+        "mean_script_compliance": 0.0,
+        "mean_first_entry_correct": 0.0,
+        "mean_continuation_fidelity": null
+      },
+      "helpful": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 876.6,
+        "mean_first_prob": 0.9789645969867706,
+        "mean_first_logit": 34.50833333333333,
+        "mean_joint_logprob": -6.467077280489551,
+        "mean_target_pos1_nll": 0.03275811625554681,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.3,
+        "mean_akshara_cer": 0.25227513227513226,
+        "mean_script_compliance": 1.0,
+        "mean_first_entry_correct": 0.9666666666666667,
+        "mean_continuation_fidelity": 0.30636288998357963
+      },
+      "corrupt": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 876.6,
+        "mean_first_prob": 0.9687293293575446,
+        "mean_first_logit": 24.270833333333332,
+        "mean_joint_logprob": -6.262513239247103,
+        "mean_target_pos1_nll": 0.07281740879940722,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.13333333333333333,
+        "mean_akshara_cer": 0.5768783068783068,
+        "mean_script_compliance": 1.0,
+        "mean_first_entry_correct": 0.9666666666666667,
+        "mean_continuation_fidelity": 0.7222495894909688
+      },
+      "deltas": {
+        "helpful_minus_zs_first_prob": 0.9769569408100611,
+        "helpful_minus_zs_first_entry_correct": 0.9666666666666667,
+        "helpful_minus_zs_exact_match": 0.3,
+        "helpful_minus_zs_akshara_cer": -2.1785185185185183,
+        "helpful_minus_corrupt_first_prob": 0.010235267629225997,
+        "helpful_minus_corrupt_first_entry_correct": 0.0,
+        "helpful_minus_corrupt_exact_match": 0.16666666666666666,
+        "helpful_minus_corrupt_akshara_cer": -0.3246031746031745
+      },
+      "helpful_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 0,
+        "source_copy_rate": 0.0,
+        "latinish_count": 0,
+        "latinish_rate": 0.0,
+        "bank_copy_count": 2,
+        "bank_copy_rate": 0.06666666666666667,
+        "first_correct_but_wrong_count": 20,
+        "first_correct_but_wrong_rate": 0.6666666666666666,
+        "first_correct_but_wrong_bank_copy_count": 2,
+        "first_correct_but_wrong_bank_copy_rate": 0.1,
+        "examples": [
+          {
+            "word_ood": "aadaallameeda",
+            "gold": "ఆడాళ్ళమీద",
+            "prediction": "ఆడాళ్లమేదా",
+            "akshara_cer": 0.6,
+            "continuation_fidelity": 0.75,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharanaatmakathatho",
+            "gold": "ఆచరణాత్మకతతో",
+            "prediction": "ఆచరణాత్మకంతో",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.2857142857142857,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharinchabadedi",
+            "gold": "ఆచరించబడేది",
+            "prediction": "ఆచరించబడినది",
+            "akshara_cer": 0.2857142857142857,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aabharanamgaano",
+            "gold": "ఆభరణంగానో",
+            "prediction": "ఆభరణంగానూ",
+            "akshara_cer": 0.16666666666666666,
+            "continuation_fidelity": 0.2,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaamannadaanipaine",
+            "gold": "ఆడామన్నదానిపైనే",
+            "prediction": "ఆదామన్నదానిపైనే",
+            "akshara_cer": 0.125,
+            "continuation_fidelity": 0.14285714285714285,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharinchutalo",
+            "gold": "ఆచరించుటలో",
+            "prediction": "ఆచరించటలో",
+            "akshara_cer": 0.16666666666666666,
+            "continuation_fidelity": 0.2,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aachaaravyavahaaramula",
+            "gold": "ఆచారవ్యవహారముల",
+            "prediction": "ఆచారవ్యవహారములా",
+            "akshara_cer": 0.1111111111111111,
+            "continuation_fidelity": 0.125,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadaachesukunenduku",
+            "gold": "ఆదాచేసుకునేందుకు",
+            "prediction": "ఆదాచేసుకుంటూ",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.5714285714285714,
+            "bank_copy": false
+          }
+        ]
+      },
+      "corrupt_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 0,
+        "source_copy_rate": 0.0,
+        "latinish_count": 0,
+        "latinish_rate": 0.0,
+        "bank_copy_count": 8,
+        "bank_copy_rate": 0.26666666666666666,
+        "first_correct_but_wrong_count": 25,
+        "first_correct_but_wrong_rate": 0.8333333333333334,
+        "first_correct_but_wrong_bank_copy_count": 8,
+        "first_correct_but_wrong_bank_copy_rate": 0.32,
+        "examples": [
+          {
+            "word_ood": "aadaallameeda",
+            "gold": "ఆడాళ్ళమీద",
+            "prediction": "ఆచరణలోపెట్టడానికి",
+            "akshara_cer": 1.8,
+            "continuation_fidelity": 2.25,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharanaatmamgaa",
+            "gold": "ఆచరణాత్మంగా",
+            "prediction": "ఆచరణాత్మకమైనదో",
+            "akshara_cer": 0.8333333333333334,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharinchabadedi",
+            "gold": "ఆచరించబడేది",
+            "prediction": "ఆచరించబడెడి",
+            "akshara_cer": 0.2857142857142857,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aabharanamgaano",
+            "gold": "ఆభరణంగానో",
+            "prediction": "ఆచరణరూపమిచ్చి",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.2,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaamannadaanipaine",
+            "gold": "ఆడామన్నదానిపైనే",
+            "prediction": "ఆదామన్నదానిపైనే",
+            "akshara_cer": 0.125,
+            "continuation_fidelity": 0.14285714285714285,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharinchutalo",
+            "gold": "ఆచరించుటలో",
+            "prediction": "ఆచరించటలో",
+            "akshara_cer": 0.16666666666666666,
+            "continuation_fidelity": 0.2,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aachaaravyavahaaramula",
+            "gold": "ఆచారవ్యవహారముల",
+            "prediction": "ఆచరణకీవ్యవహారములలో",
+            "akshara_cer": 0.4444444444444444,
+            "continuation_fidelity": 0.5,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aachaaramidi",
+            "gold": "ఆచారమిది",
+            "prediction": "ఆచారమిడి",
+            "akshara_cer": 0.2,
+            "continuation_fidelity": 0.25,
+            "bank_copy": false
+          }
+        ]
+      }
+    },
+    {
+      "run_type": "threshold",
+      "path": "/mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/threshold_1b_seed42/raw/1b/aksharantar_hin_latin/nicl48/neutral_filler_recency_controls.json",
+      "model": "1b",
+      "pair": "aksharantar_hin_latin",
+      "n_icl": 48,
+      "zs": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 76.56666666666666,
+        "mean_first_prob": 0.601276528610392,
+        "mean_first_logit": 21.295833333333334,
+        "mean_joint_logprob": -13.139000566800435,
+        "mean_target_pos1_nll": 1.367568377436449,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.06666666666666667,
+        "mean_akshara_cer": 0.7087301587301588,
+        "mean_script_compliance": 0.9206349206349206,
+        "mean_first_entry_correct": 0.6666666666666666,
+        "mean_continuation_fidelity": 0.825
+      },
+      "helpful": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 512.5666666666667,
+        "mean_first_prob": 0.48810360195930114,
+        "mean_first_logit": 18.489583333333332,
+        "mean_joint_logprob": -11.28009981053571,
+        "mean_target_pos1_nll": 1.3580969059218964,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.03333333333333333,
+        "mean_akshara_cer": 4.560793650793651,
+        "mean_script_compliance": 0.5280423280423281,
+        "mean_first_entry_correct": 0.43333333333333335,
+        "mean_continuation_fidelity": 0.7884615384615384
+      },
+      "corrupt": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 512.5666666666667,
+        "mean_first_prob": 0.64008403216291,
+        "mean_first_logit": 17.49375,
+        "mean_joint_logprob": -10.014115051428478,
+        "mean_target_pos1_nll": 0.979876160582838,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.1,
+        "mean_akshara_cer": 4.64888888888889,
+        "mean_script_compliance": 0.5666666666666667,
+        "mean_first_entry_correct": 0.4666666666666667,
+        "mean_continuation_fidelity": 0.5892857142857143
+      },
+      "deltas": {
+        "helpful_minus_zs_first_prob": -0.11317292665109091,
+        "helpful_minus_zs_first_entry_correct": -0.23333333333333328,
+        "helpful_minus_zs_exact_match": -0.03333333333333333,
+        "helpful_minus_zs_akshara_cer": 3.8520634920634924,
+        "helpful_minus_corrupt_first_prob": -0.15198043020360885,
+        "helpful_minus_corrupt_first_entry_correct": -0.033333333333333326,
+        "helpful_minus_corrupt_exact_match": -0.06666666666666668,
+        "helpful_minus_corrupt_akshara_cer": -0.08809523809523867
+      },
+      "helpful_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 1,
+        "source_copy_rate": 0.03333333333333333,
+        "latinish_count": 13,
+        "latinish_rate": 0.43333333333333335,
+        "bank_copy_count": 2,
+        "bank_copy_rate": 0.06666666666666667,
+        "first_correct_but_wrong_count": 12,
+        "first_correct_but_wrong_rate": 0.4,
+        "first_correct_but_wrong_bank_copy_count": 2,
+        "first_correct_but_wrong_bank_copy_rate": 0.16666666666666666,
+        "examples": [
+          {
+            "word_ood": "aagrahsheel",
+            "gold": "आग्रहशील",
+            "prediction": "आग्राशीली",
+            "akshara_cer": 0.6,
+            "continuation_fidelity": 0.75,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aagyaapurvak",
+            "gold": "आज्ञापूर्वक",
+            "prediction": "आगापवैक",
+            "akshara_cer": 0.6,
+            "continuation_fidelity": 0.75,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadattan",
+            "gold": "आदत्तन",
+            "prediction": "आदतन",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadraane",
+            "gold": "आदराने",
+            "prediction": "आर्द्रा",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aaika",
+            "gold": "आईका",
+            "prediction": "आकाई",
+            "akshara_cer": 0.6666666666666666,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadbadri",
+            "gold": "आदबद्री",
+            "prediction": "आधारब्री",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aaegi",
+            "gold": "आएगी",
+            "prediction": "आजी",
+            "akshara_cer": 0.6666666666666666,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadesho",
+            "gold": "आदेशो",
+            "prediction": "आदेश",
+            "akshara_cer": 0.3333333333333333,
+            "continuation_fidelity": 0.5,
+            "bank_copy": false
+          }
+        ]
+      },
+      "corrupt_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 1,
+        "source_copy_rate": 0.03333333333333333,
+        "latinish_count": 13,
+        "latinish_rate": 0.43333333333333335,
+        "bank_copy_count": 0,
+        "bank_copy_rate": 0.0,
+        "first_correct_but_wrong_count": 11,
+        "first_correct_but_wrong_rate": 0.36666666666666664,
+        "first_correct_but_wrong_bank_copy_count": 0,
+        "first_correct_but_wrong_bank_copy_rate": 0.0,
+        "examples": [
+          {
+            "word_ood": "aagrahsheel",
+            "gold": "आग्रहशील",
+            "prediction": "आगरा",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhinak",
+            "gold": "आधिनक",
+            "prediction": "आदिनक",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aagyaapurvak",
+            "gold": "आज्ञापूर्वक",
+            "prediction": "आग्यूपवैक",
+            "akshara_cer": 0.6,
+            "continuation_fidelity": 0.75,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadattan",
+            "gold": "आदत्तन",
+            "prediction": "आदतन",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aaika",
+            "gold": "आईका",
+            "prediction": "आकाई",
+            "akshara_cer": 0.6666666666666666,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadbadri",
+            "gold": "आदबद्री",
+            "prediction": "आदबड़ि",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aaegi",
+            "gold": "आएगी",
+            "prediction": "आजी",
+            "akshara_cer": 0.6666666666666666,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadesho",
+            "gold": "आदेशो",
+            "prediction": "आदिशल",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.5,
+            "bank_copy": false
+          }
+        ]
+      }
+    },
+    {
+      "run_type": "threshold",
+      "path": "/mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/threshold_1b_seed42/raw/1b/aksharantar_hin_latin/nicl56/neutral_filler_recency_controls.json",
+      "model": "1b",
+      "pair": "aksharantar_hin_latin",
+      "n_icl": 56,
+      "zs": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 76.5,
+        "mean_first_prob": 0.5808987734792396,
+        "mean_first_logit": 20.645833333333332,
+        "mean_joint_logprob": -13.840996789932252,
+        "mean_target_pos1_nll": 2.279054745635949,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.06666666666666667,
+        "mean_akshara_cer": 0.6603968253968254,
+        "mean_script_compliance": 0.9428571428571428,
+        "mean_first_entry_correct": 0.7,
+        "mean_continuation_fidelity": 0.8253968253968255
+      },
+      "helpful": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 581.5,
+        "mean_first_prob": 0.3872808941597869,
+        "mean_first_logit": 21.645833333333332,
+        "mean_joint_logprob": -13.049330741815114,
+        "mean_target_pos1_nll": 3.415232856503538,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.03333333333333333,
+        "mean_akshara_cer": 1.3785714285714288,
+        "mean_script_compliance": 0.42,
+        "mean_first_entry_correct": 0.4,
+        "mean_continuation_fidelity": 0.736111111111111
+      },
+      "corrupt": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 581.5,
+        "mean_first_prob": 0.45602470586838495,
+        "mean_first_logit": 20.060416666666665,
+        "mean_joint_logprob": -11.682575384775797,
+        "mean_target_pos1_nll": 2.919219036210173,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.5013492063492064,
+        "mean_script_compliance": 0.4557142857142857,
+        "mean_first_entry_correct": 0.5,
+        "mean_continuation_fidelity": 1.35
+      },
+      "deltas": {
+        "helpful_minus_zs_first_prob": -0.19361787931945268,
+        "helpful_minus_zs_first_entry_correct": -0.29999999999999993,
+        "helpful_minus_zs_exact_match": -0.03333333333333333,
+        "helpful_minus_zs_akshara_cer": 0.7181746031746034,
+        "helpful_minus_corrupt_first_prob": -0.06874381170859806,
+        "helpful_minus_corrupt_first_entry_correct": -0.09999999999999998,
+        "helpful_minus_corrupt_exact_match": 0.03333333333333333,
+        "helpful_minus_corrupt_akshara_cer": -0.12277777777777765
+      },
+      "helpful_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 9,
+        "source_copy_rate": 0.3,
+        "latinish_count": 17,
+        "latinish_rate": 0.5666666666666667,
+        "bank_copy_count": 4,
+        "bank_copy_rate": 0.13333333333333333,
+        "first_correct_but_wrong_count": 11,
+        "first_correct_but_wrong_rate": 0.36666666666666664,
+        "first_correct_but_wrong_bank_copy_count": 4,
+        "first_correct_but_wrong_bank_copy_rate": 0.36363636363636365,
+        "examples": [
+          {
+            "word_ood": "aadraane",
+            "gold": "आदराने",
+            "prediction": "आर्द्रा",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aagantook",
+            "gold": "आगंतुक",
+            "prediction": "आगाधूक",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6666666666666666,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadbadri",
+            "gold": "आदबद्री",
+            "prediction": "आधारब्री",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aabhyantarikaran",
+            "gold": "आभ्यंतरीकरण",
+            "prediction": "आभ्यन्तरिकृत",
+            "akshara_cer": 0.8571428571428571,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadhyatmakta",
+            "gold": "आध्यात्मकता",
+            "prediction": "आध्यदेशात",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadarahi",
+            "gold": "आदरही",
+            "prediction": "आदरीह",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6666666666666666,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aagyakarita",
+            "gold": "आज्ञाकारिता",
+            "prediction": "आजकैरित",
+            "akshara_cer": 0.6,
+            "continuation_fidelity": 0.75,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadmiyon",
+            "gold": "आदमियों",
+            "prediction": "आदमियोंको",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": true
+          }
+        ]
+      },
+      "corrupt_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 6,
+        "source_copy_rate": 0.2,
+        "latinish_count": 14,
+        "latinish_rate": 0.4666666666666667,
+        "bank_copy_count": 2,
+        "bank_copy_rate": 0.06666666666666667,
+        "first_correct_but_wrong_count": 15,
+        "first_correct_but_wrong_rate": 0.5,
+        "first_correct_but_wrong_bank_copy_count": 2,
+        "first_correct_but_wrong_bank_copy_rate": 0.13333333333333333,
+        "examples": [
+          {
+            "word_ood": "aagantook",
+            "gold": "आगंतुक",
+            "prediction": "आदगूक",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6666666666666666,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aaghutan",
+            "gold": "आघटन",
+            "prediction": "आघातांविषयी",
+            "akshara_cer": 1.25,
+            "continuation_fidelity": 1.6666666666666667,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadesho",
+            "gold": "आदेशो",
+            "prediction": "आदिशह",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.5,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhikarik",
+            "gold": "आधिकरिक",
+            "prediction": "आधानसंहिता",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.25,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aabhyantarikaran",
+            "gold": "आभ्यंतरीकरण",
+            "prediction": "आदित्यणा",
+            "akshara_cer": 0.8571428571428571,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhyatmakta",
+            "gold": "आध्यात्मकता",
+            "prediction": "आदह्यातमक",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.25,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadarahi",
+            "gold": "आदरही",
+            "prediction": "आधानिक",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aagyakarita",
+            "gold": "आज्ञाकारिता",
+            "prediction": "आदित्यक",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          }
+        ]
+      }
+    },
+    {
+      "run_type": "threshold",
+      "path": "/mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/threshold_1b_seed42/raw/1b/aksharantar_hin_latin/nicl64/neutral_filler_recency_controls.json",
+      "model": "1b",
+      "pair": "aksharantar_hin_latin",
+      "n_icl": 64,
+      "zs": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 76.63333333333334,
+        "mean_first_prob": 0.5793185148805233,
+        "mean_first_logit": 20.75,
+        "mean_joint_logprob": -14.67159145673116,
+        "mean_target_pos1_nll": 1.7827761683380232,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.06666666666666667,
+        "mean_akshara_cer": 0.7050793650793652,
+        "mean_script_compliance": 0.9261904761904761,
+        "mean_first_entry_correct": 0.6,
+        "mean_continuation_fidelity": 0.7962962962962963
+      },
+      "helpful": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 656.6333333333333,
+        "mean_first_prob": 0.48130098731132115,
+        "mean_first_logit": 23.458333333333332,
+        "mean_joint_logprob": -15.141293523538236,
+        "mean_target_pos1_nll": 2.9975150942820012,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.3426984126984125,
+        "mean_script_compliance": 0.48666666666666664,
+        "mean_first_entry_correct": 0.5,
+        "mean_continuation_fidelity": 0.7544444444444445
+      },
+      "corrupt": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 656.6333333333333,
+        "mean_first_prob": 0.600353647296334,
+        "mean_first_logit": 21.985416666666666,
+        "mean_joint_logprob": -13.918608768781025,
+        "mean_target_pos1_nll": 2.339819706615041,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.1540476190476192,
+        "mean_script_compliance": 0.6619047619047618,
+        "mean_first_entry_correct": 0.7,
+        "mean_continuation_fidelity": 1.0007936507936508
+      },
+      "deltas": {
+        "helpful_minus_zs_first_prob": -0.09801752756920218,
+        "helpful_minus_zs_first_entry_correct": -0.09999999999999998,
+        "helpful_minus_zs_exact_match": -0.06666666666666667,
+        "helpful_minus_zs_akshara_cer": 0.6376190476190473,
+        "helpful_minus_corrupt_first_prob": -0.11905265998501285,
+        "helpful_minus_corrupt_first_entry_correct": -0.19999999999999996,
+        "helpful_minus_corrupt_exact_match": 0.0,
+        "helpful_minus_corrupt_akshara_cer": 0.1886507936507933
+      },
+      "helpful_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 12,
+        "source_copy_rate": 0.4,
+        "latinish_count": 15,
+        "latinish_rate": 0.5,
+        "bank_copy_count": 8,
+        "bank_copy_rate": 0.26666666666666666,
+        "first_correct_but_wrong_count": 15,
+        "first_correct_but_wrong_rate": 0.5,
+        "first_correct_but_wrong_bank_copy_count": 8,
+        "first_correct_but_wrong_bank_copy_rate": 0.5333333333333333,
+        "examples": [
+          {
+            "word_ood": "aadeshpaalak",
+            "gold": "आदेशपालक",
+            "prediction": "आदेशप्रताप",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadhikarik",
+            "gold": "आधिकरिक",
+            "prediction": "आधिपतिक",
+            "akshara_cer": 0.4,
+            "continuation_fidelity": 0.5,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aabhyantarikaran",
+            "gold": "आभ्यंतरीकरण",
+            "prediction": "आभ्यन्तरिकृत",
+            "akshara_cer": 0.8571428571428571,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadhyatmakta",
+            "gold": "आध्यात्मकता",
+            "prediction": "आध्यदेश",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadarahi",
+            "gold": "आदरही",
+            "prediction": "आदिशक्तिका",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.3333333333333333,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aagyakarita",
+            "gold": "आज्ञाकारिता",
+            "prediction": "आजीकारिता",
+            "akshara_cer": 0.2,
+            "continuation_fidelity": 0.25,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadmiyon",
+            "gold": "आदमियों",
+            "prediction": "आदमियोंको",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadhunita",
+            "gold": "आधुनिता",
+            "prediction": "आदित्य",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          }
+        ]
+      },
+      "corrupt_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 6,
+        "source_copy_rate": 0.2,
+        "latinish_count": 8,
+        "latinish_rate": 0.26666666666666666,
+        "bank_copy_count": 9,
+        "bank_copy_rate": 0.3,
+        "first_correct_but_wrong_count": 21,
+        "first_correct_but_wrong_rate": 0.7,
+        "first_correct_but_wrong_bank_copy_count": 9,
+        "first_correct_but_wrong_bank_copy_rate": 0.42857142857142855,
+        "examples": [
+          {
+            "word_ood": "aadeshpaalak",
+            "gold": "आदेशपालक",
+            "prediction": "आदिशपाल",
+            "akshara_cer": 0.3333333333333333,
+            "continuation_fidelity": 0.4,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadhikarik",
+            "gold": "आधिकरिक",
+            "prediction": "आधिपत्यों",
+            "akshara_cer": 0.6,
+            "continuation_fidelity": 0.75,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aabhyantarikaran",
+            "gold": "आभ्यंतरीकरण",
+            "prediction": "आदिशक्तिका",
+            "akshara_cer": 0.8571428571428571,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadhyatmakta",
+            "gold": "आध्यात्मकता",
+            "prediction": "आदिशक्तिका",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadarahi",
+            "gold": "आदरही",
+            "prediction": "आदिशक्तिका",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.3333333333333333,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadalgachchh",
+            "gold": "आदलगच्छ",
+            "prediction": "आदगचchh",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.25,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aagyakarita",
+            "gold": "आज्ञाकारिता",
+            "prediction": "आदिशक्तिका",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadmiyon",
+            "gold": "आदमियों",
+            "prediction": "आदमिyon",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          }
+        ]
+      }
+    },
+    {
+      "run_type": "threshold",
+      "path": "/mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/threshold_1b_seed42/raw/1b/aksharantar_tel_latin/nicl48/neutral_filler_recency_controls.json",
+      "model": "1b",
+      "pair": "aksharantar_tel_latin",
+      "n_icl": 48,
+      "zs": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 75.46666666666667,
+        "mean_first_prob": 0.0022304202471180663,
+        "mean_first_logit": 12.503125,
+        "mean_joint_logprob": -26.84940678278605,
+        "mean_target_pos1_nll": 6.780290428797404,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 0.9782407407407407,
+        "mean_script_compliance": 0.9,
+        "mean_first_entry_correct": 0.0,
+        "mean_continuation_fidelity": null
+      },
+      "helpful": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 679.4666666666667,
+        "mean_first_prob": 0.7218320112298462,
+        "mean_first_logit": 21.883333333333333,
+        "mean_joint_logprob": -15.267961970965068,
+        "mean_target_pos1_nll": 1.5122183720681883,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.0430820105820107,
+        "mean_script_compliance": 0.7333333333333333,
+        "mean_first_entry_correct": 0.7,
+        "mean_continuation_fidelity": 0.6623582766439909
+      },
+      "corrupt": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 679.4666666666667,
+        "mean_first_prob": 0.6301732081900224,
+        "mean_first_logit": 19.908333333333335,
+        "mean_joint_logprob": -18.615860589345296,
+        "mean_target_pos1_nll": 1.672950249752709,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.3803306878306878,
+        "mean_script_compliance": 0.6666666666666666,
+        "mean_first_entry_correct": 0.6333333333333333,
+        "mean_continuation_fidelity": 1.0431704260651629
+      },
+      "deltas": {
+        "helpful_minus_zs_first_prob": 0.7196015909827281,
+        "helpful_minus_zs_first_entry_correct": 0.7,
+        "helpful_minus_zs_exact_match": 0.0,
+        "helpful_minus_zs_akshara_cer": 0.06484126984126992,
+        "helpful_minus_corrupt_first_prob": 0.09165880303982377,
+        "helpful_minus_corrupt_first_entry_correct": 0.06666666666666665,
+        "helpful_minus_corrupt_exact_match": 0.0,
+        "helpful_minus_corrupt_akshara_cer": -0.33724867724867713
+      },
+      "helpful_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 4,
+        "source_copy_rate": 0.13333333333333333,
+        "latinish_count": 8,
+        "latinish_rate": 0.26666666666666666,
+        "bank_copy_count": 16,
+        "bank_copy_rate": 0.5333333333333333,
+        "first_correct_but_wrong_count": 21,
+        "first_correct_but_wrong_rate": 0.7,
+        "first_correct_but_wrong_bank_copy_count": 16,
+        "first_correct_but_wrong_bank_copy_rate": 0.7619047619047619,
+        "examples": [
+          {
+            "word_ood": "aadaayala",
+            "gold": "ఆదాయల",
+            "prediction": "ఆదాలే",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6666666666666666,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharinchadaggadi",
+            "gold": "ఆచరించదగ్గది",
+            "prediction": "ఆచరింపదగిన",
+            "akshara_cer": 0.42857142857142855,
+            "continuation_fidelity": 0.5,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharinchaayi",
+            "gold": "ఆచరించాయి",
+            "prediction": "ఆచరించటమే",
+            "akshara_cer": 0.6,
+            "continuation_fidelity": 0.75,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaayamledani",
+            "gold": "ఆదాయంలేదని",
+            "prediction": "ఆదాయాలనీ",
+            "akshara_cer": 0.6666666666666666,
+            "continuation_fidelity": 0.8,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadabaduchenani",
+            "gold": "ఆడబడుచేనని",
+            "prediction": "ఆడబడుచుకి",
+            "akshara_cer": 0.42857142857142855,
+            "continuation_fidelity": 0.5,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaarapadinatlu",
+            "gold": "ఆదారపడినట్లు",
+            "prediction": "ఆదారపడడం",
+            "akshara_cer": 0.42857142857142855,
+            "continuation_fidelity": 0.5,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadabbuni",
+            "gold": "ఆడబ్బుని",
+            "prediction": "ఆడబిని",
+            "akshara_cer": 0.25,
+            "continuation_fidelity": 0.3333333333333333,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadaayaalatoo",
+            "gold": "ఆదాయాలతో",
+            "prediction": "ఆడాళ్లదీ",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          }
+        ]
+      },
+      "corrupt_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 7,
+        "source_copy_rate": 0.23333333333333334,
+        "latinish_count": 10,
+        "latinish_rate": 0.3333333333333333,
+        "bank_copy_count": 14,
+        "bank_copy_rate": 0.4666666666666667,
+        "first_correct_but_wrong_count": 19,
+        "first_correct_but_wrong_rate": 0.6333333333333333,
+        "first_correct_but_wrong_bank_copy_count": 14,
+        "first_correct_but_wrong_bank_copy_rate": 0.7368421052631579,
+        "examples": [
+          {
+            "word_ood": "aadaayala",
+            "gold": "ఆదాయల",
+            "prediction": "ఆచరించినవారి",
+            "akshara_cer": 1.5,
+            "continuation_fidelity": 2.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharinchadaggadi",
+            "gold": "ఆచరించదగ్గది",
+            "prediction": "ఆచరణాత్మకమైనది",
+            "akshara_cer": 0.8571428571428571,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharinchaayi",
+            "gold": "ఆచరించాయి",
+            "prediction": "ఆభ్యంతరాలను",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.25,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaayamledani",
+            "gold": "ఆదాయంలేదని",
+            "prediction": "ఆచరణీయమైనది",
+            "akshara_cer": 1.1666666666666667,
+            "continuation_fidelity": 1.4,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadabaduchenani",
+            "gold": "ఆడబడుచేనని",
+            "prediction": "ఆదాయాల",
+            "akshara_cer": 0.8571428571428571,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaarapadinatlu",
+            "gold": "ఆదారపడినట్లు",
+            "prediction": "ఆచరణీయాలుగా",
+            "akshara_cer": 0.7142857142857143,
+            "continuation_fidelity": 0.8333333333333334,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadabbuni",
+            "gold": "ఆడబ్బుని",
+            "prediction": "ఆదాయం",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 1.0,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadaayaalatoo",
+            "gold": "ఆదాయాలతో",
+            "prediction": "ఆడాళ్లదీ",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          }
+        ]
+      }
+    },
+    {
+      "run_type": "threshold",
+      "path": "/mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/threshold_1b_seed42/raw/1b/aksharantar_tel_latin/nicl56/neutral_filler_recency_controls.json",
+      "model": "1b",
+      "pair": "aksharantar_tel_latin",
+      "n_icl": 56,
+      "zs": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 75.5,
+        "mean_first_prob": 0.0016686049530107994,
+        "mean_first_logit": 12.622916666666667,
+        "mean_joint_logprob": -25.691700744628907,
+        "mean_target_pos1_nll": 6.836775445938111,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 0.9845899470899472,
+        "mean_script_compliance": 0.8333333333333334,
+        "mean_first_entry_correct": 0.0,
+        "mean_continuation_fidelity": null
+      },
+      "helpful": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 789.5,
+        "mean_first_prob": 0.8069480505539104,
+        "mean_first_logit": 22.41875,
+        "mean_joint_logprob": -15.27475838661194,
+        "mean_target_pos1_nll": 0.6258742170088226,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 0.9191402116402115,
+        "mean_script_compliance": 0.8,
+        "mean_first_entry_correct": 0.8,
+        "mean_continuation_fidelity": 0.67296626984127
+      },
+      "corrupt": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 789.5,
+        "mean_first_prob": 0.7350205309817587,
+        "mean_first_logit": 21.164583333333333,
+        "mean_joint_logprob": -18.668067073822023,
+        "mean_target_pos1_nll": 0.9145528816935742,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.2748941798941795,
+        "mean_script_compliance": 0.7666666666666667,
+        "mean_first_entry_correct": 0.7666666666666667,
+        "mean_continuation_fidelity": 1.07851966873706
+      },
+      "deltas": {
+        "helpful_minus_zs_first_prob": 0.8052794456008996,
+        "helpful_minus_zs_first_entry_correct": 0.8,
+        "helpful_minus_zs_exact_match": 0.0,
+        "helpful_minus_zs_akshara_cer": -0.06544973544973565,
+        "helpful_minus_corrupt_first_prob": 0.07192751957215171,
+        "helpful_minus_corrupt_first_entry_correct": 0.033333333333333326,
+        "helpful_minus_corrupt_exact_match": 0.0,
+        "helpful_minus_corrupt_akshara_cer": -0.355753968253968
+      },
+      "helpful_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 4,
+        "source_copy_rate": 0.13333333333333333,
+        "latinish_count": 6,
+        "latinish_rate": 0.2,
+        "bank_copy_count": 21,
+        "bank_copy_rate": 0.7,
+        "first_correct_but_wrong_count": 24,
+        "first_correct_but_wrong_rate": 0.8,
+        "first_correct_but_wrong_bank_copy_count": 21,
+        "first_correct_but_wrong_bank_copy_rate": 0.875,
+        "examples": [
+          {
+            "word_ood": "aadabaduchenani",
+            "gold": "ఆడబడుచేనని",
+            "prediction": "ఆడాళ్లదీ",
+            "akshara_cer": 0.8571428571428571,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaarapadinatlu",
+            "gold": "ఆదారపడినట్లు",
+            "prediction": "ఆదారపడటం",
+            "akshara_cer": 0.42857142857142855,
+            "continuation_fidelity": 0.5,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadabbuni",
+            "gold": "ఆడబ్బుని",
+            "prediction": "ఆదాబని",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6666666666666666,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadaayaalatoo",
+            "gold": "ఆదాయాలతో",
+            "prediction": "ఆదాయాలనీ",
+            "akshara_cer": 0.2,
+            "continuation_fidelity": 0.25,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaayavanarulaku",
+            "gold": "ఆదాయవనరులకు",
+            "prediction": "ఆదావనలపడటం",
+            "akshara_cer": 0.625,
+            "continuation_fidelity": 0.7142857142857143,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aadaallameeda",
+            "gold": "ఆడాళ్ళమీద",
+            "prediction": "ఆడాళ్లదీ",
+            "akshara_cer": 0.6,
+            "continuation_fidelity": 0.75,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanaatmakathatho",
+            "gold": "ఆచరణాత్మకతతో",
+            "prediction": "ఆచరణాత్మకమైనదో",
+            "akshara_cer": 0.375,
+            "continuation_fidelity": 0.42857142857142855,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanaatmamgaa",
+            "gold": "ఆచరణాత్మంగా",
+            "prediction": "ఆచరించుకోవచ్చునంటూ",
+            "akshara_cer": 1.1666666666666667,
+            "continuation_fidelity": 1.4,
+            "bank_copy": true
+          }
+        ]
+      },
+      "corrupt_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 2,
+        "source_copy_rate": 0.06666666666666667,
+        "latinish_count": 7,
+        "latinish_rate": 0.23333333333333334,
+        "bank_copy_count": 17,
+        "bank_copy_rate": 0.5666666666666667,
+        "first_correct_but_wrong_count": 23,
+        "first_correct_but_wrong_rate": 0.7666666666666667,
+        "first_correct_but_wrong_bank_copy_count": 17,
+        "first_correct_but_wrong_bank_copy_rate": 0.7391304347826086,
+        "examples": [
+          {
+            "word_ood": "aadabaduchenani",
+            "gold": "ఆడబడుచేనని",
+            "prediction": "ఆబాలగోపాలానికి",
+            "akshara_cer": 0.8571428571428571,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaarapadinatlu",
+            "gold": "ఆదారపడినట్లు",
+            "prediction": "ఆచరణలోపెట్టాలని",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.1666666666666667,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadabbuni",
+            "gold": "ఆడబ్బుని",
+            "prediction": "ఆభరణంగానూ",
+            "akshara_cer": 1.25,
+            "continuation_fidelity": 1.6666666666666667,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaayavanarulaku",
+            "gold": "ఆదాయవనరులకు",
+            "prediction": "ఆచరణలోపెట్టాలని",
+            "akshara_cer": 0.875,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaallameeda",
+            "gold": "ఆడాళ్ళమీద",
+            "prediction": "ఆచరింపదగిన",
+            "akshara_cer": 1.0,
+            "continuation_fidelity": 1.25,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanaatmakathatho",
+            "gold": "ఆచరణాత్మకతతో",
+            "prediction": "ఆచరణసాధ్యమైన",
+            "akshara_cer": 0.625,
+            "continuation_fidelity": 0.7142857142857143,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanaatmamgaa",
+            "gold": "ఆచరణాత్మంగా",
+            "prediction": "ఆచరణాభివృద్ధిని",
+            "akshara_cer": 0.6666666666666666,
+            "continuation_fidelity": 0.8,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharinchabadedi",
+            "gold": "ఆచరించబడేది",
+            "prediction": "ఆచరణీయమైనది",
+            "akshara_cer": 0.7142857142857143,
+            "continuation_fidelity": 0.8333333333333334,
+            "bank_copy": true
+          }
+        ]
+      }
+    },
+    {
+      "run_type": "threshold",
+      "path": "/mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/threshold_1b_seed42/raw/1b/aksharantar_tel_latin/nicl64/neutral_filler_recency_controls.json",
+      "model": "1b",
+      "pair": "aksharantar_tel_latin",
+      "n_icl": 64,
+      "zs": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 75.6,
+        "mean_first_prob": 0.0016938187882866865,
+        "mean_first_logit": 12.425,
+        "mean_joint_logprob": -24.475234206517538,
+        "mean_target_pos1_nll": 6.819919411341349,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.0677910052910053,
+        "mean_script_compliance": 0.8666666666666667,
+        "mean_first_entry_correct": 0.0,
+        "mean_continuation_fidelity": null
+      },
+      "helpful": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 876.6,
+        "mean_first_prob": 0.8686298467529316,
+        "mean_first_logit": 21.36875,
+        "mean_joint_logprob": -14.218272813161214,
+        "mean_target_pos1_nll": 0.3246596743978444,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 0.7505291005291005,
+        "mean_script_compliance": 0.9,
+        "mean_first_entry_correct": 0.9,
+        "mean_continuation_fidelity": 0.6735449735449736
+      },
+      "corrupt": {
+        "n_items": 30.0,
+        "mean_prompt_tokens": 876.6,
+        "mean_first_prob": 0.8334982763354977,
+        "mean_first_logit": 21.5875,
+        "mean_joint_logprob": -17.410834789276123,
+        "mean_target_pos1_nll": 0.55459447851966,
+        "mean_target_rank": null,
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.168399470899471,
+        "mean_script_compliance": 0.8777777777777778,
+        "mean_first_entry_correct": 0.8666666666666667,
+        "mean_continuation_fidelity": 1.0433150183150182
+      },
+      "deltas": {
+        "helpful_minus_zs_first_prob": 0.866936027964645,
+        "helpful_minus_zs_first_entry_correct": 0.9,
+        "helpful_minus_zs_exact_match": 0.0,
+        "helpful_minus_zs_akshara_cer": -0.31726190476190486,
+        "helpful_minus_corrupt_first_prob": 0.03513157041743398,
+        "helpful_minus_corrupt_first_entry_correct": 0.033333333333333326,
+        "helpful_minus_corrupt_exact_match": 0.0,
+        "helpful_minus_corrupt_akshara_cer": -0.41787037037037045
+      },
+      "helpful_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 2,
+        "source_copy_rate": 0.06666666666666667,
+        "latinish_count": 3,
+        "latinish_rate": 0.1,
+        "bank_copy_count": 24,
+        "bank_copy_rate": 0.8,
+        "first_correct_but_wrong_count": 27,
+        "first_correct_but_wrong_rate": 0.9,
+        "first_correct_but_wrong_bank_copy_count": 24,
+        "first_correct_but_wrong_bank_copy_rate": 0.8888888888888888,
+        "examples": [
+          {
+            "word_ood": "aadaallameeda",
+            "gold": "ఆడాళ్ళమీద",
+            "prediction": "ఆడాళ్లదీ",
+            "akshara_cer": 0.6,
+            "continuation_fidelity": 0.75,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanaatmakathatho",
+            "gold": "ఆచరణాత్మకతతో",
+            "prediction": "ఆచరణాత్మకమైనదో",
+            "akshara_cer": 0.375,
+            "continuation_fidelity": 0.42857142857142855,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanaatmamgaa",
+            "gold": "ఆచరణాత్మంగా",
+            "prediction": "ఆచరించడం",
+            "akshara_cer": 0.6666666666666666,
+            "continuation_fidelity": 0.8,
+            "bank_copy": false
+          },
+          {
+            "word_ood": "aacharinchabadedi",
+            "gold": "ఆచరించబడేది",
+            "prediction": "ఆచరింపదగిన",
+            "akshara_cer": 0.5714285714285714,
+            "continuation_fidelity": 0.6666666666666666,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aabharanamgaano",
+            "gold": "ఆభరణంగానో",
+            "prediction": "ఆభరణాల్లోనో",
+            "akshara_cer": 0.3333333333333333,
+            "continuation_fidelity": 0.4,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaamannadaanipaine",
+            "gold": "ఆడామన్నదానిపైనే",
+            "prediction": "ఆదాచేసిన",
+            "akshara_cer": 0.75,
+            "continuation_fidelity": 0.8571428571428571,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharinchutalo",
+            "gold": "ఆచరించుటలో",
+            "prediction": "ఆచరింపదగిన",
+            "akshara_cer": 0.6666666666666666,
+            "continuation_fidelity": 0.8,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aachaaravyavahaaramula",
+            "gold": "ఆచారవ్యవహారముల",
+            "prediction": "ఆచారవ్యాహారములము",
+            "akshara_cer": 0.3333333333333333,
+            "continuation_fidelity": 0.375,
+            "bank_copy": false
+          }
+        ]
+      },
+      "corrupt_copy_stats": {
+        "n_items": 30,
+        "source_copy_count": 3,
+        "source_copy_rate": 0.1,
+        "latinish_count": 3,
+        "latinish_rate": 0.1,
+        "bank_copy_count": 25,
+        "bank_copy_rate": 0.8333333333333334,
+        "first_correct_but_wrong_count": 26,
+        "first_correct_but_wrong_rate": 0.8666666666666667,
+        "first_correct_but_wrong_bank_copy_count": 25,
+        "first_correct_but_wrong_bank_copy_rate": 0.9615384615384616,
+        "examples": [
+          {
+            "word_ood": "aadaallameeda",
+            "gold": "ఆడాళ్ళమీద",
+            "prediction": "ఆచరణలోపెట్టాలని",
+            "akshara_cer": 1.6,
+            "continuation_fidelity": 2.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanaatmakathatho",
+            "gold": "ఆచరణాత్మకతతో",
+            "prediction": "ఆచారిలు",
+            "akshara_cer": 0.875,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharanaatmamgaa",
+            "gold": "ఆచరణాత్మంగా",
+            "prediction": "ఆచరణలోనూ",
+            "akshara_cer": 0.5,
+            "continuation_fidelity": 0.6,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharinchabadedi",
+            "gold": "ఆచరించబడేది",
+            "prediction": "ఆచరణరూపమిచ్చి",
+            "akshara_cer": 0.8571428571428571,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aadaamannadaanipaine",
+            "gold": "ఆడామన్నదానిపైనే",
+            "prediction": "ఆచరణకీ",
+            "akshara_cer": 0.875,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aacharinchutalo",
+            "gold": "ఆచరించుటలో",
+            "prediction": "ఆచరణలోపెట్టాలని",
+            "akshara_cer": 1.1666666666666667,
+            "continuation_fidelity": 1.4,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aachaaravyavahaaramula",
+            "gold": "ఆచారవ్యవహారముల",
+            "prediction": "ఆచరణాత్మకమైనదో",
+            "akshara_cer": 0.7777777777777778,
+            "continuation_fidelity": 0.875,
+            "bank_copy": true
+          },
+          {
+            "word_ood": "aachaaramidi",
+            "gold": "ఆచారమిది",
+            "prediction": "ఆచారాలపైనే",
+            "akshara_cer": 0.8,
+            "continuation_fidelity": 1.0,
+            "bank_copy": true
+          }
+        ]
+      }
+    }
+  ]
+}

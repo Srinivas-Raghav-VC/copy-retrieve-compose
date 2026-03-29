@@ -65,3 +65,6 @@ Do not let sessions disappear into chat history.
 - Slowdown: raw artifact directories now contain results from multiple adjacent runs, which makes quick inspection harder and increases the risk of reading the wrong cell unless the scorer output is treated as canonical.
 - Repo-structure improvement: create a small run-manifest sidecar in each autoresearch result directory listing the intended `(model, pair, n_icl, seed)` grid for that run, so mixed raw folders are easier to audit.
 - Reusable lesson candidate: when a mechanistic story suggests a simple architectural bottleneck, the next experiment should be a tiny threshold/falsification sweep before any heavier intervention work.
+- Worked: after the threshold sweep weakened the visibility-only story, the best next move was not another big model run; a cheap re-analysis of existing raw control traces was enough to reveal that `1B Hindi` and `1B Telugu` are failing at different stages.
+- Worked: adding a small reproducible analysis script (`experiments/analyze_loop2_failure_modes.py`) was a better investment than continuing to do one-off notebook-style inspection in chat.
+- New lesson: once exact-match behavior splits by language, do not keep talking about a single `1B` mechanism. Separate the candidate failure modes before proposing interventions.

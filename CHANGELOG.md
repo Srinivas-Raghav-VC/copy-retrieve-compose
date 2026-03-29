@@ -84,3 +84,20 @@
 - Hindi remains behaviorally weak across all tested high/mid-shot settings, and the `n_icl=48` Hindi cell is pathologically bad on CER; this weakens a pure visibility-threshold explanation.
 - Telugu shows the opposite of the naive visibility story: exact match stays flat at zero, but CER and script metrics improve as `n_icl` increases from `48 -> 56 -> 64` even though visibility should worsen, so partial truncation is not the dominant bottleneck.
 - Updated interpretation: visibility is a contributing architectural factor for `1B`, especially versus `4B`, but the primary remaining issue is computational/representational rather than just prompt-window fit.
+- Followed up by analyzing the already-downloaded raw Loop 2 control artifacts rather than launching another model run immediately.
+- Added a reproducible analysis script: `experiments/analyze_loop2_failure_modes.py`.
+- Generated durable outputs:
+  - `outputs/loop2_failure_modes_2026-03-29.md`
+  - `outputs/loop2_failure_modes_2026-03-29.json`
+- Main new result: the `1B` failure regime splits by language.
+  - `1B × Hindi × n_icl=64` fails early: helpful ICL lowers first-token probability and first-entry correctness relative to zero-shot, while many outputs are Latin/source-like (`50%` Latin-script; `40%` exact source copies).
+  - `1B × Telugu × n_icl=64` fails late: helpful ICL strongly improves first-token probability and first-entry correctness, but exact match remains zero because the model often copies a prompt-bank target string instead of producing the query-specific transliteration (`80%` bank-copy rate among helpful predictions).
+- This sharpens the next-step plan: different languages now warrant different bounded audits (`1B Hindi` = first-token competition audit; `1B Telugu` = prompt-bank copy / nearest-neighbor retrieval audit) instead of one generic `1B` mechanistic story.
+- Implemented the first of those two follow-ups:
+  - `experiments/first_token_competition_audit.py`
+  - `experiments/run_vm_first_token_competition_audit.sh`
+- Launched a bounded VM audit (`proc_11`, `first-token-competition-v1`) on three cells:
+  - `1b:aksharantar_hin_latin:64`
+  - `1b:aksharantar_tel_latin:64`
+  - `4b:aksharantar_tel_latin:64`
+- The explicit oracle for this run is first-token-local: log the correct target-token probability, top-1 token identity/script, and target-vs-best-competitor logit gap under `zs`, `icl_helpful`, and `icl_corrupt`, so we can tell whether `1B Hindi` is losing immediately to Latin/source-like competitors while `1B Telugu` is already fine at the first-token stage.
