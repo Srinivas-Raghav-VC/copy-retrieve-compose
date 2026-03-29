@@ -63,3 +63,8 @@
 - Began preparing the expansion phase by generalizing the Loop 2 harness for arbitrary pair/model/n-shot grids and adding a builder for external Aksharantar breadth languages (`Marathi`, `Bengali`, `Tamil`).
 - Expansion prep then completed: added `aksharantar_mar_latin` and `aksharantar_ben_latin` to the pair registry, materialized external JSONL + provenance sidecars for `Marathi`, `Bengali`, and `Tamil`, and locally verified that all three new pairs load through the ingestion stack under the external-source contract.
 - Chosen bounded expansion design: run the same helpful-vs-control benchmark on `1B` and `4B` for `Marathi`, `Bengali`, and `Tamil` at the most informative high-shot setting (`n_icl=64`) before any mechanistic probing.
+- The bounded expansion run then completed successfully for `1B/4B × Marathi/Bengali/Tamil × n_icl=64`.
+- Expansion summary: `helpful_control_exact_margin_mean = 0.0389`, `helpful_control_cer_margin_mean = 0.2923`, `helpful_minus_zs_exact_mean = 0.0444`, with `3/6` exact-match-positive helpful-vs-control cells.
+- The positive side of the story broadened: all three new `4B` languages (`Marathi`, `Bengali`, `Tamil`) are positive against matched controls, with `Bengali` and `Tamil` cleaner than `Marathi`.
+- The weak side of the story also broadened: `1B` still fails to convert the new languages into exact-match helpful wins, and `Bengali` / `Tamil` are worse than zero-shot on CER even when beating weak controls.
+- This is enough evidence to proceed to a bounded mechanistic screening phase focused on the best validated anchor (`4b × Telugu × n_icl=64`) and the clearest fragility comparison (`1b × Hindi × n_icl=64`), rather than trying to mechanistically open every language at once.

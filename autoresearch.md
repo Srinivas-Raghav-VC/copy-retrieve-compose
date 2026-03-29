@@ -315,3 +315,22 @@ VM_PASS='***' bash autoresearch.sh loop2_full
   - pairs: `aksharantar_mar_latin`, `aksharantar_ben_latin`, `aksharantar_tam_latin`
   - shot setting: `n_icl = 64` only
   - rationale: this is the most informative high-shot condition given the verified `1B` fragility and strongest `4B` positive anchor at high shot
+- Bounded expansion benchmark (`Marathi`, `Bengali`, `Tamil`, seed 42, `n_icl=64`) completed successfully.
+- Expansion result summary:
+  - `helpful_control_exact_margin_mean = 0.0389`
+  - `helpful_control_cer_margin_mean = 0.2923`
+  - `helpful_minus_zs_exact_mean = 0.0444`
+  - `positive_helpful_control_tasks = 3 / 6`
+- Per-cell interpretation:
+  - `4b × Marathi`: modest positive (`helpful_control_exact_margin = 0.0333`, positive CER margin)
+  - `4b × Bengali`: clear positive (`helpful_control_exact_margin = 0.1000`, positive CER margin)
+  - `4b × Tamil`: clear positive (`helpful_control_exact_margin = 0.1000`, very large improvement over zero-shot on CER)
+  - `1b × Marathi`: no exact-match gain but positive CER margin versus controls
+  - `1b × Bengali`: no exact-match gain and worse than zero-shot on CER despite beating weak controls
+  - `1b × Tamil`: no exact-match gain and worse than zero-shot on CER, though still better than the best matched control on CER
+- Current expansion-phase conclusion:
+  - supported but provisional: the positive helpful-vs-control story generalizes across multiple additional languages for `4B`
+  - supported but provisional: the weak / fragile `1B` regime also generalizes beyond Hindi/Telugu and is not just a two-language artifact
+- Decision after bounded expansion:
+  - mechanistic probing should stay focused on the cleanest validated anchor (`4b × Telugu × n_icl=64`) and the clearest fragility comparison (`1b × Hindi × n_icl=64`), with `4b × Hindi` as an optional strong-base-capability comparison cell.
+- Next step in progress: run a cheap mechanistic screening pass (representation-level, not full causal claims yet) on the validated anchor cells before any heavier intervention pipeline.
