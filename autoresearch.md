@@ -245,4 +245,7 @@ VM_PASS='***' bash autoresearch.sh loop2_full
 - Added a dedicated Loop 2 scorer at `experiments/score_loop2_controls.py`.
 - Extended `autoresearch.sh` with VM-backed Loop 2 modes: `loop2_smoke` and `loop2_full`.
 - Immediate blocker on first bring-up attempt: the shared VM was unreachable from this environment (`ssh` timeout, port 22 closed), so the benchmark could not be launched yet.
-- Next step: retry connectivity, then run the Loop 2 smoke baseline on the approved VM path before making any scientific changes.
+- Retried VM connectivity and the host became reachable again (`hostname=2f399cd77c0c`, `Python 3.8.5`).
+- First smoke launch on the reachable VM failed immediately because the remote machine does not have `rsync`; the old sync path assumed remote `rsync` availability.
+- Patched `autoresearch.sh` to use a tar-over-SSH sync/fetch path instead of `rsync`, which is more robust for this VM.
+- Next step in progress: relaunch the Loop 2 smoke baseline on the approved VM path before making any scientific changes.

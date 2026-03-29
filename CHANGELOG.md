@@ -37,4 +37,7 @@
 - Added a dedicated scorer `experiments/score_loop2_controls.py` for the helpful-vs-control benchmark.
 - Extended `autoresearch.sh` with VM-backed Loop 2 modes (`loop2_smoke`, `loop2_full`) that sync the needed code to the shared VM, run the 2×2 control matrix at `n_icl ∈ {8,64}`, pull back artifacts, and score them locally.
 - Immediate blocker on the first VM bring-up attempt: the shared VM was unreachable from this environment (`ssh` timed out and port 22 appeared closed), so the Loop 2 baseline has not launched yet.
-- Next step: retry VM connectivity, then launch `bash autoresearch.sh loop2_smoke` with the approved VM environment before making any scientific changes.
+- Retried connectivity and the VM became reachable again (`hostname=2f399cd77c0c`, `Python 3.8.5`).
+- First smoke launch on the reachable VM failed immediately because the remote machine does not have `rsync`; the old sync path assumed remote `rsync` availability.
+- Patched `autoresearch.sh` to use tar-over-SSH syncing and artifact download instead of `rsync`, which fits this VM better.
+- Next step in progress: relaunch `bash autoresearch.sh loop2_smoke` with the approved VM environment before making any scientific changes.

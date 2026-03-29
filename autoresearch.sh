@@ -73,30 +73,36 @@ vm_ssh() {
     "${VM_HOST:-srinivasr@10.10.0.215}" "$@"
 }
 
-vm_rsync_to() {
-  sshpass -p "$VM_PASS" rsync -az --delete \
-    -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=${VM_CONNECT_TIMEOUT:-15}" \
-    --exclude '__pycache__/' \
-    --exclude '*.pyc' \
-    --exclude '.git/' \
-    --exclude '.cache/' \
-    --exclude '.venv*/' \
-    --exclude 'Draft_Results/paper2_fidelity_calibrated/results/' \
-    --exclude 'Draft_Results/results/' \
-    --exclude 'research/results/autoresearch/' \
-    "$@"
+vm_sync_to_workdir() {
+  local dest="$1"
+  tar \
+    --exclude='__pycache__/' \
+    --exclude='*.pyc' \
+    --exclude='.git/' \
+    --exclude='.cache/' \
+    --exclude='.venv*/' \
+    --exclude='Draft_Results/paper2_fidelity_calibrated/results/' \
+    --exclude='Draft_Results/results/' \
+    --exclude='research/results/autoresearch/' \
+    -czf - \
+    Draft_Results \
+    experiments \
+    autoresearch.md \
+    autoresearch.sh \
+    CHANGELOG.md | vm_ssh "mkdir -p '$dest' && tar xzf - -C '$dest'"
 }
 
-vm_rsync_from() {
-  sshpass -p "$VM_PASS" rsync -az \
-    -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=${VM_CONNECT_TIMEOUT:-15}" \
-    "$@"
+vm_fetch_dir() {
+  local remote_dir="$1"
+  local local_dir="$2"
+  mkdir -p "$local_dir"
+  vm_ssh "tar czf - -C '$remote_dir' ." | tar xzf - -C "$local_dir"
 }
 
 run_loop2() {
   local mode="$1"
   local outdir="${2:-$(loop2_default_outdir "$mode")}"
-  local vm_workdir="${VM_WORKDIR:-~/Research/Honors}"
+  local vm_workdir="${VM_WORKDIR:-/home/srinivasr/Research/Honors}"
   local remote_results_rel="${LOOP2_REMOTE_RESULTS_REL:-$outdir/raw}"
   local max_items n_eval
 
@@ -125,13 +131,7 @@ run_loop2() {
   vm_ssh "mkdir -p $vm_workdir"
 
   echo "[loop2] syncing code to VM"
-  vm_rsync_to \
-    Draft_Results \
-    experiments \
-    autoresearch.md \
-    autoresearch.sh \
-    CHANGELOG.md \
-    "${VM_HOST:-srinivasr@10.10.0.215}:$vm_workdir/"
+  vm_sync_to_workdir "$vm_workdir"
 
   echo "[loop2] running 2x2 helpful-vs-control panel on VM ($mode)"
   vm_ssh "cd $vm_workdir && LOOP2_REMOTE_RESULTS_REL='$remote_results_rel' LOOP2_MAX_ITEMS='$max_items' LOOP2_N_EVAL='$n_eval' PAPER2_DEVICE='${PAPER2_DEVICE:-cuda}' bash -s" <<'REMOTE' | tee "$outdir/vm_run.log"
@@ -197,9 +197,7 @@ REMOTE
 
   echo "[loop2] downloading Loop 2 artifacts from VM"
   mkdir -p "$outdir/raw"
-  vm_rsync_from \
-    "${VM_HOST:-srinivasr@10.10.0.215}:$vm_workdir/$remote_results_rel/" \
-    "$outdir/raw/"
+  vm_fetch_dir "$vm_workdir/$remote_results_rel" "$outdir/raw"
 
   echo "[loop2] scoring helpful-vs-control panel"
   python3 experiments/score_loop2_controls.py \

@@ -1,2 +1,5 @@
 {"ts":"2026-03-29T00:00:00Z","loop":"loop2","event":"init","environment":"vm","branch":"autoresearch-loop2-vm-controls","metric_name":"helpful_control_exact_margin_mean","metric_unit":"exact_match_points","direction":"higher","benchmark":"bash autoresearch.sh loop2_smoke","status":"blocked_vm_unreachable"}
 {"ts": "2026-03-29T06:23:34Z", "loop": "loop2", "event": "run_attempt", "mode": "loop2_smoke", "status": "failed_vm_unreachable", "exit_code": 255, "note": "ssh connect timeout to 10.10.0.215:22 during reachability check"}
+{"ts": "2026-03-29T06:25:29Z", "loop": "loop2", "event": "vm_reachable", "status": "ok", "host": "10.10.0.215", "hostname": "2f399cd77c0c", "python": "3.8.5"}
+{"ts": "2026-03-29T06:27:25Z", "loop": "loop2", "event": "run_attempt", "mode": "loop2_smoke", "status": "failed_remote_missing_rsync", "exit_code": 12, "note": "remote VM reachable but lacks rsync; sync failed before remote benchmark execution"}
+{"ts": "2026-03-29T06:27:25Z", "loop": "loop2", "event": "patch", "status": "applied", "note": "replaced rsync-based VM sync/fetch with tar-over-SSH in autoresearch.sh"}
