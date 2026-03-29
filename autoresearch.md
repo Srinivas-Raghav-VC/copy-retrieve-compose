@@ -556,3 +556,21 @@ Prefer small, explicit audit slices with saved notes over vague "looks good" jud
 Do **not** let the new broader mandate collapse into aimless sprawl.
 
 Broaden the work only when the additional breadth reduces real uncertainty. The current broadening is justified because the project now needs a **paper-grade four-language phase map**, not just more localized anecdotes.
+
+### Current incident log
+
+- The first long four-language thesis-panel run (`proc_12`) crashed locally with SSH exit code `255` and stderr `client_loop: send disconnect: Broken pipe`.
+- Manual diagnosis showed this was a **transport failure**, not an immediate science failure:
+  - remote artifacts persisted on the VM,
+  - seed `42` had already completed `14/16` cells,
+  - all `1B` cells were present,
+  - `4B Hindi`, `4B Telugu`, and `4B Bengali` were present,
+  - only `4B Tamil × n_icl {8,64}` remained missing.
+- No active research python process remained on the VM after the disconnect, so the run needs an explicit resume rather than passive waiting.
+- Recovery plan:
+  1. add SSH keepalive options to the VM harness,
+  2. resume only the missing `seed42` `4B Tamil` cells into the same remote result root,
+  3. rescore the full seed-42 panel locally,
+  4. rebuild manual audit packets for the recovered seed,
+  5. continue seeds `11` and `101`,
+  6. aggregate all three seeds at the end.

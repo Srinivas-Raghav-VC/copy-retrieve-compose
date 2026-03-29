@@ -70,6 +70,8 @@ vm_ssh() {
   sshpass -p "$VM_PASS" ssh \
     -o StrictHostKeyChecking=no \
     -o ConnectTimeout="${VM_CONNECT_TIMEOUT:-15}" \
+    -o ServerAliveInterval="${VM_SERVER_ALIVE_INTERVAL:-30}" \
+    -o ServerAliveCountMax="${VM_SERVER_ALIVE_COUNT_MAX:-10}" \
     "${VM_HOST:-srinivasr@10.10.0.215}" "$@"
 }
 

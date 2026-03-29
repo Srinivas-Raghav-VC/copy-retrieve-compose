@@ -142,4 +142,8 @@
 - Also tested the helper on `4B Telugu × n_icl=64` and confirmed it surfaces the expected mix of clear helpful wins plus many non-bank near-miss continuations.
 - Updated `experiments/run_vm_four_lang_thesis_panel.sh` so future thesis-panel runs automatically emit manual audit packets for every downloaded cell after each seed completes.
 - Patched `Draft_Results/paper2_fidelity_calibrated/run_neutral_filler_recency_controls.py` to avoid noisy `Mean of empty slice` warnings when a summary field is entirely NaN; future reruns will now surface cleaner logs without changing the metric semantics.
+- The first long four-language thesis-panel process (`proc_12`) then crashed with SSH exit code `255`; stderr ended with `client_loop: send disconnect: Broken pipe`.
+- Manual diagnosis showed the crash was a transport failure rather than a benchmark-logic failure: remote results on the VM persisted through `14/16` seed-42 cells, with only `4B Tamil × n_icl {8,64}` missing.
+- Patched `autoresearch.sh` to add SSH keepalive options (`ServerAliveInterval`, `ServerAliveCountMax`) for future long VM runs.
+- Added `experiments/recover_four_lang_thesis_panel.sh` to resume the missing seed-42 cells, rescore the full seed-42 panel, rebuild manual audit packets, continue seeds `11/101`, and re-aggregate all three seeds.
 - Extended `research/spec.md` with an explicit reviewer acceptance bar describing what would and would not be thesis-acceptable evidence.
