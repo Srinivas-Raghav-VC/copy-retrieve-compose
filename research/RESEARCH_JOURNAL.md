@@ -56,6 +56,8 @@
   - `4B × Telugu × n_icl=64` is almost saturated at the first-token stage even under corrupt ICL, which localizes the helpful-vs-control advantage to later continuation / composition.
 - Prompt-bank copy rank analysis (`outputs/loop2_bank_copy_rank_2026-03-29.json`) shows that `1B × Telugu` copied targets are usually not arbitrary prompt-bank items: they come disproportionately from the query's nearest-neighbor similarity neighborhood, and the copy rate increases monotonically with `n_icl`.
 - A broader thesis/paper strategy review (`outputs/thesis_strategy_grander_goal_2026-03-29.md`) suggests the strongest honest framing is not a narrow transliteration score story but a study of **ICL algorithmic regimes** — copying, nearest-neighbor retrieval, and composition — using multilingual transliteration as a model organism.
+- The next thesis-scale behavioral requirement is now a **4-language phase map** rather than another two-language anecdote; the active confirmatory panel is `Hindi`, `Telugu`, `Bengali`, and `Tamil`, with `Marathi` held as a reserve same-script control.
+- `research/spec.md` has now been rewritten to match that broader thesis identity: transliteration as a model organism for ICL regimes (copying, prompt-bank retrieval, nearest-neighbor retrieval, composition) with bounded mechanistic case studies rather than a one-model rescue/degradation story.
 - Condition-wise Telugu retrieval analysis (`outputs/loop2_telugu_retrieval_conditions_2026-03-29.json`) further separates two effects:
   - when source-target alignment is preserved, nearest-neighbor structure matters strongly (`helpful_similarity_desc` keeps copy rate high and concentrates copies on top-ranked neighbors; `helpful_similarity_asc` sharply reduces copying but also hurts quality);
   - when alignment is broken (`icl_corrupt`), bank-copying still stays high but is no longer concentrated on true nearest neighbors.
@@ -82,11 +84,14 @@
 - Retired for now: a mechanism-first paper framing is the main story before behavioral cleanup. Mechanistic work remains downstream of stricter output hygiene and a cleaner behavioral contrast.
 
 ## Priority next experiments
-1. Define the smallest cross-scale behavioral anchor for Gemma 3 `270M`, `1B`, and `4B` on Hindi/Telugu: `zs`, `icl_helpful`, `icl_random`, `icl_corrupt`, with strict output metrics and frozen splits.
-2. Run that cross-scale premise set first, before any deeper mechanistic claims, to identify where ICL-sensitive transliteration behavior is actually strong enough to interpret.
-3. On the most informative contrast, perform representational screening: script-bucket logits, layerwise trajectories, and candidate SAE/transcoder feature inspection.
-4. Only after a stable behavioral contrast appears, run causal tests (patching / ablation / recency-position controls) on selected components.
-5. Prepare the shared VM for mechanistic work by syncing the current repo and fixing the Python/GPU environment; continue using Modal for broad detached behavioral sweeps.
+1. Run the thesis-scale 4-language helpful-vs-control panel on the shared VM: `1B/4B × {Hindi, Telugu, Bengali, Tamil} × n_icl {8,64} × seeds {42,11,101}` and aggregate the scores into a paper-grade phase map.
+2. Build the calibrated local verifier stack with a human-audited calibration set so variant-equivalence and failure-taxonomy labels can augment exact-match/CER without replacing them.
+3. On the now-stable anchors, perform mechanistic localization:
+   - `1B Hindi` early-routing / first-token competition localizer,
+   - `1B Telugu` later retrieval/composition localizer on copied-bank cases,
+   - `4B Telugu` positive-control comparison.
+4. Only after localization survives checks, run heavier causal tests (patching / ablation / recency-position controls) on selected components.
+5. Bring `270M` back into the final synthesis as the capability-floor comparison even if the rich helpful-vs-control matrix stays focused on `1B/4B`.
 
 ## Failure cases worth inspecting
 - Modal local-client disconnect interruptions (`modal run` without stable detach workflow).

@@ -468,3 +468,78 @@ VM_PASS='***' bash autoresearch.sh loop2_full
 - Recommended next practical step:
   - build the verifier stack and audited error taxonomy first,
   - then consolidate the current behavioral findings into a phase-diagram-style thesis framing before doing the next targeted mechanistic experiment.
+
+## Loop 3 — thesis-scale expansion program
+
+_Date approved: 2026-03-29_
+
+### New user instruction
+
+The project is now explicitly authorized to move beyond the bounded discovery posture and into a deeper, end-to-end thesis program:
+
+- do the broader autoresearch loop,
+- do not stay artificially small if the next uncertainty requires more breadth,
+- use papers, search, and implementation evidence to stay grounded,
+- keep moving through code bugs while re-verifying after fixes,
+- aim for a full understanding story rather than a mediocre narrow benchmark.
+
+### Thesis-scale north star
+
+Use multilingual transliteration as a **model organism for ICL algorithms** and map when the models behave like:
+
+1. source copying / wrong-script fallback,
+2. generic prompt-bank copying,
+3. nearest-neighbor retrieval,
+4. genuine query-specific composition.
+
+### Working thesis panel
+
+Promote a 4-language confirmatory panel for the next program stage:
+
+- `aksharantar_hin_latin`
+- `aksharantar_tel_latin`
+- `aksharantar_ben_latin`
+- `aksharantar_tam_latin`
+
+Reason for this panel:
+- `Hindi` and `Telugu` are the strongest already-opened anchors,
+- `Bengali` and `Tamil` broaden script/family coverage and were cleaner than `Marathi` in the first bounded expansion,
+- `Marathi` stays useful as a reserve same-script control rather than being dropped conceptually.
+
+### Program phases
+
+#### Phase A — broad behavioral map
+- Run the 4-language `1B/4B × n_icl {8,64}` helpful-vs-control panel across seeds `{42,11,101}`.
+- Keep the current deterministic metrics as the hard anchor.
+- Use this phase to decide which regimes generalize cleanly across more than the original Hindi/Telugu core.
+
+#### Phase B — verifier hardening
+- Build a calibrated local verifier stack for:
+  - transliteration acceptability / variant equivalence,
+  - failure taxonomy,
+  - disagreement analysis versus deterministic metrics.
+- Human-audit a calibration subset before trusting judge outputs.
+
+#### Phase C — mechanistic localization
+- `1B Hindi`: first-token / early-routing localization.
+- `1B Telugu`: later retrieval/composition localization on copied-bank cases.
+- `4B Telugu`: positive-control comparison.
+- Only after localization survives checks should heavier causal interventions expand.
+
+#### Phase D — cross-scale synthesis
+- Bring `270M` back in as the floor / capability-boundary comparison in the final thesis synthesis, even if the rich helpful-vs-control panel remains `1B/4B` only.
+- End goal: a phase-diagram-style story about copying vs retrieval vs composition across scale and language.
+
+### Active executable campaign
+
+The first thesis-scale campaign to launch is:
+
+- script: `experiments/run_vm_four_lang_thesis_panel.sh`
+- scope: `1B/4B × {Hindi, Telugu, Bengali, Tamil} × n_icl {8,64} × seeds {42,11,101}`
+- outputs root: `research/results/autoresearch/four_lang_thesis_panel/`
+
+### Current decision rule
+
+Do **not** let the new broader mandate collapse into aimless sprawl.
+
+Broaden the work only when the additional breadth reduces real uncertainty. The current broadening is justified because the project now needs a **paper-grade four-language phase map**, not just more localized anecdotes.

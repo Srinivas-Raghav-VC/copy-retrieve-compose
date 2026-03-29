@@ -131,3 +131,8 @@
 - Main strategic decision: the project should be framed less as a narrow transliteration benchmark and more as a study of **algorithmic regimes of ICL** — copying, nearest-neighbor retrieval, and composition — with transliteration serving as the clean model organism.
 - Decided that free VRAM should be used for a **calibrated local verifier stack** (correctness / acceptability judge plus failure-taxonomy judge plus human-audited calibration), not as a replacement for deterministic metrics.
 - Mechanistic readiness update: enough evidence exists for narrow mechanistic work on the current anchors, but not yet for a unified cross-language causal story.
+- User then explicitly approved a broader thesis-scale autoresearch phase: go beyond the bounded discovery posture, use 4 languages, keep the work grounded in papers/search/implementation evidence, and continue through bugs while re-verifying.
+- Updated `autoresearch.md` with a new Loop 3 / thesis-scale program centered on a 4-language confirmatory panel (`Hindi`, `Telugu`, `Bengali`, `Tamil`) and a broader copying-vs-retrieval-vs-composition framing.
+- Added a reusable launcher `experiments/run_vm_four_lang_thesis_panel.sh` to run the 4-language `1B/4B × n_icl {8,64} × seeds {42,11,101}` helpful-vs-control panel on the shared VM and aggregate the resulting scores.
+- Rewrote `research/spec.md` around the new thesis identity: multilingual transliteration as a model organism for ICL regimes (copying, prompt-bank retrieval, nearest-neighbor retrieval, composition), with a 4-language confirmatory panel and bounded mechanistic case studies.
+- Launched the first thesis-scale background run (`proc_12`, `four-lang-thesis-panel`) using the new 4-language multi-seed VM script.
