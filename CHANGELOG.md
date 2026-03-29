@@ -146,4 +146,5 @@
 - Manual diagnosis showed the crash was a transport failure rather than a benchmark-logic failure: remote results on the VM persisted through `14/16` seed-42 cells, with only `4B Tamil × n_icl {8,64}` missing.
 - Patched `autoresearch.sh` to add SSH keepalive options (`ServerAliveInterval`, `ServerAliveCountMax`) for future long VM runs.
 - Added `experiments/recover_four_lang_thesis_panel.sh` to resume the missing seed-42 cells, rescore the full seed-42 panel, rebuild manual audit packets, continue seeds `11/101`, and re-aggregate all three seeds.
+- Wrote a dedicated technique-and-direction memo `outputs/mechanistic_technique_playbook_and_fast_direction_2026-03-29.md` summarizing what the main web / paper sources contribute, which techniques to actually use in this thesis, and what the fastest defensible thesis direction is if we need to wrap quickly.
 - Extended `research/spec.md` with an explicit reviewer acceptance bar describing what would and would not be thesis-acceptable evidence.

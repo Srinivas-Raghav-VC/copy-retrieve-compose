@@ -574,3 +574,10 @@ Broaden the work only when the additional breadth reduces real uncertainty. The 
   4. rebuild manual audit packets for the recovered seed,
   5. continue seeds `11` and `101`,
   6. aggregate all three seeds at the end.
+- A dedicated fast-direction / technique memo now exists at `outputs/mechanistic_technique_playbook_and_fast_direction_2026-03-29.md`.
+- If time pressure becomes dominant, the thesis should collapse to:
+  - 4-language multi-seed phase map,
+  - manual audit packets,
+  - `1B Hindi` early-routing case study,
+  - `1B Telugu` vs `4B Telugu` later-continuation comparison,
+  - and a final claim about copying vs retrieval vs composition across scale.
