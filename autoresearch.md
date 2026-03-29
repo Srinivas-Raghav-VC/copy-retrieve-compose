@@ -453,3 +453,18 @@ VM_PASS='***' bash autoresearch.sh loop2_full
 - Wording adjustment after manual audit:
   - prefer "substantial early routing failure" over "pure first-token failure" for `1B Hindi`.
   - prefer "mostly later retrieval/composition failure" over "entirely later failure" for `1B Telugu`.
+- Thesis / paper strategy review completed in `outputs/thesis_strategy_grander_goal_2026-03-29.md`.
+- Main strategic decision from that review:
+  - do **not** redefine the project around a judge or around a broader but vaguer benchmark.
+  - instead upgrade the project into a stronger thesis around **algorithmic regimes of ICL**: copying, nearest-neighbor retrieval, and genuine composition in multilingual transliteration.
+- Judgment after literature and strategy review:
+  - there is enough evidence to justify **narrow mechanistic work now**, especially on `1B Hindi` and `4B Telugu`.
+  - there is **not** enough evidence yet for broad causal claims about all languages or a single unified `1B` mechanism.
+- Role of free VRAM in the new plan:
+  - worthwhile for a **calibrated local verifier stack** (correctness / acceptability judge, failure-taxonomy judge, human-audited calibration set).
+  - not worthwhile as a replacement for deterministic evaluation or as the main source of truth.
+- Recommended thesis north star:
+  - use multilingual transliteration as a **model organism** for studying when ICL behaves like copying, retrieval, or composition, and how those regimes change with scale.
+- Recommended next practical step:
+  - build the verifier stack and audited error taxonomy first,
+  - then consolidate the current behavioral findings into a phase-diagram-style thesis framing before doing the next targeted mechanistic experiment.

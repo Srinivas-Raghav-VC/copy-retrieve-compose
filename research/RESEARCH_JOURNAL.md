@@ -55,6 +55,7 @@
   - `1B × Telugu × n_icl=64` largely fixes the first-token stage under both helpful and corrupt ICL, so its main failure is later than the first token.
   - `4B × Telugu × n_icl=64` is almost saturated at the first-token stage even under corrupt ICL, which localizes the helpful-vs-control advantage to later continuation / composition.
 - Prompt-bank copy rank analysis (`outputs/loop2_bank_copy_rank_2026-03-29.json`) shows that `1B × Telugu` copied targets are usually not arbitrary prompt-bank items: they come disproportionately from the query's nearest-neighbor similarity neighborhood, and the copy rate increases monotonically with `n_icl`.
+- A broader thesis/paper strategy review (`outputs/thesis_strategy_grander_goal_2026-03-29.md`) suggests the strongest honest framing is not a narrow transliteration score story but a study of **ICL algorithmic regimes** — copying, nearest-neighbor retrieval, and composition — using multilingual transliteration as a model organism.
 - Condition-wise Telugu retrieval analysis (`outputs/loop2_telugu_retrieval_conditions_2026-03-29.json`) further separates two effects:
   - when source-target alignment is preserved, nearest-neighbor structure matters strongly (`helpful_similarity_desc` keeps copy rate high and concentrates copies on top-ranked neighbors; `helpful_similarity_asc` sharply reduces copying but also hurts quality);
   - when alignment is broken (`icl_corrupt`), bank-copying still stays high but is no longer concentrated on true nearest neighbors.

@@ -73,3 +73,4 @@ Do not let sessions disappear into chat history.
 - Prompt lesson: when a behavioral artifact already stores per-item prompt-bank metadata, exploit it before scheduling another model run.
 - Worked: the Telugu retrieval-condition comparison was answerable entirely from existing artifacts; no new GPU time was required.
 - New lesson: once you suspect bank-copy errors, compare `helpful`, `similarity_desc`, `similarity_asc`, `reversed`, and `corrupt` on the same fixed items before reaching for mechanistic patching. Those condition contrasts can already distinguish nearest-neighbor retrieval from generic bank-copy pressure.
+- Strategic lesson: if the work starts to feel too narrow or mediocre, do a first-principles reframing review before expanding the experiment matrix. In this case, the better move was to widen the **question** (ICL regimes: copying vs retrieval vs composition) rather than merely widen the **benchmark**.

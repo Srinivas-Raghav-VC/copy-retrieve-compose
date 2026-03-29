@@ -126,3 +126,8 @@
   - `1B Telugu`: mostly behaves like a later retrieval/composition failure, but not a perfectly pure one; a few items still fail at the first token.
   - `4B Telugu`: checked errors look like near-miss continuations, not the frequent prompt-bank-copy pattern seen in `1B`.
 - Updated the canonical memo `outputs/loop2_failure_modes_2026-03-29.md` with a manual spot-check addendum rather than changing the overall conclusion.
+- Performed a broader thesis/paper strategy review using current project artifacts, recent Anthropic/Transformer-Circuits work, ARENA materials, alphaXiv-backed papers, Ekdeep Lubana's recent work, and Alignment Forum / LessWrong context.
+- Wrote the resulting strategic memo to `outputs/thesis_strategy_grander_goal_2026-03-29.md`.
+- Main strategic decision: the project should be framed less as a narrow transliteration benchmark and more as a study of **algorithmic regimes of ICL** — copying, nearest-neighbor retrieval, and composition — with transliteration serving as the clean model organism.
+- Decided that free VRAM should be used for a **calibrated local verifier stack** (correctness / acceptability judge plus failure-taxonomy judge plus human-audited calibration), not as a replacement for deterministic metrics.
+- Mechanistic readiness update: enough evidence exists for narrow mechanistic work on the current anchors, but not yet for a unified cross-language causal story.
