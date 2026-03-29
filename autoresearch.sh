@@ -105,6 +105,9 @@ run_loop2() {
   local vm_workdir="${VM_WORKDIR:-/home/srinivasr/Research/Honors}"
   local remote_results_rel="${LOOP2_REMOTE_RESULTS_REL:-$outdir/raw}"
   local loop2_seed="${LOOP2_SEED:-42}"
+  local loop2_models="${LOOP2_MODELS:-1b 4b}"
+  local loop2_pairs="${LOOP2_PAIRS:-aksharantar_hin_latin aksharantar_tel_latin}"
+  local loop2_nicls="${LOOP2_NICLS:-8 64}"
   local max_items n_eval
 
   case "$mode" in
@@ -134,8 +137,8 @@ run_loop2() {
   echo "[loop2] syncing code to VM"
   vm_sync_to_workdir "$vm_workdir"
 
-  echo "[loop2] running 2x2 helpful-vs-control panel on VM ($mode, seed=$loop2_seed)"
-  vm_ssh "cd $vm_workdir && LOOP2_REMOTE_RESULTS_REL='$remote_results_rel' LOOP2_MAX_ITEMS='$max_items' LOOP2_N_EVAL='$n_eval' LOOP2_SEED='$loop2_seed' PAPER2_DEVICE='${PAPER2_DEVICE:-cuda}' bash -s" <<'REMOTE' | tee "$outdir/vm_run.log"
+  echo "[loop2] running helpful-vs-control panel on VM ($mode, seed=$loop2_seed)"
+  vm_ssh "cd $vm_workdir && LOOP2_REMOTE_RESULTS_REL='$remote_results_rel' LOOP2_MAX_ITEMS='$max_items' LOOP2_N_EVAL='$n_eval' LOOP2_SEED='$loop2_seed' LOOP2_MODELS='$loop2_models' LOOP2_PAIRS='$loop2_pairs' LOOP2_NICLS='$loop2_nicls' PAPER2_DEVICE='${PAPER2_DEVICE:-cuda}' bash -s" <<'REMOTE' | tee "$outdir/vm_run.log"
 set -euo pipefail
 WORKDIR="$(pwd)"
 DEVICE="${PAPER2_DEVICE:-cuda}"
@@ -143,6 +146,9 @@ REMOTE_RESULTS_REL="${LOOP2_REMOTE_RESULTS_REL}"
 MAX_ITEMS="${LOOP2_MAX_ITEMS}"
 N_EVAL="${LOOP2_N_EVAL}"
 SEED="${LOOP2_SEED:-42}"
+MODELS="${LOOP2_MODELS:-1b 4b}"
+PAIRS="${LOOP2_PAIRS:-aksharantar_hin_latin aksharantar_tel_latin}"
+NICLS="${LOOP2_NICLS:-8 64}"
 
 PYTHON_BIN=""
 for cand in \
@@ -173,9 +179,9 @@ print('python_import_health: ok')
 PY
 
 mkdir -p "$REMOTE_RESULTS_REL"
-for model in 1b 4b; do
-  for pair in aksharantar_hin_latin aksharantar_tel_latin; do
-    for n_icl in 8 64; do
+for model in $MODELS; do
+  for pair in $PAIRS; do
+    for n_icl in $NICLS; do
       out_dir="$REMOTE_RESULTS_REL/$model/$pair/nicl${n_icl}"
       mkdir -p "$out_dir"
       echo "[loop2][remote] START model=$model pair=$pair n_icl=$n_icl seed=$SEED"
@@ -204,6 +210,9 @@ REMOTE
   echo "[loop2] scoring helpful-vs-control panel"
   python3 experiments/score_loop2_controls.py \
     --results-root "$outdir/raw" \
+    --models "$loop2_models" \
+    --pairs "$loop2_pairs" \
+    --nicls "$loop2_nicls" \
     --out "$outdir/score.json" | tee "$outdir/score.log"
 
   echo "[loop2] done -> $outdir/score.json"
@@ -213,6 +222,9 @@ export LOOP2_REMOTE_RESULTS_REL="${LOOP2_REMOTE_RESULTS_REL:-}"
 export LOOP2_MAX_ITEMS="${LOOP2_MAX_ITEMS:-}"
 export LOOP2_N_EVAL="${LOOP2_N_EVAL:-}"
 export LOOP2_SEED="${LOOP2_SEED:-42}"
+export LOOP2_MODELS="${LOOP2_MODELS:-1b 4b}"
+export LOOP2_PAIRS="${LOOP2_PAIRS:-aksharantar_hin_latin aksharantar_tel_latin}"
+export LOOP2_NICLS="${LOOP2_NICLS:-8 64}"
 
 case "$MODE" in
   smoke|full)

@@ -55,3 +55,11 @@
 - While checking the full score, I found a sign error in the scorer's `one_b_highN_helpful_cer_regret_mean`; fixed the formula and rescored both smoke and full outputs before interpreting them.
 - Additional full-run constraint on the story: helpful-order variants do not show a strong universal exact-match benefit (`helpful_minus_reversed_exact_mean < 0`, `desc_minus_asc_exact_mean ≈ 0`), so any later mechanism story should not lean heavily on recency-order effects without new evidence.
 - Next step in progress: run seed-robustness replications beyond seed 42 before deciding whether Loop 2 is strong enough to move on to language expansion.
+- Seed-robustness replications for seeds `11` and `101` then completed successfully, and a 3-seed aggregate was written to `research/results/autoresearch/loop2_vm_controls/seed_aggregate.json`.
+- Aggregated Loop 2 result across seeds `42/11/101`: `helpful_control_exact_margin_mean = 0.0347 ± 0.0098`, `helpful_control_cer_margin_mean = 0.0478 ± 0.0304`, `helpful_minus_zs_exact_mean = 0.0625 ± 0.0090`, with `positive_helpful_control_tasks = 4 / 8` on every seed.
+- The strongest stable positive anchor remains `4b × Telugu × n_icl=64`; the strongest stable fragility anchor remains `1b × Hindi × n_icl=64`.
+- `4b × Telugu × n_icl=8` is also reliably positive, while `1b × Telugu` remains a CER-only / no-exact-match regime and `4b × Hindi` remains a strong-base-capability comparison cell rather than a clean rescue anchor.
+- This is enough evidence to end the narrow 2-language verification phase and move to bounded language expansion before mechanistic probing.
+- Began preparing the expansion phase by generalizing the Loop 2 harness for arbitrary pair/model/n-shot grids and adding a builder for external Aksharantar breadth languages (`Marathi`, `Bengali`, `Tamil`).
+- Expansion prep then completed: added `aksharantar_mar_latin` and `aksharantar_ben_latin` to the pair registry, materialized external JSONL + provenance sidecars for `Marathi`, `Bengali`, and `Tamil`, and locally verified that all three new pairs load through the ingestion stack under the external-source contract.
+- Chosen bounded expansion design: run the same helpful-vs-control benchmark on `1B` and `4B` for `Marathi`, `Bengali`, and `Tamil` at the most informative high-shot setting (`n_icl=64`) before any mechanistic probing.

@@ -9,16 +9,9 @@ from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
 CONTROL_CONDITIONS = ("icl_corrupt", "icl_random_indic", "icl_null_filler")
-EXPECTED = [
-    ("1b", "aksharantar_hin_latin", 8),
-    ("1b", "aksharantar_hin_latin", 64),
-    ("1b", "aksharantar_tel_latin", 8),
-    ("1b", "aksharantar_tel_latin", 64),
-    ("4b", "aksharantar_hin_latin", 8),
-    ("4b", "aksharantar_hin_latin", 64),
-    ("4b", "aksharantar_tel_latin", 8),
-    ("4b", "aksharantar_tel_latin", 64),
-]
+DEFAULT_MODELS = ("1b", "4b")
+DEFAULT_PAIRS = ("aksharantar_hin_latin", "aksharantar_tel_latin")
+DEFAULT_NICLS = (8, 64)
 
 
 def _safe_float(value: Any) -> float:
@@ -88,10 +81,19 @@ def _pairwise_shot_delta(rows: List[Dict[str, Any]], model: str, pair: str, key:
     return _safe_float(row64.get(key)) - _safe_float(row8.get(key))
 
 
+def _split_tokens(raw: str) -> List[str]:
+    if not str(raw).strip():
+        return []
+    return [tok for tok in str(raw).replace(",", " ").split() if tok]
+
+
 def parse_args() -> argparse.Namespace:
     ap = argparse.ArgumentParser(description="Score Loop 2 helpful-vs-control outputs.")
     ap.add_argument("--results-root", type=str, required=True)
     ap.add_argument("--out", type=str, required=True)
+    ap.add_argument("--models", type=str, default=" ".join(DEFAULT_MODELS))
+    ap.add_argument("--pairs", type=str, default=" ".join(DEFAULT_PAIRS))
+    ap.add_argument("--nicls", type=str, default=" ".join(str(x) for x in DEFAULT_NICLS))
     return ap.parse_args()
 
 
@@ -99,11 +101,15 @@ def main() -> int:
     args = parse_args()
     results_root = Path(args.results_root).resolve()
     out_path = Path(args.out).resolve()
+    models = tuple(_split_tokens(args.models)) or DEFAULT_MODELS
+    pairs = tuple(_split_tokens(args.pairs)) or DEFAULT_PAIRS
+    nicls = tuple(int(x) for x in _split_tokens(args.nicls)) or DEFAULT_NICLS
+    expected = [(model, pair, n_icl) for model in models for pair in pairs for n_icl in nicls]
 
     rows: List[Dict[str, Any]] = []
     missing: List[str] = []
 
-    for model, pair, n_icl in EXPECTED:
+    for model, pair, n_icl in expected:
         path = _resolve_payload_path(results_root, model, pair, n_icl)
         if not path.exists() or not path.is_file():
             missing.append(str(path))
@@ -196,7 +202,7 @@ def main() -> int:
         "direction": "higher",
         "results_root": str(results_root),
         "found_tasks": len(rows),
-        "expected_tasks": len(EXPECTED),
+        "expected_tasks": len(expected),
         "missing": missing,
         "summary": summary,
         "rows": rows,

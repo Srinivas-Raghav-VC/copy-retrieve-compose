@@ -288,3 +288,30 @@ VM_PASS='***' bash autoresearch.sh loop2_full
   - supported but provisional: `1b × Hindi` is a real high-N fragility anchor
   - supported but provisional: the broader helpful effect is not universal; it is concentrated in the stronger 4B regime rather than uniformly present across the whole 2×2 panel
 - Next step in progress: run seed-robustness replications on the same full Loop 2 benchmark (starting with additional seeds beyond 42) before deciding whether the control story is stable enough to justify language expansion.
+- Seed-robustness replication on seeds `11` and `101` completed successfully, and a 3-seed aggregate now exists at `research/results/autoresearch/loop2_vm_controls/seed_aggregate.json`.
+- 3-seed aggregate summary:
+  - `helpful_control_exact_margin_mean = 0.0347 ± 0.0098`
+  - `helpful_control_cer_margin_mean = 0.0478 ± 0.0304`
+  - `helpful_minus_zs_exact_mean = 0.0625 ± 0.0090`
+  - `positive_helpful_control_tasks = 4 / 8` on every seed
+  - `one_b_highN_helpful_cer_regret_mean = 0.6910 ± 0.3622`
+  - `four_b_highN_helpful_cer_gain_mean = 0.0935 ± 0.0685`
+- Stable cross-seed conclusions:
+  - `4b × Telugu × n_icl=64` is the strongest and cleanest helpful-vs-control anchor across all three seeds.
+  - `4b × Telugu × n_icl=8` is also consistently positive, but weaker.
+  - `1b × Hindi × n_icl=64` remains the strongest fragility anchor: helpful exact remains near zero and CER is much worse than zero-shot.
+  - `1b × Telugu` remains an unstable / partial-help regime with no exact-match gains.
+  - `4b × Hindi × n_icl=64` is mildly positive against matched controls but not a rescue-above-zero-shot story; treat it as a strong-base-capability comparison cell, not the main anchor.
+- Decision after seed replication: the 2-language verification phase is strong enough to move to bounded language expansion before mechanistic probing.
+- Next step in progress: prepare additional Aksharantar breadth languages (`Marathi`, `Bengali`, `Tamil`) under the same external-data / control-benchmark contract, then run a bounded expansion benchmark at the most informative high-shot setting.
+- Expansion prep completed:
+  - generalized `autoresearch.sh` and `experiments/score_loop2_controls.py` so the same Loop 2 harness can run arbitrary model/pair/n-shot grids
+  - added `experiments/build_external_aksharantar_pairs.py`
+  - extended `pair_registry.json` with `aksharantar_mar_latin` and `aksharantar_ben_latin`
+  - materialized external JSONL + meta sidecars for `Marathi`, `Bengali`, and `Tamil`
+  - locally verified that `aksharantar_ben_latin`, `aksharantar_mar_latin`, and `aksharantar_tam_latin` resolve through the ingestion stack with external sources present
+- Planned bounded expansion benchmark:
+  - models: `1b`, `4b`
+  - pairs: `aksharantar_mar_latin`, `aksharantar_ben_latin`, `aksharantar_tam_latin`
+  - shot setting: `n_icl = 64` only
+  - rationale: this is the most informative high-shot condition given the verified `1B` fragility and strongest `4B` positive anchor at high shot
