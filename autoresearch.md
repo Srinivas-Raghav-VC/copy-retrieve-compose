@@ -142,3 +142,107 @@ The **current executable baseline** starts from `premise_gate` because that is t
   - supported but provisional: `4b × Telugu` is the best positive mechanistic anchor
   - supported but provisional: `1b × Hindi` is a useful fragility / high-N anchor
 - Recommended next iteration: targeted robustness / control comparisons on `4b × Telugu` and `1b × Hindi`, especially low-shot vs high-shot and helpful-vs-control variants.
+
+## Loop 2 — VM control verification
+
+_Date approved: 2026-03-29_
+
+### Loop 2 objective
+
+Verify the two-language behavioral story before any language expansion or mechanistic probing.
+
+The core question for this loop is:
+
+> For the `1B` and `4B` models on Hindi and Telugu, do genuinely helpful examples beat matched controls, and does `1B` specifically show a high-N fragility pattern rather than a total inability to use examples?
+
+### Approved environment
+
+- **Shared A100 VM**
+- approved by user after Loop 1 to favor interactive inspection and continuity into later mechanistic work
+
+### Core panel
+
+- `1b × aksharantar_hin_latin`
+- `1b × aksharantar_tel_latin`
+- `4b × aksharantar_hin_latin`
+- `4b × aksharantar_tel_latin`
+
+### Conditions for this loop
+
+Run `run_neutral_filler_recency_controls.py` on the core panel with:
+
+- `n_icl = 8`
+- `n_icl = 64`
+- helpful examples
+- corrupted examples
+- random Indic controls
+- null filler controls
+- recency / ordering variants already emitted by the script
+
+### Current executable benchmark
+
+Primary metric:
+
+- **`helpful_control_exact_margin_mean`**
+- unit: exact-match points
+- direction: higher is better
+
+Definition:
+- for each `(model, pair, n_icl)` cell, compute
+  - `exact_match(icl_helpful) - max(exact_match(icl_corrupt), exact_match(icl_random_indic), exact_match(icl_null_filler))`
+- then average across the 8 expected cells (`1B/4B × Hindi/Telugu × n_icl {8,64}`)
+
+### Guardrails
+
+Track, but do not optimize as the main score:
+
+- `helpful_control_cer_margin_mean` higher is better
+- `helpful_minus_zs_exact_mean` higher is better
+- `one_b_highN_helpful_cer_regret_mean` higher means `1B` gets worse at `n_icl=64` than at `n_icl=8`
+- `four_b_highN_helpful_cer_gain_mean` higher means `4B` benefits from `n_icl=64` over `n_icl=8`
+
+### Benchmark commands
+
+Smoke baseline:
+
+```bash
+VM_PASS='***' bash autoresearch.sh loop2_smoke
+```
+
+Full baseline:
+
+```bash
+VM_PASS='***' bash autoresearch.sh loop2_full
+```
+
+### Files in scope
+
+- `autoresearch.md`
+- `autoresearch.sh`
+- `experiments/score_loop2_controls.py`
+- `Draft_Results/paper2_fidelity_calibrated/run_neutral_filler_recency_controls.py`
+- small supporting harness/config files needed to make the VM benchmark honest and runnable
+
+### Max iterations
+
+- **6** for Loop 2
+
+### Stop conditions
+
+#### Stop with GO if
+- helpful examples beat matched controls on at least one clean anchor, especially `4B × Telugu`
+- and the `1B` vs `4B` contrast is sharp enough to justify later expansion and mechanistic probing
+
+#### Stop with NO-GO if
+- the helpful-vs-control advantage collapses under direct controls
+- or VM execution remains too brittle to produce a reliable baseline within the bounded iteration budget
+
+### Iteration log
+
+#### Iteration 0 — initialization and VM bring-up
+- User approved the Loop 2 order explicitly: verify the `1B/4B × Hindi/Telugu` panel first, then expand languages, then do mechanistic probing.
+- Created a fresh branch for Loop 2: `autoresearch-loop2-vm-controls`.
+- Added a dedicated Loop 2 scorer at `experiments/score_loop2_controls.py`.
+- Extended `autoresearch.sh` with VM-backed Loop 2 modes: `loop2_smoke` and `loop2_full`.
+- Immediate blocker on first bring-up attempt: the shared VM was unreachable from this environment (`ssh` timeout, port 22 closed), so the benchmark could not be launched yet.
+- Next step: retry connectivity, then run the Loop 2 smoke baseline on the approved VM path before making any scientific changes.

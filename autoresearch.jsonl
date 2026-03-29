@@ -1,0 +1,2 @@
+{"ts":"2026-03-29T00:00:00Z","loop":"loop2","event":"init","environment":"vm","branch":"autoresearch-loop2-vm-controls","metric_name":"helpful_control_exact_margin_mean","metric_unit":"exact_match_points","direction":"higher","benchmark":"bash autoresearch.sh loop2_smoke","status":"blocked_vm_unreachable"}
+{"ts": "2026-03-29T06:23:34Z", "loop": "loop2", "event": "run_attempt", "mode": "loop2_smoke", "status": "failed_vm_unreachable", "exit_code": 255, "note": "ssh connect timeout to 10.10.0.215:22 during reachability check"}

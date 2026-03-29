@@ -30,3 +30,11 @@
 - `4b × Hindi` is already strong under explicit-ZS and gets only a moderate boost from ICL (`0.300 -> 0.360` EM), consistent with reduced ICL dependence once the base capability is present.
 - Loop 1 therefore achieved its behavioral-goal milestone: we now have a structured cross-scale anchor landscape rather than noise.
 - Recommended next step: move to a targeted robustness / control phase centered on `4b × Telugu` (positive anchor) and `1b × Hindi` (high-N fragility anchor), using low-shot vs high-shot and helpful-vs-control comparisons.
+
+## 2026-03-29
+- Started Loop 2 on a fresh branch: `autoresearch-loop2-vm-controls`.
+- Fixed the Loop 2 objective around a two-language control-verification panel first: `1B/4B × Hindi/Telugu`, with later language expansion and mechanistic probing only after the control story is clean.
+- Added a dedicated scorer `experiments/score_loop2_controls.py` for the helpful-vs-control benchmark.
+- Extended `autoresearch.sh` with VM-backed Loop 2 modes (`loop2_smoke`, `loop2_full`) that sync the needed code to the shared VM, run the 2×2 control matrix at `n_icl ∈ {8,64}`, pull back artifacts, and score them locally.
+- Immediate blocker on the first VM bring-up attempt: the shared VM was unreachable from this environment (`ssh` timed out and port 22 appeared closed), so the Loop 2 baseline has not launched yet.
+- Next step: retry VM connectivity, then launch `bash autoresearch.sh loop2_smoke` with the approved VM environment before making any scientific changes.
