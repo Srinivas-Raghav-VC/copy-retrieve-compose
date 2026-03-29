@@ -71,3 +71,5 @@ Do not let sessions disappear into chat history.
 - Worked: the first-token competition audit was cheap, decisive, and fast enough to run interactively on the VM; it confirmed `1B Hindi` as an early-stage problem and ruled out a first-token explanation for `1B Telugu`.
 - Worked: the next smallest useful step after that was not another VM run but a local rank-analysis of copied prompt-bank targets, which showed a nearest-neighbor-style retrieval tendency for `1B Telugu`.
 - Prompt lesson: when a behavioral artifact already stores per-item prompt-bank metadata, exploit it before scheduling another model run.
+- Worked: the Telugu retrieval-condition comparison was answerable entirely from existing artifacts; no new GPU time was required.
+- New lesson: once you suspect bank-copy errors, compare `helpful`, `similarity_desc`, `similarity_asc`, `reversed`, and `corrupt` on the same fixed items before reaching for mechanistic patching. Those condition contrasts can already distinguish nearest-neighbor retrieval from generic bank-copy pressure.

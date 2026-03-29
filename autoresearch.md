@@ -425,3 +425,22 @@ VM_PASS='***' bash autoresearch.sh loop2_full
 - Recommended next bounded experiment:
   - do **not** rerun more generic high-shot sweeps.
   - instead run a narrow Telugu prompt-bank retrieval audit that explicitly links each copied output to the matched in-context example identity / similarity rank and compares helpful vs corrupt vs reversed ordering on the same fixed items.
+- That Telugu retrieval audit was then completed **without another model run** by analyzing the existing `1B × Telugu × n_icl=64` control artifact.
+- Added analysis script:
+  - `experiments/analyze_telugu_retrieval_conditions.py`
+- Output:
+  - `outputs/loop2_telugu_retrieval_conditions_2026-03-29.json`
+- Retrieval-audit result:
+  - `icl_helpful`: bank-copy rate `80.0%`, median copied-target similarity rank `2.5`.
+  - `icl_helpful_similarity_desc`: bank-copy rate `73.3%`, with copied targets even more concentrated on nearest neighbors (median rank `1.0`).
+  - `icl_helpful_similarity_asc`: bank-copy rate drops sharply to `23.3%`, but first-token quality and CER both worsen.
+  - `icl_helpful_reversed`: intermediate bank-copy rate `50.0%`.
+  - `icl_corrupt`: bank-copy rate stays very high (`83.3%`), but copied targets are *not* nearest neighbors under the true helpful similarity ranking (median rank `22`, top-5 share `12%`).
+- Interpretation after the Telugu retrieval audit:
+  - established: there are **two** Telugu high-shot failure pressures in `1B`:
+    1. a query-conditioned nearest-neighbor retrieval tendency when source-target alignment is preserved,
+    2. a more generic high-shot bank-copy tendency when the prompt is long and target strings are available, even if source-target alignment is broken.
+  - supported but provisional: the helpful-condition failure seems to be the superposition of these two effects, with nearest-neighbor retrieval being the more query-specific one.
+- Decision after this audit:
+  - the next mechanistic step should stay **Telugu-specific** and test why aligned similar examples trigger wrong-bank continuation in `1B`, while `4B` escapes that trap.
+  - do not spend more budget on broad behavioral sweeps before that targeted follow-up.

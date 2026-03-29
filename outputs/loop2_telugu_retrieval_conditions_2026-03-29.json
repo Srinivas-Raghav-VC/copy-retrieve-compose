@@ -1,0 +1,1059 @@
+{
+  "source_path": "/mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/loop2_full/raw/1b/aksharantar_tel_latin/nicl64/neutral_filler_recency_controls.json",
+  "conditions": [
+    {
+      "condition": "icl_helpful",
+      "n_items": 30,
+      "same_prediction_as_helpful_count": 30,
+      "same_prediction_as_helpful_rate": 1.0,
+      "copy_rate": 0.8,
+      "rank_summary": {
+        "mean": 5.833333333333333,
+        "median": 2.5,
+        "top1_rate_among_copies": 0.3333333333333333,
+        "top5_rate_among_copies": 0.625,
+        "top10_rate_among_copies": 0.75
+      },
+      "behavior_summary": {
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 0.7505291005291005,
+        "mean_first_prob": 0.8686298467529316,
+        "mean_first_entry_correct": 0.9
+      },
+      "copied_examples": [
+        {
+          "word_ood": "aadaallameeda",
+          "gold": "ఆడాళ్ళమీద",
+          "prediction": "ఆడాళ్లదీ",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aadaalladii",
+          "matched_similarity": 0.75,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.6
+        },
+        {
+          "word_ood": "aacharanaatmakathatho",
+          "gold": "ఆచరణాత్మకతతో",
+          "prediction": "ఆచరణాత్మకమైనదో",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aacharanaatmakamainado",
+          "matched_similarity": 0.7906976744186046,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.375
+        },
+        {
+          "word_ood": "aacharinchabadedi",
+          "gold": "ఆచరించబడేది",
+          "prediction": "ఆచరింపదగిన",
+          "rank_by_helpful_similarity_desc": 11,
+          "matched_source": "aacharimpadagina",
+          "matched_similarity": 0.6060606060606061,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.5714285714285714
+        },
+        {
+          "word_ood": "aabharanamgaano",
+          "gold": "ఆభరణంగానో",
+          "prediction": "ఆభరణాల్లోనో",
+          "rank_by_helpful_similarity_desc": 2,
+          "matched_source": "aabharanaallono",
+          "matched_similarity": 0.8,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.3333333333333333
+        },
+        {
+          "word_ood": "aadaamannadaanipaine",
+          "gold": "ఆడామన్నదానిపైనే",
+          "prediction": "ఆదాచేసిన",
+          "rank_by_helpful_similarity_desc": 20,
+          "matched_source": "aadaachaesina",
+          "matched_similarity": 0.48484848484848486,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.75
+        },
+        {
+          "word_ood": "aacharinchutalo",
+          "gold": "ఆచరించుటలో",
+          "prediction": "ఆచరింపదగిన",
+          "rank_by_helpful_similarity_desc": 15,
+          "matched_source": "aacharimpadagina",
+          "matched_similarity": 0.5806451612903226,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.6666666666666666
+        },
+        {
+          "word_ood": "aachaaramidi",
+          "gold": "ఆచారమిది",
+          "prediction": "ఆచారంలేదు",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aachaaramledu",
+          "matched_similarity": 0.8,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.6
+        },
+        {
+          "word_ood": "aadaayamloonuu",
+          "gold": "ఆదాయంలోనూ",
+          "prediction": "ఆడాడనే",
+          "rank_by_helpful_similarity_desc": 12,
+          "matched_source": "aadaadane",
+          "matched_similarity": 0.6086956521739131,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8
+        },
+        {
+          "word_ood": "aadaachesukunenduku",
+          "gold": "ఆదాచేసుకునేందుకు",
+          "prediction": "ఆదాచేసిన",
+          "rank_by_helpful_similarity_desc": 2,
+          "matched_source": "aadaachaesina",
+          "matched_similarity": 0.625,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.625
+        },
+        {
+          "word_ood": "aadaayapannulasaakha",
+          "gold": "ఆదాయపన్నులశాఖ",
+          "prediction": "ఆదాయపన్నుశాఖలో",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aadaayapannusaakhalo",
+          "matched_similarity": 0.9,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.25
+        },
+        {
+          "word_ood": "aacharinchinacho",
+          "gold": "ఆచరించినచో",
+          "prediction": "ఆచరించుకోవచ్చునంటూ",
+          "rank_by_helpful_similarity_desc": 10,
+          "matched_source": "aacharinchukoevachchunantuu",
+          "matched_similarity": 0.6046511627906976,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 1.0
+        },
+        {
+          "word_ood": "aadaayapannulu",
+          "gold": "ఆదాయపన్నులు",
+          "prediction": "ఆదాయపన్నుశాఖలో",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aadaayapannusaakhalo",
+          "matched_similarity": 0.7647058823529411,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.5
+        },
+        {
+          "word_ood": "aacharincheyandi",
+          "gold": "ఆచరించేయండి",
+          "prediction": "ఆచరణకీ",
+          "rank_by_helpful_similarity_desc": 9,
+          "matched_source": "aacharanakii",
+          "matched_similarity": 0.6428571428571429,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.6666666666666666
+        },
+        {
+          "word_ood": "aadaayaalaina",
+          "gold": "ఆదాయాలైన",
+          "prediction": "ఆదాయాలనీ",
+          "rank_by_helpful_similarity_desc": 3,
+          "matched_source": "aadaayaalanee",
+          "matched_similarity": 0.8461538461538461,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.4
+        },
+        {
+          "word_ood": "aadaarapadaalsinde",
+          "gold": "ఆదారపడాల్సిందే",
+          "prediction": "ఆదాచేసిన",
+          "rank_by_helpful_similarity_desc": 11,
+          "matched_source": "aadaachaesina",
+          "matched_similarity": 0.5806451612903226,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.7142857142857143
+        },
+        {
+          "word_ood": "aadaachestundi",
+          "gold": "ఆదాచేస్తుంది",
+          "prediction": "ఆదాచేసిన",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aadaachaesina",
+          "matched_similarity": 0.7407407407407407,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.4
+        },
+        {
+          "word_ood": "aacharinchaake",
+          "gold": "ఆచరించాకే",
+          "prediction": "ఆచరణకీ",
+          "rank_by_helpful_similarity_desc": 8,
+          "matched_source": "aacharanakii",
+          "matched_similarity": 0.6923076923076923,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.6
+        },
+        {
+          "word_ood": "aadaarapadaledu",
+          "gold": "ఆదారపడలేదు",
+          "prediction": "ఆదారపడటం",
+          "rank_by_helpful_similarity_desc": 2,
+          "matched_source": "aadaarapadatam",
+          "matched_similarity": 0.7586206896551724,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.2857142857142857
+        },
+        {
+          "word_ood": "aadaalina",
+          "gold": "ఆడాలిన",
+          "prediction": "ఆడాళ్లదీ",
+          "rank_by_helpful_similarity_desc": 5,
+          "matched_source": "aadaalladii",
+          "matched_similarity": 0.7,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.5
+        },
+        {
+          "word_ood": "aacharaneeyamainadigaa",
+          "gold": "ఆచరణీయమైనదిగా",
+          "prediction": "ఆచరణీయమైనది",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aacharaneeyamainadi",
+          "matched_similarity": 0.926829268292683,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.1111111111111111
+        }
+      ]
+    },
+    {
+      "condition": "icl_helpful_similarity_desc",
+      "n_items": 30,
+      "same_prediction_as_helpful_count": 5,
+      "same_prediction_as_helpful_rate": 0.16666666666666666,
+      "copy_rate": 0.7333333333333333,
+      "rank_summary": {
+        "mean": 3.0454545454545454,
+        "median": 1.0,
+        "top1_rate_among_copies": 0.6363636363636364,
+        "top5_rate_among_copies": 0.8181818181818182,
+        "top10_rate_among_copies": 0.9090909090909091
+      },
+      "behavior_summary": {
+        "mean_exact_match": 0.03333333333333333,
+        "mean_akshara_cer": 0.8082804232804234,
+        "mean_first_prob": 0.7951176170354302,
+        "mean_first_entry_correct": 0.8666666666666667
+      },
+      "copied_examples": [
+        {
+          "word_ood": "aadaallameeda",
+          "gold": "ఆడాళ్ళమీద",
+          "prediction": "ఆడాళ్లదీ",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aadaalladii",
+          "matched_similarity": 0.75,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.6
+        },
+        {
+          "word_ood": "aacharanaatmakathatho",
+          "gold": "ఆచరణాత్మకతతో",
+          "prediction": "ఆచరణాత్మకమైనదో",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aacharanaatmakamainado",
+          "matched_similarity": 0.7906976744186046,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.375
+        },
+        {
+          "word_ood": "aacharanaatmamgaa",
+          "gold": "ఆచరణాత్మంగా",
+          "prediction": "ఆచరణాత్మకమైనదో",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aacharanaatmakamainado",
+          "matched_similarity": 0.8205128205128205,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8333333333333334
+        },
+        {
+          "word_ood": "aabharanamgaano",
+          "gold": "ఆభరణంగానో",
+          "prediction": "ఆభరణంగానూ",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aabharanamgaanuu",
+          "matched_similarity": 0.9032258064516129,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.16666666666666666
+        },
+        {
+          "word_ood": "aadaamannadaanipaine",
+          "gold": "ఆడామన్నదానిపైనే",
+          "prediction": "ఆడాలనిపించే",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aadaalanipinche",
+          "matched_similarity": 0.6857142857142857,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.625
+        },
+        {
+          "word_ood": "aacharinchutalo",
+          "gold": "ఆచరించుటలో",
+          "prediction": "ఆచరించటమే",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aacharinchatame",
+          "matched_similarity": 0.8,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.3333333333333333
+        },
+        {
+          "word_ood": "aachaaravyavahaaramula",
+          "gold": "ఆచారవ్యవహారముల",
+          "prediction": "ఆచరణాత్మకమైనదో",
+          "rank_by_helpful_similarity_desc": 15,
+          "matched_source": "aacharanaatmakamainado",
+          "matched_similarity": 0.5454545454545454,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.7777777777777778
+        },
+        {
+          "word_ood": "aachaaramidi",
+          "gold": "ఆచారమిది",
+          "prediction": "ఆచారాలపైనే",
+          "rank_by_helpful_similarity_desc": 6,
+          "matched_source": "aachaaraalapaine",
+          "matched_similarity": 0.6428571428571429,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8
+        },
+        {
+          "word_ood": "aadaayamloonuu",
+          "gold": "ఆదాయంలోనూ",
+          "prediction": "ఆదాముతోనీవు",
+          "rank_by_helpful_similarity_desc": 9,
+          "matched_source": "aadaamutoeneevu",
+          "matched_similarity": 0.6206896551724138,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8
+        },
+        {
+          "word_ood": "aadaachesukunenduku",
+          "gold": "ఆదాచేసుకునేందుకు",
+          "prediction": "ఆదాచేసుకుంటున్నారు",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aadaachesukuntunnaaru",
+          "matched_similarity": 0.75,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.5
+        },
+        {
+          "word_ood": "aadaayapannulu",
+          "gold": "ఆదాయపన్నులు",
+          "prediction": "ఆదాయపన్నుశాఖలో",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aadaayapannusaakhalo",
+          "matched_similarity": 0.7647058823529411,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.5
+        },
+        {
+          "word_ood": "aacharincheyandi",
+          "gold": "ఆచరించేయండి",
+          "prediction": "ఆచరణీయమైనది",
+          "rank_by_helpful_similarity_desc": 3,
+          "matched_source": "aacharaneeyamainadi",
+          "matched_similarity": 0.7428571428571429,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 1.0
+        },
+        {
+          "word_ood": "aadaayaalaina",
+          "gold": "ఆదాయాలైన",
+          "prediction": "ఆదాయాలైనా",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aadaayaalainaa",
+          "matched_similarity": 0.9629629629629629,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.2
+        },
+        {
+          "word_ood": "aadaarapadaalsinde",
+          "gold": "ఆదారపడాల్సిందే",
+          "prediction": "ఆదారపడటం",
+          "rank_by_helpful_similarity_desc": 2,
+          "matched_source": "aadaarapadatam",
+          "matched_similarity": 0.75,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.42857142857142855
+        },
+        {
+          "word_ood": "aadaachestundi",
+          "gold": "ఆదాచేస్తుంది",
+          "prediction": "ఆదాచేసుకుంటున్నారు",
+          "rank_by_helpful_similarity_desc": 3,
+          "matched_source": "aadaachesukuntunnaaru",
+          "matched_similarity": 0.6857142857142857,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 1.0
+        },
+        {
+          "word_ood": "aacharinchaake",
+          "gold": "ఆచరించాకే",
+          "prediction": "ఆచరింపదగిన",
+          "rank_by_helpful_similarity_desc": 13,
+          "matched_source": "aacharimpadagina",
+          "matched_similarity": 0.6,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8
+        },
+        {
+          "word_ood": "aadaarapadaledu",
+          "gold": "ఆదారపడలేదు",
+          "prediction": "ఆదారపడడం",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aadaarapadadam",
+          "matched_similarity": 0.8275862068965517,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.2857142857142857
+        },
+        {
+          "word_ood": "aachaaryulandaruu",
+          "gold": "ఆచార్యులందరూ",
+          "prediction": "ఆచరణలోనూ",
+          "rank_by_helpful_similarity_desc": 2,
+          "matched_source": "aacharanaloonuu",
+          "matched_similarity": 0.6875,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8333333333333334
+        },
+        {
+          "word_ood": "aacharaneeyamainadigaa",
+          "gold": "ఆచరణీయమైనదిగా",
+          "prediction": "ఆచరణీయమైనది",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aacharaneeyamainadi",
+          "matched_similarity": 0.926829268292683,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.1111111111111111
+        },
+        {
+          "word_ood": "aabharanaalalo",
+          "gold": "ఆభరణాలలో",
+          "prediction": "ఆభరణాలలోకి",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aabharanaalaloki",
+          "matched_similarity": 0.9333333333333333,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.16666666666666666
+        }
+      ]
+    },
+    {
+      "condition": "icl_helpful_similarity_asc",
+      "n_items": 30,
+      "same_prediction_as_helpful_count": 2,
+      "same_prediction_as_helpful_rate": 0.06666666666666667,
+      "copy_rate": 0.23333333333333334,
+      "rank_summary": {
+        "mean": 7.857142857142857,
+        "median": 5.0,
+        "top1_rate_among_copies": 0.0,
+        "top5_rate_among_copies": 0.5714285714285714,
+        "top10_rate_among_copies": 0.8571428571428571
+      },
+      "behavior_summary": {
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.8791931216931217,
+        "mean_first_prob": 0.41138623666846047,
+        "mean_first_entry_correct": 0.36666666666666664
+      },
+      "copied_examples": [
+        {
+          "word_ood": "aadaamannadaanipaine",
+          "gold": "ఆడామన్నదానిపైనే",
+          "prediction": "ఆదాచేసుకుంటున్నారు",
+          "rank_by_helpful_similarity_desc": 27,
+          "matched_source": "aadaachesukuntunnaaru",
+          "matched_similarity": 0.43902439024390244,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.875
+        },
+        {
+          "word_ood": "aadaayamloonuu",
+          "gold": "ఆదాయంలోనూ",
+          "prediction": "ఆదాముతోనీవు",
+          "rank_by_helpful_similarity_desc": 9,
+          "matched_source": "aadaamutoeneevu",
+          "matched_similarity": 0.6206896551724138,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8
+        },
+        {
+          "word_ood": "aadaachestundi",
+          "gold": "ఆదాచేస్తుంది",
+          "prediction": "ఆదాచేసుకుంటున్నారు",
+          "rank_by_helpful_similarity_desc": 3,
+          "matched_source": "aadaachesukuntunnaaru",
+          "matched_similarity": 0.6857142857142857,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 1.0
+        },
+        {
+          "word_ood": "aadaarapadaledu",
+          "gold": "ఆదారపడలేదు",
+          "prediction": "ఆదారపడటం",
+          "rank_by_helpful_similarity_desc": 2,
+          "matched_source": "aadaarapadatam",
+          "matched_similarity": 0.7586206896551724,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.2857142857142857
+        },
+        {
+          "word_ood": "aadaalina",
+          "gold": "ఆడాలిన",
+          "prediction": "ఆడాడనే",
+          "rank_by_helpful_similarity_desc": 6,
+          "matched_source": "aadaadane",
+          "matched_similarity": 0.6666666666666666,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.5
+        },
+        {
+          "word_ood": "aacharanalapai",
+          "gold": "ఆచరణలపై",
+          "prediction": "ఆచరణలోపెట్టాలని",
+          "rank_by_helpful_similarity_desc": 5,
+          "matched_source": "aacharanalopettaalani",
+          "matched_similarity": 0.7428571428571429,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.6666666666666666
+        },
+        {
+          "word_ood": "aacharinchaalsina",
+          "gold": "ఆచరించాల్సిన",
+          "prediction": "ఆచరించటమే",
+          "rank_by_helpful_similarity_desc": 3,
+          "matched_source": "aacharinchatame",
+          "matched_similarity": 0.75,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.5
+        }
+      ]
+    },
+    {
+      "condition": "icl_helpful_reversed",
+      "n_items": 30,
+      "same_prediction_as_helpful_count": 4,
+      "same_prediction_as_helpful_rate": 0.13333333333333333,
+      "copy_rate": 0.5,
+      "rank_summary": {
+        "mean": 10.333333333333334,
+        "median": 2.0,
+        "top1_rate_among_copies": 0.3333333333333333,
+        "top5_rate_among_copies": 0.6666666666666666,
+        "top10_rate_among_copies": 0.7333333333333333
+      },
+      "behavior_summary": {
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.2805423280423278,
+        "mean_first_prob": 0.6714108335664302,
+        "mean_first_entry_correct": 0.7
+      },
+      "copied_examples": [
+        {
+          "word_ood": "aacharanaatmakathatho",
+          "gold": "ఆచరణాత్మకతతో",
+          "prediction": "ఆచరణాత్మకమైనదో",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aacharanaatmakamainado",
+          "matched_similarity": 0.7906976744186046,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.375
+        },
+        {
+          "word_ood": "aacharanaatmamgaa",
+          "gold": "ఆచరణాత్మంగా",
+          "prediction": "ఆచరణాత్మకమైనదో",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aacharanaatmakamainado",
+          "matched_similarity": 0.8205128205128205,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8333333333333334
+        },
+        {
+          "word_ood": "aacharinchabadedi",
+          "gold": "ఆచరించబడేది",
+          "prediction": "ఆచరించినవాడు",
+          "rank_by_helpful_similarity_desc": 2,
+          "matched_source": "aacharinchinavaadu",
+          "matched_similarity": 0.7428571428571429,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.5714285714285714
+        },
+        {
+          "word_ood": "aabharanamgaano",
+          "gold": "ఆభరణంగానో",
+          "prediction": "ఆభరణంగానూ",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aabharanamgaanuu",
+          "matched_similarity": 0.9032258064516129,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.16666666666666666
+        },
+        {
+          "word_ood": "aadaamannadaanipaine",
+          "gold": "ఆడామన్నదానిపైనే",
+          "prediction": "ఆదాముతోనీవు",
+          "rank_by_helpful_similarity_desc": 22,
+          "matched_source": "aadaamutoeneevu",
+          "matched_similarity": 0.45714285714285713,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.875
+        },
+        {
+          "word_ood": "aacharinchutalo",
+          "gold": "ఆచరించుటలో",
+          "prediction": "ఆచరించినవాడు",
+          "rank_by_helpful_similarity_desc": 5,
+          "matched_source": "aacharinchinavaadu",
+          "matched_similarity": 0.6666666666666666,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.6666666666666666
+        },
+        {
+          "word_ood": "aadaayamloonuu",
+          "gold": "ఆదాయంలోనూ",
+          "prediction": "ఆదాముతోనీవు",
+          "rank_by_helpful_similarity_desc": 9,
+          "matched_source": "aadaamutoeneevu",
+          "matched_similarity": 0.6206896551724138,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8
+        },
+        {
+          "word_ood": "aadaayapannulasaakha",
+          "gold": "ఆదాయపన్నులశాఖ",
+          "prediction": "ఆచరణసాధ్యమైన",
+          "rank_by_helpful_similarity_desc": 12,
+          "matched_source": "aacharanasaadhyamaina",
+          "matched_similarity": 0.5365853658536586,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.875
+        },
+        {
+          "word_ood": "aadaayapannulu",
+          "gold": "ఆదాయపన్నులు",
+          "prediction": "ఆచరణసాధ్యమైన",
+          "rank_by_helpful_similarity_desc": 41,
+          "matched_source": "aacharanasaadhyamaina",
+          "matched_similarity": 0.4,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 1.1666666666666667
+        },
+        {
+          "word_ood": "aadaarapadaalsinde",
+          "gold": "ఆదారపడాల్సిందే",
+          "prediction": "ఆదారపడటం",
+          "rank_by_helpful_similarity_desc": 2,
+          "matched_source": "aadaarapadatam",
+          "matched_similarity": 0.75,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.42857142857142855
+        },
+        {
+          "word_ood": "aadaachestundi",
+          "gold": "ఆదాచేస్తుంది",
+          "prediction": "ఆచరించుకోవచ్చునంటూ",
+          "rank_by_helpful_similarity_desc": 52,
+          "matched_source": "aacharinchukoevachchunantuu",
+          "matched_similarity": 0.34146341463414637,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 1.6
+        },
+        {
+          "word_ood": "aacharinchaake",
+          "gold": "ఆచరించాకే",
+          "prediction": "ఆచరించటమే",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aacharinchatame",
+          "matched_similarity": 0.896551724137931,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.6
+        },
+        {
+          "word_ood": "aadaarapadaledu",
+          "gold": "ఆదారపడలేదు",
+          "prediction": "ఆదారపడటం",
+          "rank_by_helpful_similarity_desc": 2,
+          "matched_source": "aadaarapadatam",
+          "matched_similarity": 0.7586206896551724,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.2857142857142857
+        },
+        {
+          "word_ood": "aacharaneeyamainadigaa",
+          "gold": "ఆచరణీయమైనదిగా",
+          "prediction": "ఆచరణీయమైనది",
+          "rank_by_helpful_similarity_desc": 1,
+          "matched_source": "aacharaneeyamainadi",
+          "matched_similarity": 0.926829268292683,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.1111111111111111
+        },
+        {
+          "word_ood": "aacharinchaalsina",
+          "gold": "ఆచరించాల్సిన",
+          "prediction": "ఆచరించటమే",
+          "rank_by_helpful_similarity_desc": 3,
+          "matched_source": "aacharinchatame",
+          "matched_similarity": 0.75,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.5
+        }
+      ]
+    },
+    {
+      "condition": "icl_corrupt",
+      "n_items": 30,
+      "same_prediction_as_helpful_count": 3,
+      "same_prediction_as_helpful_rate": 0.1,
+      "copy_rate": 0.8333333333333334,
+      "rank_summary": {
+        "mean": 26.84,
+        "median": 22.0,
+        "top1_rate_among_copies": 0.04,
+        "top5_rate_among_copies": 0.12,
+        "top10_rate_among_copies": 0.24
+      },
+      "behavior_summary": {
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 1.168399470899471,
+        "mean_first_prob": 0.8334982763354977,
+        "mean_first_entry_correct": 0.8666666666666667
+      },
+      "copied_examples": [
+        {
+          "word_ood": "aadaallameeda",
+          "gold": "ఆడాళ్ళమీద",
+          "prediction": "ఆచరణలోపెట్టాలని",
+          "rank_by_helpful_similarity_desc": 46,
+          "matched_source": "aacharanalopettaalani",
+          "matched_similarity": 0.35294117647058826,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 1.6
+        },
+        {
+          "word_ood": "aacharanaatmakathatho",
+          "gold": "ఆచరణాత్మకతతో",
+          "prediction": "ఆచారిలు",
+          "rank_by_helpful_similarity_desc": 41,
+          "matched_source": "aachaarilu",
+          "matched_similarity": 0.3870967741935484,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.875
+        },
+        {
+          "word_ood": "aacharanaatmamgaa",
+          "gold": "ఆచరణాత్మంగా",
+          "prediction": "ఆచరణలోనూ",
+          "rank_by_helpful_similarity_desc": 22,
+          "matched_source": "aacharanaloonuu",
+          "matched_similarity": 0.5625,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.5
+        },
+        {
+          "word_ood": "aacharinchabadedi",
+          "gold": "ఆచరించబడేది",
+          "prediction": "ఆచరణరూపమిచ్చి",
+          "rank_by_helpful_similarity_desc": 22,
+          "matched_source": "aacharanaruupamichchi",
+          "matched_similarity": 0.5263157894736842,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8571428571428571
+        },
+        {
+          "word_ood": "aadaamannadaanipaine",
+          "gold": "ఆడామన్నదానిపైనే",
+          "prediction": "ఆచరణకీ",
+          "rank_by_helpful_similarity_desc": 18,
+          "matched_source": "aacharanakii",
+          "matched_similarity": 0.5,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.875
+        },
+        {
+          "word_ood": "aacharinchutalo",
+          "gold": "ఆచరించుటలో",
+          "prediction": "ఆచరణలోపెట్టాలని",
+          "rank_by_helpful_similarity_desc": 21,
+          "matched_source": "aacharanalopettaalani",
+          "matched_similarity": 0.5555555555555556,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 1.1666666666666667
+        },
+        {
+          "word_ood": "aachaaravyavahaaramula",
+          "gold": "ఆచారవ్యవహారముల",
+          "prediction": "ఆచరణాత్మకమైనదో",
+          "rank_by_helpful_similarity_desc": 15,
+          "matched_source": "aacharanaatmakamainado",
+          "matched_similarity": 0.5454545454545454,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.7777777777777778
+        },
+        {
+          "word_ood": "aachaaramidi",
+          "gold": "ఆచారమిది",
+          "prediction": "ఆచారాలపైనే",
+          "rank_by_helpful_similarity_desc": 6,
+          "matched_source": "aachaaraalapaine",
+          "matched_similarity": 0.6428571428571429,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8
+        },
+        {
+          "word_ood": "aadaayamloonuu",
+          "gold": "ఆదాయంలోనూ",
+          "prediction": "ఆచరణలోనూ",
+          "rank_by_helpful_similarity_desc": 2,
+          "matched_source": "aacharanaloonuu",
+          "matched_similarity": 0.7586206896551724,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.6
+        },
+        {
+          "word_ood": "aadaachesukunenduku",
+          "gold": "ఆదాచేసుకునేందుకు",
+          "prediction": "ఆచరించుకోవచ్చునంటూ",
+          "rank_by_helpful_similarity_desc": 8,
+          "matched_source": "aacharinchukoevachchunantuu",
+          "matched_similarity": 0.4782608695652174,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 1.0
+        },
+        {
+          "word_ood": "aadaayapannulasaakha",
+          "gold": "ఆదాయపన్నులశాఖ",
+          "prediction": "ఆభరణాల్లోనో",
+          "rank_by_helpful_similarity_desc": 52,
+          "matched_source": "aabharanaallono",
+          "matched_similarity": 0.2857142857142857,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.875
+        },
+        {
+          "word_ood": "aacharinchinacho",
+          "gold": "ఆచరించినచో",
+          "prediction": "ఆచరణలోపెట్టాలని",
+          "rank_by_helpful_similarity_desc": 27,
+          "matched_source": "aacharanalopettaalani",
+          "matched_similarity": 0.4864864864864865,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 1.1666666666666667
+        },
+        {
+          "word_ood": "aacharincheyandi",
+          "gold": "ఆచరించేయండి",
+          "prediction": "ఆదాచేసిన",
+          "rank_by_helpful_similarity_desc": 20,
+          "matched_source": "aadaachaesina",
+          "matched_similarity": 0.5517241379310345,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.6666666666666666
+        },
+        {
+          "word_ood": "aadaayaalaina",
+          "gold": "ఆదాయాలైన",
+          "prediction": "ఆడాళ్లదీ",
+          "rank_by_helpful_similarity_desc": 9,
+          "matched_source": "aadaalladii",
+          "matched_similarity": 0.6666666666666666,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8
+        },
+        {
+          "word_ood": "aadaarapadaalsinde",
+          "gold": "ఆదారపడాల్సిందే",
+          "prediction": "ఆచారిలు",
+          "rank_by_helpful_similarity_desc": 37,
+          "matched_source": "aachaarilu",
+          "matched_similarity": 0.42857142857142855,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8571428571428571
+        },
+        {
+          "word_ood": "aadaachestundi",
+          "gold": "ఆదాచేస్తుంది",
+          "prediction": "ఆచరించినవాడు",
+          "rank_by_helpful_similarity_desc": 62,
+          "matched_source": "aacharinchinavaadu",
+          "matched_similarity": 0.3125,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 1.2
+        },
+        {
+          "word_ood": "aacharinchaake",
+          "gold": "ఆచరించాకే",
+          "prediction": "ఆచరించుకోవచ్చునంటూ",
+          "rank_by_helpful_similarity_desc": 20,
+          "matched_source": "aacharinchukoevachchunantuu",
+          "matched_similarity": 0.5853658536585366,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 1.2
+        },
+        {
+          "word_ood": "aadaarapadaledu",
+          "gold": "ఆదారపడలేదు",
+          "prediction": "ఆచరించినవారి",
+          "rank_by_helpful_similarity_desc": 58,
+          "matched_source": "aacharinchinavaari",
+          "matched_similarity": 0.30303030303030304,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8571428571428571
+        },
+        {
+          "word_ood": "aadaalina",
+          "gold": "ఆడాలిన",
+          "prediction": "ఆచ్ఛాదనలన్నీ",
+          "rank_by_helpful_similarity_desc": 26,
+          "matched_source": "aachchaadanalannii",
+          "matched_similarity": 0.5185185185185185,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 1.0
+        },
+        {
+          "word_ood": "aachaaryulandaruu",
+          "gold": "ఆచార్యులందరూ",
+          "prediction": "ఆడాడనే",
+          "rank_by_helpful_similarity_desc": 41,
+          "matched_source": "aadaadane",
+          "matched_similarity": 0.46153846153846156,
+          "exact_match": 0.0,
+          "first_entry_correct": 1.0,
+          "akshara_cer": 0.8333333333333334
+        }
+      ]
+    },
+    {
+      "condition": "icl_random_indic",
+      "n_items": 30,
+      "same_prediction_as_helpful_count": 0,
+      "same_prediction_as_helpful_rate": 0.0,
+      "copy_rate": 0.0,
+      "rank_summary": {
+        "mean": null,
+        "median": null,
+        "top1_rate_among_copies": 0.0,
+        "top5_rate_among_copies": 0.0,
+        "top10_rate_among_copies": 0.0
+      },
+      "behavior_summary": {
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 4.245529100529101,
+        "mean_first_prob": 0.028770395499989356,
+        "mean_first_entry_correct": 0.03333333333333333
+      },
+      "copied_examples": []
+    },
+    {
+      "condition": "icl_null_filler",
+      "n_items": 30,
+      "same_prediction_as_helpful_count": 0,
+      "same_prediction_as_helpful_rate": 0.0,
+      "copy_rate": 0.0,
+      "rank_summary": {
+        "mean": null,
+        "median": null,
+        "top1_rate_among_copies": 0.0,
+        "top5_rate_among_copies": 0.0,
+        "top10_rate_among_copies": 0.0
+      },
+      "behavior_summary": {
+        "mean_exact_match": 0.0,
+        "mean_akshara_cer": 3.7146825396825394,
+        "mean_first_prob": 0.008152941918039384,
+        "mean_first_entry_correct": 0.0
+      },
+      "copied_examples": []
+    }
+  ]
+}

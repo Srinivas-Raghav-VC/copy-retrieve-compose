@@ -55,6 +55,9 @@
   - `1B × Telugu × n_icl=64` largely fixes the first-token stage under both helpful and corrupt ICL, so its main failure is later than the first token.
   - `4B × Telugu × n_icl=64` is almost saturated at the first-token stage even under corrupt ICL, which localizes the helpful-vs-control advantage to later continuation / composition.
 - Prompt-bank copy rank analysis (`outputs/loop2_bank_copy_rank_2026-03-29.json`) shows that `1B × Telugu` copied targets are usually not arbitrary prompt-bank items: they come disproportionately from the query's nearest-neighbor similarity neighborhood, and the copy rate increases monotonically with `n_icl`.
+- Condition-wise Telugu retrieval analysis (`outputs/loop2_telugu_retrieval_conditions_2026-03-29.json`) further separates two effects:
+  - when source-target alignment is preserved, nearest-neighbor structure matters strongly (`helpful_similarity_desc` keeps copy rate high and concentrates copies on top-ranked neighbors; `helpful_similarity_asc` sharply reduces copying but also hurts quality);
+  - when alignment is broken (`icl_corrupt`), bank-copying still stays high but is no longer concentrated on true nearest neighbors.
 
 ## Open questions
 - Does the phenomenon genuinely show strong high-N degradation under the stricter multilingual Phase 0A setup, or does the current `>=0.10` degradation threshold need recalibration before declaring the problem statement verified?
@@ -70,6 +73,7 @@
 - For `1B × Hindi`, where in the computation does the visible ICL signal fail: target-token selection, whole-word continuation, late-layer normalization, or something else?
 - For `1B × Hindi`, what is the dominant wrong first-token competitor under helpful ICL: a Latin/source-copy token, a script-valid but wrong Devanagari token, or an in-context-bank retrieval token?
 - For `1B × Telugu`, beyond the already-supported nearest-neighbor tendency, what specific retrieval heuristic dominates the copied-bank behavior: source-form similarity, prompt position/recency, target-subtoken overlap, or some interaction among them?
+- For `1B × Telugu`, how much of the remaining failure is explained by a generic long-prompt target-copy prior versus a query-conditioned aligned-neighbor retrieval mechanism?
 - For `1B × Telugu`, why do corrupt high-shot prompts still largely fix the first token while failing on the whole word — is the early signal just generic target-script/task-mode activation, with query-specific selection collapsing later?
 
 ## Retired claims

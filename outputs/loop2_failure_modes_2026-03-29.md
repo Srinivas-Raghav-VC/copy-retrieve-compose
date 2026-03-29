@@ -83,6 +83,11 @@ A separate bounded audit on the VM (`research/results/autoresearch/first_token_c
 - **1B Telugu first-token stage:** under `icl_helpful`, top-1 first-token accuracy rises to `0.900` and mean target-token probability to `0.869`; even `icl_corrupt` reaches `0.767`. So the first-token fix is mostly present before exact-match success appears.
 - **Important nuance:** `4B Telugu` shows the same pattern even more strongly: `icl_helpful` and `icl_corrupt` both reach `top1_target_rate = 0.967`, but only helpful examples deliver the stronger whole-word exact-match behavior. This reinforces that the first-token stage is not the whole story.
 - **Prompt-bank copy rank analysis:** for `1B Telugu`, copied bank targets are usually drawn from the **similarity-neighborhood** of the query rather than from arbitrary prompt positions. At `n_icl=64`, `24/30` helpful predictions are exact bank copies; among those copied targets, the matched example has median source-similarity rank `2.5`, `62.5%` are in the top 5, and `75%` are in the top 10. The copy rate also rises with `n_icl` (`53.3% -> 70.0% -> 80.0%` for `48 -> 56 -> 64`).
+- **Condition comparison on the same Telugu items:**
+  - `icl_helpful_similarity_desc` still copies bank targets heavily (`73.3%`), and the copied targets become even more concentrated on the nearest neighbors (median rank `1.0`, top-5 share `81.8%`).
+  - `icl_helpful_similarity_asc` cuts the copy rate sharply (`23.3%`) but also hurts first-token quality and CER, which suggests similarity ordering is doing real work, not just adding noise.
+  - `icl_helpful_reversed` lands in between (`50.0%` copy rate), again consistent with order affecting *which* similar bank item gets retrieved.
+  - `icl_corrupt` still has a very high bank-copy rate (`83.3%`), but those copied targets are **not** usually nearest neighbors under the true source-query similarity ranking (median rank `22`, top-5 share only `12%`). This indicates a second, more generic high-shot bank-copy tendency when source-target alignment is broken.
 - **4B Telugu comparison:** only `2/30` helpful predictions are exact bank copies, though when they happen they come from the very top nearest-neighbor rank.
 
 This makes the current best explanation:
@@ -123,3 +128,4 @@ This makes the current best explanation:
 - file:///mnt/d/Research/Honors/research/results/autoresearch/token_visibility_v1/results/token_visibility_summary.csv
 - file:///mnt/d/Research/Honors/research/results/autoresearch/first_token_competition_v1/results/summary.json
 - file:///mnt/d/Research/Honors/outputs/loop2_bank_copy_rank_2026-03-29.json
+- file:///mnt/d/Research/Honors/outputs/loop2_telugu_retrieval_conditions_2026-03-29.json

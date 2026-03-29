@@ -112,3 +112,11 @@
   - `1B × Telugu × n_icl=64` copies exact prompt-bank targets on `24/30` items (`80%`), and those copied targets usually come from the query's similarity neighborhood (median rank `2.5`; `62.5%` in top 5; `75%` in top 10).
   - The `1B × Telugu` copy rate rises monotonically with `n_icl` (`53.3% -> 70.0% -> 80.0%` for `48 -> 56 -> 64`).
 - Updated next-step plan: the most informative next bounded audit is now Telugu-specific prompt-bank retrieval analysis on fixed items, rather than another generic `1B` sweep.
+- Completed that Telugu retrieval audit without launching another VM/model run by re-analyzing the existing `1B × Telugu × n_icl=64` control artifact.
+- Added `experiments/analyze_telugu_retrieval_conditions.py` and wrote `outputs/loop2_telugu_retrieval_conditions_2026-03-29.json`.
+- Key result from the condition comparison on the same items:
+  - `icl_helpful` copies bank targets on `80.0%` of items, usually from the query's similarity neighborhood (median rank `2.5`).
+  - Sorting similar examples to the front (`icl_helpful_similarity_desc`) keeps copy rate high (`73.3%`) and makes copied targets even more nearest-neighbor concentrated (median rank `1.0`).
+  - Sorting similar examples to the back (`icl_helpful_similarity_asc`) drops copy rate sharply (`23.3%`) but also degrades first-token quality and CER.
+  - `icl_corrupt` still copies bank targets heavily (`83.3%`), but those copied targets are not nearest neighbors under the true source-query similarity ranking (median rank `22`).
+- Updated interpretation: Telugu high-shot `1B` failure appears to mix two effects — query-conditioned nearest-neighbor retrieval when alignment is preserved, plus a broader high-shot bank-copy tendency when many target strings are present.
