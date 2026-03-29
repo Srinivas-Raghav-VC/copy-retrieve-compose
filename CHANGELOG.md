@@ -74,3 +74,7 @@
 - Representation-level takeaway: `4b × Telugu` shows a very sharp late-layer script-space emergence under ICL concentrated in layers `29–33`; `4b × Hindi` shows a milder amplification of an already-present late Devanagari regime; `1b × Hindi` shows a weaker mid/late rise through roughly `17–24` but an unstable final layer `25` rather than a clean late win.
 - This is enough to choose candidate layer ranges for later causal work, but not enough to claim a mechanism.
 - Next bounded step: run a token-visibility audit to test whether the `1B` high-N fragility is plausibly constrained by shorter-window visibility before escalating to heavier intervention pipelines.
+- The token-visibility audit then completed successfully.
+- Key result: `icl8` is fully visible for both scales, and `4B` retains full visibility even at `icl64`; by contrast, `1B × Hindi × icl64` loses about `9` full examples on average and `1B × Telugu × icl64` loses about `24` full examples on average at the target-position local window.
+- This supports a partial visibility-bottleneck story for `1B`, especially on Telugu, but it does not fully explain the `1B × Hindi` failure because Hindi still keeps most examples visible while remaining behaviorally fragile.
+- Chosen next experiment: a bounded `1B` visibility-threshold behavioral test over intermediate `n_icl` values (`48`, `56`, `64`) on Hindi and Telugu, to see whether reducing truncation actually recovers helpful-example behavior.

@@ -349,3 +349,17 @@ VM_PASS='***' bash autoresearch.sh loop2_full
   - candidate comparison range for `4b × Hindi`: `29–32` (with layer `33` saturated in both conditions)
   - candidate fragility range for `1b × Hindi`: `17–24`, with special caution on final layer `25`
 - Next step in progress: run a cheap token-visibility audit on the same family of cells to test whether the high-N `1B` fragility is plausibly related to architectural visibility limits before moving to heavier causal interventions.
+- Token-visibility audit completed successfully for `1B/4B × Hindi/Telugu × {explicit_zs, icl8, icl64}`.
+- Visibility findings:
+  - `icl8` is fully visible for both `1B` and `4B` on both languages.
+  - `4B` has full visibility even at `icl64`: all 64 examples remain fully visible for both Hindi and Telugu at both the source-query and target-pos1 loci.
+  - `1B × Hindi × icl64` exceeds the local window: about `82.6` ICL tokens fall outside the target-pos1 local window on average, with roughly `54` fully visible examples, `1` partial example, and `9` fully invisible examples.
+  - `1B × Telugu × icl64` is much more severely truncated: about `305.6` ICL tokens fall outside the target-pos1 local window on average, with roughly `39` fully visible examples, `0.9` partial examples, and `24.1` fully invisible examples.
+- Interpretation after visibility audit:
+  - supported but provisional: architectural visibility is a real part of the `1B` vs `4B` difference at high shot, especially for Telugu.
+  - supported but provisional: visibility alone does **not** fully explain `1B × Hindi` fragility, because Hindi still has ~54 visible examples under `icl64` yet remains behaviorally poor and shows a late-layer collapse in the script-space screen.
+  - established from this check: the clean `4B` high-shot regime is not bottlenecked by local-window truncation on these prompts.
+- Decision after visibility audit:
+  - do **not** jump straight to heavyweight causal patching yet.
+  - first run a small behavioral threshold test on `1B` (`Hindi`, `Telugu`) across intermediate `n_icl` values to test whether fitting more of the ICL bank inside the local window actually recovers behavior.
+- Next step in progress: run a bounded `1B` visibility-threshold benchmark on `Hindi/Telugu` with intermediate `n_icl` settings (`48`, `56`, `64`) under the same helpful-vs-control setup.
