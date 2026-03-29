@@ -152,4 +152,5 @@
   - `seed11` has started and is writing artifacts on the VM.
   - `seed101` has not started yet.
   - the local wrapper is gone, but a remote transliteration process is still live on the VM, so transport/process supervision is still imperfect even though the benchmark itself is continuing.
+- Expanded `outputs/mechanistic_technique_playbook_and_fast_direction_2026-03-29.md` with the exact planned mech-interp tool stack: teacher-forced token competition, logit-lens trajectories, activation patching / causal tracing, narrow ablations, and supporting roles for script-space maps, attention-path inspection, and transcoders.
 - Extended `research/spec.md` with an explicit reviewer acceptance bar describing what would and would not be thesis-acceptable evidence.

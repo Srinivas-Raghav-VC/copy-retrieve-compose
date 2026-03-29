@@ -470,6 +470,185 @@ If the goal is to wrap this up quickly and clearly, the next priorities should b
 
 That is the shortest path to a thesis that still has real mechanistic backing.
 
+---
+
+## Exact mech-interp tool stack to use for this thesis
+
+This is the concrete answer to "what tools from ARENA / Transformer Circuits / Anthropic-style mech interp are we actually going to use?"
+
+### Tier 0 — ARENA-style scientific discipline
+
+These are not flashy tools, but they are part of the methodology:
+
+- deterministic metrics as the hard anchor,
+- matched controls,
+- manual audit packets,
+- black-box / white-box separation,
+- explicit claim-status tracking,
+- reviewer-level skepticism before promotion of claims.
+
+This is the frame within which the actual mech-interp tools are allowed to matter.
+
+### Tier 1 — primary mechanistic tools (the ones we should really rely on)
+
+#### 1. Teacher-forced token competition analysis
+
+Use for:
+- `1B Hindi` first target token,
+- `1B Telugu` later gold-vs-bank continuation tokens,
+- `4B Telugu` positive-control comparison.
+
+Why:
+- directly tied to the model's actual decoding objective,
+- easy to compare across `zs`, `helpful`, `corrupt`, and ordering variants,
+- naturally supports layer/position localization.
+
+#### 2. Logit-lens / layerwise trajectory analysis
+
+Use for:
+- tracking where the correct target token becomes available,
+- comparing gold continuation vs copied-bank continuation over layers,
+- identifying candidate bands before intervention.
+
+Why:
+- very useful localization tool,
+- already supported by repo code,
+- interpretable enough to guide the next causal step.
+
+Limitation:
+- correlational unless followed by intervention.
+
+#### 3. Activation patching / causal tracing
+
+Use for:
+- patching candidate hidden states from a better condition into a worse one,
+- testing whether the localized band really changes the targeted failure mode.
+
+Why:
+- this is the main bridge from pattern to mechanism,
+- strongest practical causal tool in the current setup,
+- very aligned with Transformer-Circuits / Anthropic-style evidence standards.
+
+#### 4. Narrow ablations
+
+Use for:
+- candidate layers,
+- candidate components (attention vs MLP),
+- possibly specific head groups if later localization justifies it.
+
+Why:
+- simple and reviewer-legible,
+- useful when patching results need a complementary necessity check.
+
+### Tier 2 — secondary but useful tools
+
+#### 5. Script-space maps
+
+Use for:
+- coarse localization of script emergence,
+- candidate layer band discovery,
+- comparing broad stage structure across models.
+
+Role:
+- screening, not final proof.
+
+#### 6. Attention-pattern / OV-path inspection
+
+Use when:
+- a routing or retrieval effect looks clearly attention-mediated,
+- especially if we want to understand whether information movement or readout dominates.
+
+Role:
+- supporting analysis after the main layer/position localization,
+- not the first thing to do.
+
+#### 7. Attribution patching / attribution-style ranking
+
+Use for:
+- triage,
+- candidate prioritization,
+- cheap narrowing before heavier causal tests.
+
+Role:
+- heuristic ranking tool, not standalone evidence.
+
+### Tier 3 — exploratory / appendix-level tools
+
+#### 8. Transcoders / sparse feature tools
+
+Use for:
+- generating feature-level hypotheses,
+- possible appendix material,
+- maybe later selective interventions if a candidate becomes very strong.
+
+Why not primary:
+- useful but approximation-heavy,
+- too easy to overclaim if used as the main evidence.
+
+#### 9. Attribution graphs / larger circuit visualizations
+
+Use for:
+- later-stage synthesis if the bounded case studies get very clean.
+
+Why not primary:
+- expensive,
+- easy to narrativize too early,
+- not needed for a strong honors thesis if the smaller causal case studies work.
+
+---
+
+## Exact experiment sequence implied by this tool stack
+
+### Case A — `1B Hindi`
+
+`teacher-forced first-token competition`
+`-> layerwise logit-lens trajectory`
+`-> candidate band selection`
+`-> activation patching / ablation`
+`-> bounded claim about early routing`
+
+### Case B — `1B Telugu`
+
+`teacher-forced gold-vs-bank continuation scores across positions`
+`-> layerwise continuation trajectory`
+`-> helpful/corrupt/similarity-order comparisons`
+`-> activation patching / ablation on late continuation band`
+`-> bounded claim about retrieval-heavy continuation`
+
+### Case C — `4B Telugu`
+
+`same continuation-localization tools as 1B Telugu`
+`-> compare where gold continuation stays stronger`
+`-> patch/ablate only if needed to show why 4B escapes the trap`
+`-> bounded positive-control claim`
+
+---
+
+## Strong-evidence ladder for this thesis
+
+This is the exact standard we should use when deciding whether a mechanistic result is good enough.
+
+### Weak evidence
+- pretty plots,
+- script-space bumps,
+- feature visualizations,
+- raw attention maps,
+- correlations without intervention.
+
+### Medium evidence
+- clear stage split,
+- consistent layer/position localization,
+- robust condition contrasts,
+- replicated behavior across seeds/languages.
+
+### Strong evidence
+- localized intervention changes the predicted failure mode,
+- effect is selective rather than just global damage,
+- manual audit agrees with the mechanistic interpretation,
+- positive and negative controls behave as expected.
+
+This is the bar that actually deserves to appear in the thesis as mechanistic support.
+
 ## Sources
 - https://learn.arena.education/chapter1_transformer_interp/
 - https://learn.arena.education/chapter3_llm_evals/
