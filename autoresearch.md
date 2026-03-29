@@ -339,4 +339,13 @@ VM_PASS='***' bash autoresearch.sh loop2_full
   - tasks: `4b:aksharantar_tel_latin`, `1b:aksharantar_hin_latin`, `4b:aksharantar_hin_latin`
   - purpose: compare a clean positive anchor (`4B Telugu`), a clear fragility anchor (`1B Hindi`), and a strong-base-capability comparison cell (`4B Hindi`) before any heavier causal intervention work
   - budget: `max_words=30`, `seed=42`, `n_icl=64`
-- A dedicated VM launcher was added at `experiments/run_vm_script_space_screen.sh`, and the first screening run is now in progress.
+- A dedicated VM launcher was added at `experiments/run_vm_script_space_screen.sh`, and the first screening run completed successfully.
+- Mechanistic screening observations (representation-level only; not a causal claim):
+  - `4b × Telugu`: the biggest ICL-vs-explicit-ZS change is a sharp late-layer Telugu-script ramp centered on layers `29–33`, with the strongest gains at local layers `30–33` after the final global layer `29`. Example: layer `33` script-mass rises from `0.031` to `1.000`, and the gold-token rank proxy improves from `250.2` to `1.0`.
+  - `4b × Hindi`: explicit-ZS already has substantial late-layer Devanagari mass, and ICL mainly amplifies the same late block (`29–32`) rather than creating a totally new pattern. This matches the strong-base-capability interpretation from behavior.
+  - `1b × Hindi`: ICL increases Hindi-script mass through a mid/late block around layers `17–24`, but the final layer `25` looks unstable rather than cleanly improved: script mass falls from `0.914` under explicit-ZS to `0.040` under `icl64`, even though some intermediate rank proxies improve. Treat this as a candidate late-stage collapse to test, not as a settled mechanism.
+- Decision after script-space screening:
+  - candidate positive layer range for `4b × Telugu`: `29–33`
+  - candidate comparison range for `4b × Hindi`: `29–32` (with layer `33` saturated in both conditions)
+  - candidate fragility range for `1b × Hindi`: `17–24`, with special caution on final layer `25`
+- Next step in progress: run a cheap token-visibility audit on the same family of cells to test whether the high-N `1B` fragility is plausibly related to architectural visibility limits before moving to heavier causal interventions.

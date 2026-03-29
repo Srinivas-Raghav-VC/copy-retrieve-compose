@@ -70,3 +70,7 @@
 - This is enough evidence to proceed to a bounded mechanistic screening phase focused on the best validated anchor (`4b × Telugu × n_icl=64`) and the clearest fragility comparison (`1b × Hindi × n_icl=64`), rather than trying to mechanistically open every language at once.
 - Added a dedicated VM launcher `experiments/run_vm_script_space_screen.sh` for the first cheap mechanistic screening pass.
 - First mechanistic screening run is now in progress on three cells: `4b × Telugu`, `1b × Hindi`, and `4b × Hindi`, using `run_script_space_map.py` with `n_icl=64`, `seed=42`, and `max_words=30`.
+- That script-space screening then completed successfully.
+- Representation-level takeaway: `4b × Telugu` shows a very sharp late-layer script-space emergence under ICL concentrated in layers `29–33`; `4b × Hindi` shows a milder amplification of an already-present late Devanagari regime; `1b × Hindi` shows a weaker mid/late rise through roughly `17–24` but an unstable final layer `25` rather than a clean late win.
+- This is enough to choose candidate layer ranges for later causal work, but not enough to claim a mechanism.
+- Next bounded step: run a token-visibility audit to test whether the `1B` high-N fragility is plausibly constrained by shorter-window visibility before escalating to heavier intervention pipelines.
