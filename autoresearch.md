@@ -363,3 +363,22 @@ VM_PASS='***' bash autoresearch.sh loop2_full
   - do **not** jump straight to heavyweight causal patching yet.
   - first run a small behavioral threshold test on `1B` (`Hindi`, `Telugu`) across intermediate `n_icl` values to test whether fitting more of the ICL bank inside the local window actually recovers behavior.
 - Next step in progress: run a bounded `1B` visibility-threshold benchmark on `Hindi/Telugu` with intermediate `n_icl` settings (`48`, `56`, `64`) under the same helpful-vs-control setup.
+- The bounded `1B` visibility-threshold benchmark completed successfully at `research/results/autoresearch/loop2_vm_controls/threshold_1b_seed42/`.
+- Threshold benchmark summary:
+  - `helpful_control_exact_margin_mean = -0.0167`
+  - `helpful_control_cer_margin_mean = -0.2386`
+  - `helpful_minus_zs_exact_mean = -0.0222`
+  - `helpful_minus_zs_cer_mean = -0.8150`
+  - `positive_helpful_control_tasks = 0 / 6`
+  - `positive_helpful_vs_zs_tasks = 0 / 6`
+- Per-language interpretation from the threshold test:
+  - `1b × Hindi`: lowering `n_icl` from `64` to `56` or `48` does **not** recover exact-match wins; all three cells stay at or below zero-shot and at or below the best matched control on exact match. The `n_icl=48` cell is especially pathological on CER.
+  - `1b × Telugu`: exact match stays at `0.0` for `n_icl=48`, `56`, and `64`, so reducing prompt length does not unlock exact-match recovery. However, CER and script metrics improve monotonically as `n_icl` increases, despite the visibility audit showing *more* truncation at larger `n_icl`.
+- Interpretation after the threshold test:
+  - supported but provisional: local-window visibility is **not** the dominant explanation for the `1B` failure regime.
+  - supported but provisional: visibility contributes to the `1B` vs `4B` contrast, but the main remaining question is computational: how the visible examples are (or are not) turned into the correct target continuation.
+  - supported but provisional: `1B × Hindi` remains the stronger candidate for a downstream instability / late-stage failure story than for a pure context-window story.
+- Decision after the threshold test:
+  - retire the simple "just too many examples fell out of the window" explanation as the primary story.
+  - keep visibility as a contributing architectural factor, especially for `1B × Telugu`.
+  - next bounded mechanistic step should focus on **where** the `1B` computation fails given visible evidence, not on squeezing prompt length further.
