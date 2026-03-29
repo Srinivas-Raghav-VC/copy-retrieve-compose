@@ -104,6 +104,7 @@ run_loop2() {
   local outdir="${2:-$(loop2_default_outdir "$mode")}"
   local vm_workdir="${VM_WORKDIR:-/home/srinivasr/Research/Honors}"
   local remote_results_rel="${LOOP2_REMOTE_RESULTS_REL:-$outdir/raw}"
+  local loop2_seed="${LOOP2_SEED:-42}"
   local max_items n_eval
 
   case "$mode" in
@@ -133,14 +134,15 @@ run_loop2() {
   echo "[loop2] syncing code to VM"
   vm_sync_to_workdir "$vm_workdir"
 
-  echo "[loop2] running 2x2 helpful-vs-control panel on VM ($mode)"
-  vm_ssh "cd $vm_workdir && LOOP2_REMOTE_RESULTS_REL='$remote_results_rel' LOOP2_MAX_ITEMS='$max_items' LOOP2_N_EVAL='$n_eval' PAPER2_DEVICE='${PAPER2_DEVICE:-cuda}' bash -s" <<'REMOTE' | tee "$outdir/vm_run.log"
+  echo "[loop2] running 2x2 helpful-vs-control panel on VM ($mode, seed=$loop2_seed)"
+  vm_ssh "cd $vm_workdir && LOOP2_REMOTE_RESULTS_REL='$remote_results_rel' LOOP2_MAX_ITEMS='$max_items' LOOP2_N_EVAL='$n_eval' LOOP2_SEED='$loop2_seed' PAPER2_DEVICE='${PAPER2_DEVICE:-cuda}' bash -s" <<'REMOTE' | tee "$outdir/vm_run.log"
 set -euo pipefail
 WORKDIR="$(pwd)"
 DEVICE="${PAPER2_DEVICE:-cuda}"
 REMOTE_RESULTS_REL="${LOOP2_REMOTE_RESULTS_REL}"
 MAX_ITEMS="${LOOP2_MAX_ITEMS}"
 N_EVAL="${LOOP2_N_EVAL}"
+SEED="${LOOP2_SEED:-42}"
 
 PYTHON_BIN=""
 for cand in \
@@ -176,12 +178,12 @@ for model in 1b 4b; do
     for n_icl in 8 64; do
       out_dir="$REMOTE_RESULTS_REL/$model/$pair/nicl${n_icl}"
       mkdir -p "$out_dir"
-      echo "[loop2][remote] START model=$model pair=$pair n_icl=$n_icl"
+      echo "[loop2][remote] START model=$model pair=$pair n_icl=$n_icl seed=$SEED"
       "$PYTHON_BIN" Draft_Results/paper2_fidelity_calibrated/run_neutral_filler_recency_controls.py \
         --model "$model" \
         --pair "$pair" \
         --device "$DEVICE" \
-        --seed 42 \
+        --seed "$SEED" \
         --n-icl "$n_icl" \
         --n-select 300 \
         --n-eval "$N_EVAL" \
@@ -210,6 +212,7 @@ REMOTE
 export LOOP2_REMOTE_RESULTS_REL="${LOOP2_REMOTE_RESULTS_REL:-}"
 export LOOP2_MAX_ITEMS="${LOOP2_MAX_ITEMS:-}"
 export LOOP2_N_EVAL="${LOOP2_N_EVAL:-}"
+export LOOP2_SEED="${LOOP2_SEED:-42}"
 
 case "$MODE" in
   smoke|full)

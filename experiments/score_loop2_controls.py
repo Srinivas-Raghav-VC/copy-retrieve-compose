@@ -163,7 +163,7 @@ def main() -> int:
         for pair in ("aksharantar_hin_latin", "aksharantar_tel_latin")
     ])
     one_b_highN_helpful_cer_regret_mean = _mean([
-        -_pairwise_shot_delta(rows, "1b", pair, "helpful_cer")
+        _pairwise_shot_delta(rows, "1b", pair, "helpful_cer")
         for pair in ("aksharantar_hin_latin", "aksharantar_tel_latin")
     ])
     four_b_highN_helpful_exact_delta_mean = _mean([

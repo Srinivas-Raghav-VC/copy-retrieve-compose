@@ -264,4 +264,27 @@ VM_PASS='***' bash autoresearch.sh loop2_full
   - established from smoke: the Loop 2 control benchmark runs end-to-end on the VM
   - supported but provisional: under this small smoke sample, helpful examples do **not** beat the best matched controls on exact match
   - supported but provisional: helpful prompts still improve CER on average relative to zero-shot, so the effect may be partially non-exact or partially explained by generic task framing / non-specific control prompts
-- Next step in progress: run the full Loop 2 control baseline (`loop2_full`) now that the harness path bug is fixed, because the smoke sample is too small to settle the helpful-vs-control question honestly.
+- Full Loop 2 baseline (`loop2_full`, 30 items per cell) completed successfully.
+- Full baseline result:
+  - `helpful_control_exact_margin_mean = 0.0417`
+  - `helpful_control_cer_margin_mean = 0.0721`
+  - `helpful_minus_zs_exact_mean = 0.0500`
+  - `helpful_minus_zs_cer_mean = 0.4939`
+  - `positive_helpful_control_tasks = 4 / 8`
+  - `positive_helpful_vs_zs_tasks = 3 / 8`
+- Important per-cell findings from the full baseline:
+  - `4b × Telugu × n_icl=64` is the cleanest positive anchor: `helpful_exact = 0.300`, `zs_exact = 0.000`, best matched control exact = `0.133`, and helpful also wins strongly on CER.
+  - `4b × Telugu × n_icl=8` is also positive, but weaker.
+  - `4b × Hindi × n_icl=64` is modestly positive against matched controls, but not above explicit zero-shot; this looks like a capable-model / low-dependence regime, not a pure rescue regime.
+  - `1b × Hindi × n_icl=64` remains the clearest fragility cell: `helpful_exact = 0.000` versus `zs_exact = 0.067`, and helpful is also worse on CER than both zero-shot and the best matched control.
+  - `1b × Telugu` shows CER gains without exact-match gains, especially at `n_icl=64`, so it remains a weak / partial-help cell rather than a clean positive anchor.
+- Additional structural findings from the full controls:
+  - `helpful_minus_reversed_exact_mean = -0.0125` and `desc_minus_asc_exact_mean ≈ 0`, so order and near-to-far helpful sorting are not showing a strong exact-match advantage overall.
+  - This weakens any simplistic recency-order story and suggests the stronger distinction is between meaningful examples versus clearly non-helpful controls, especially in `4b × Telugu`.
+- Verification note: while reviewing the scorer, I found that the sign on `one_b_highN_helpful_cer_regret_mean` was backwards. I fixed the formula and rescored smoke + full artifacts locally before interpreting them.
+- Current interpretation status after the full baseline:
+  - established: the `1B/4B × Hindi/Telugu × n_icl {8,64}` control benchmark now runs cleanly end-to-end on the VM
+  - supported but provisional: `4b × Telugu`, especially at `n_icl=64`, is the best positive helpful-vs-control anchor
+  - supported but provisional: `1b × Hindi` is a real high-N fragility anchor
+  - supported but provisional: the broader helpful effect is not universal; it is concentrated in the stronger 4B regime rather than uniformly present across the whole 2×2 panel
+- Next step in progress: run seed-robustness replications on the same full Loop 2 benchmark (starting with additional seeds beyond 42) before deciding whether the control story is stable enough to justify language expansion.

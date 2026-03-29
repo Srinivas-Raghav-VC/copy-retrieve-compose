@@ -14,7 +14,7 @@
     "desc_minus_asc_exact_mean": 0.0,
     "helpful_minus_reversed_exact_mean": -0.015625,
     "one_b_highN_helpful_exact_delta_mean": -0.0625,
-    "one_b_highN_helpful_cer_regret_mean": -0.09888392857142853,
+    "one_b_highN_helpful_cer_regret_mean": 0.09888392857142853,
     "four_b_highN_helpful_exact_delta_mean": 0.1875,
     "four_b_highN_helpful_cer_gain_mean": 0.48621031746031745,
     "positive_helpful_control_tasks": 0,
@@ -230,5 +230,5 @@
       "helpful_minus_reversed_first_prob": -9.171664714813232e-06
     }
   ],
-  "created_at_utc": "2026-03-29T06:41:36Z"
+  "created_at_utc": "2026-03-29T07:05:40Z"
 }

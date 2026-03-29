@@ -47,4 +47,11 @@
 - Patched `autoresearch.sh` and `experiments/score_loop2_controls.py` to match the script's directory-style output contract and rescored the already-downloaded smoke artifacts locally without rerunning the VM benchmark.
 - Recovered Loop 2 smoke result: `helpful_control_exact_margin_mean = -0.0469`, `helpful_control_cer_margin_mean = 0.0363`, `helpful_minus_zs_exact_mean = -0.0313`, `helpful_minus_zs_cer_mean = 0.5182`, with `0/8` exact-match-positive helpful-vs-control cells.
 - Provisional scientific takeaway from smoke: helpful examples are not yet cleanly outperforming matched controls on exact match, although they still improve CER on average relative to zero-shot; this weakens a simple content-specific story and makes the full control run necessary.
-- Next step in progress: launch `bash autoresearch.sh loop2_full` now that the harness/output-path bug is fixed.
+- Full Loop 2 baseline (`loop2_full`) then completed successfully across all 8 cells on the VM.
+- Full result improved the same metric above zero: `helpful_control_exact_margin_mean = 0.0417`, `helpful_control_cer_margin_mean = 0.0721`, `helpful_minus_zs_exact_mean = 0.0500`, `helpful_minus_zs_cer_mean = 0.4939`, with `4/8` exact-match-positive helpful-vs-control cells.
+- The cleanest positive anchor is now `4b × Telugu × n_icl=64`, where helpful examples beat both zero-shot and matched controls on exact match and CER.
+- The clearest fragility anchor remains `1b × Hindi × n_icl=64`, where helpful examples lose to zero-shot and to the best matched control.
+- `1b × Telugu` still looks like a partial-help / CER-only regime, while `4b × Hindi` looks like a capable-model regime with only modest or non-essential dependence on helpful examples.
+- While checking the full score, I found a sign error in the scorer's `one_b_highN_helpful_cer_regret_mean`; fixed the formula and rescored both smoke and full outputs before interpreting them.
+- Additional full-run constraint on the story: helpful-order variants do not show a strong universal exact-match benefit (`helpful_minus_reversed_exact_mean < 0`, `desc_minus_asc_exact_mean ≈ 0`), so any later mechanism story should not lean heavily on recency-order effects without new evidence.
+- Next step in progress: run seed-robustness replications beyond seed 42 before deciding whether Loop 2 is strong enough to move on to language expansion.
