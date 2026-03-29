@@ -444,3 +444,12 @@ VM_PASS='***' bash autoresearch.sh loop2_full
 - Decision after this audit:
   - the next mechanistic step should stay **Telugu-specific** and test why aligned similar examples trigger wrong-bank continuation in `1B`, while `4B` escapes that trap.
   - do not spend more budget on broad behavioral sweeps before that targeted follow-up.
+- Manual spot-check audit completed against the raw per-item artifacts and the first-token audit outputs.
+- Manual audit verdict:
+  - the automated conclusions are directionally correct.
+  - `1B Hindi` really does show many early Latin/source-like first-token failures under high-shot ICL, but the cell is not *purely* first-token-limited because some items recover the first token and still miss later.
+  - `1B Telugu` really is mostly a later retrieval/composition failure, with many concrete cases where the first token is corrected to `ఆ` yet the whole output becomes a wrong prompt-bank target; a minority of Telugu items still fail early.
+  - `4B Telugu` manual spot-checks look like near-miss whole-word errors rather than the `1B` prompt-bank-copy regime.
+- Wording adjustment after manual audit:
+  - prefer "substantial early routing failure" over "pure first-token failure" for `1B Hindi`.
+  - prefer "mostly later retrieval/composition failure" over "entirely later failure" for `1B Telugu`.

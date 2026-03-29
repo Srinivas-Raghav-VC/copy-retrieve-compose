@@ -96,6 +96,38 @@ This makes the current best explanation:
 - `1B Telugu`: a later nearest-neighbor-style retrieval/composition failure in which the model often selects the right script and first token but then emits a similar in-context target string instead of the query-specific answer.
 - `4B Telugu`: the clean anchor because it escapes both failure modes often enough to turn early token selection into correct whole-word continuation.
 
+## Manual spot-check audit
+
+I then manually spot-checked representative raw examples against the automated summaries.
+
+### 1B Hindi
+
+The aggregate claim survives manual inspection, but with an important nuance.
+
+- Cases like `aaegi`, `aadesho`, `aafatakaal`, `aahalya`, and `aachegaav` really do show the early-routing failure directly: the generated answer stays Latin/source-like, and the first-token audit shows the top token flipping from the intended Devanagari `आ` in zero-shot to Latin tokens like `aa`, `a`, or `ah` under high-shot ICL.
+- But the failure is **not only** early. Cases like `aadeshpaalak`, `aadhyatmakta`, and `aagyakarita` have the correct first Devanagari token under helpful ICL and still end on the wrong whole word. So the cleanest honest wording is: `1B Hindi` has a **substantial early routing failure**, not a purely first-token-only failure.
+
+### 1B Telugu
+
+The Telugu claim also survives manual inspection.
+
+- Cases like `aadaallameeda`, `aacharanaatmakathatho`, `aabharanamgaano`, `aadaayapannulasaakha`, `aadaayaalaina`, and `aadaamannadaanipaine` all get the first token right under helpful ICL (`ఆ` beats `అ` from zero-shot), but then generate a wrong bank-like target such as `ఆడాళ్లదీ`, `ఆచరణాత్మకమైనదో`, or `ఆదాయపన్నుశాఖలో`.
+- The nearest-neighbor story looks real on inspection, not just in the aggregate counts: several copied outputs are the top-1 or top-2 similarity matches in the prompt bank.
+- There are still exceptions (`aabraham`, `aachaaryulandaruu`) where helpful ICL fails already at the first token, so the Telugu cell is not perfectly pure. But the dominant pattern is still later retrieval/composition failure.
+
+### 4B Telugu
+
+The positive-anchor claim also survives manual inspection.
+
+- Representative wrong cases such as `aadaallameeda`, `aacharanaatmakathatho`, `aadaayaalaina`, and `aacharinchaalsina` usually have the correct first token and look like close morphological near-misses rather than arbitrary prompt-bank copies.
+- The two bank-copy cases I checked (`ఆభరణంగానూ`, `ఆదాయాలైనా`) are both very near neighbors, but they are rare compared with the `1B` regime.
+
+Overall, the manual audit did **not** overturn the automated conclusions. It mostly tightened the wording:
+
+- `1B Hindi`: substantial early routing failure, plus some later whole-word failures.
+- `1B Telugu`: mostly later retrieval/composition failure, with a minority of early failures.
+- `4B Telugu`: near-miss regime rather than prompt-bank-copy regime.
+
 ## Claim ledger
 
 - **Established:** `1B × Hindi` high-shot fragility includes an early target-selection failure; helpful ICL often pushes the model toward Latin/source-like or wrong-bank outputs rather than toward the correct Devanagari target.

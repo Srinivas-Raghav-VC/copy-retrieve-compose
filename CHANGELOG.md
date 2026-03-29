@@ -120,3 +120,9 @@
   - Sorting similar examples to the back (`icl_helpful_similarity_asc`) drops copy rate sharply (`23.3%`) but also degrades first-token quality and CER.
   - `icl_corrupt` still copies bank targets heavily (`83.3%`), but those copied targets are not nearest neighbors under the true source-query similarity ranking (median rank `22`).
 - Updated interpretation: Telugu high-shot `1B` failure appears to mix two effects — query-conditioned nearest-neighbor retrieval when alignment is preserved, plus a broader high-shot bank-copy tendency when many target strings are present.
+- Performed a manual spot-check audit against raw per-item outputs and the first-token audit artifacts.
+- Manual verdict: the automated story holds up, but with tighter wording.
+  - `1B Hindi`: clearly shows many early Latin/source-like first-token failures, but not every item fails there; some recover the first token and still miss later.
+  - `1B Telugu`: mostly behaves like a later retrieval/composition failure, but not a perfectly pure one; a few items still fail at the first token.
+  - `4B Telugu`: checked errors look like near-miss continuations, not the frequent prompt-bank-copy pattern seen in `1B`.
+- Updated the canonical memo `outputs/loop2_failure_modes_2026-03-29.md` with a manual spot-check addendum rather than changing the overall conclusion.
