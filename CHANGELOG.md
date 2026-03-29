@@ -139,4 +139,6 @@
 - Added a durable manual-audit policy to `autoresearch.md`: manual spot-checks are now required after seed-level panel outputs, before trusting verifier/judge outputs, before escalating to mechanistic claims, and after bug fixes that could affect interpretation.
 - Added `experiments/build_manual_audit_packet.py`, a reusable helper that converts a `neutral_filler_recency_controls.json` artifact into a reviewer-friendly manual audit packet (JSON + Markdown) with targeted example slices such as helpful-vs-ZS losses, bank copies, source copies, and likely near-misses.
 - Tested that helper on the existing `1B Hindi × n_icl=64` artifact and confirmed it surfaces the expected mix of source-copy and bank-copy failure cases.
+- Also tested the helper on `4B Telugu × n_icl=64` and confirmed it surfaces the expected mix of clear helpful wins plus many non-bank near-miss continuations.
+- Updated `experiments/run_vm_four_lang_thesis_panel.sh` so future thesis-panel runs automatically emit manual audit packets for every downloaded cell after each seed completes.
 - Extended `research/spec.md` with an explicit reviewer acceptance bar describing what would and would not be thesis-acceptable evidence.

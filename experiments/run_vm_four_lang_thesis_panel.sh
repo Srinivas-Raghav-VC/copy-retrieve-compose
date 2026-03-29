@@ -51,6 +51,19 @@ for seed in $PANEL_SEEDS; do
   LOOP2_NICLS="$PANEL_NICLS" \
   LOOP2_REMOTE_RESULTS_REL="$remote_rel" \
   bash autoresearch.sh "$PANEL_MODE" "$outdir"
+
+  echo "[four-lang-panel] building manual audit packets for seed=$seed"
+  find "$outdir/raw" -type f -name 'neutral_filler_recency_controls.json' | sort | while read -r artifact; do
+    rel="${artifact#${outdir}/raw/}"
+    audit_base="$outdir/manual_audits/${rel%.json}"
+    mkdir -p "$(dirname "$audit_base")"
+    python3 experiments/build_manual_audit_packet.py \
+      --input "$artifact" \
+      --out-json "${audit_base}.audit.json" \
+      --out-md "${audit_base}.audit.md" \
+      --max-examples 6 > /dev/null
+  done
+
   score_args+=(--score "$outdir/score.json")
   echo "[four-lang-panel] DONE seed=$seed"
 done
