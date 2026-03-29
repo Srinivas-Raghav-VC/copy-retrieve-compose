@@ -42,4 +42,9 @@
 - Patched `autoresearch.sh` to use tar-over-SSH syncing and artifact download instead of `rsync`, which fits this VM better.
 - Second smoke launch reached the remote benchmark body and then failed on `1b × Hindi × n_icl=8` because the VM lacked Hugging Face authentication for gated Gemma 3 checkpoints (`401` on `google/gemma-3-1b-it`).
 - Repaired VM HF auth by copying the already-configured local Hugging Face token file into the VM's standard token path and confirmed remote access to `google/gemma-3-1b-it` with `huggingface_hub`.
-- Next step in progress: relaunch `bash autoresearch.sh loop2_smoke` with working VM auth before making any scientific changes.
+- Third smoke launch successfully completed all 8 remote Loop 2 cells on the VM.
+- That run then crashed only at local scoring because the harness passed a filename-like `--out` path to `run_neutral_filler_recency_controls.py`, but that script treats `--out` as a directory and appends `neutral_filler_recency_controls.json` internally.
+- Patched `autoresearch.sh` and `experiments/score_loop2_controls.py` to match the script's directory-style output contract and rescored the already-downloaded smoke artifacts locally without rerunning the VM benchmark.
+- Recovered Loop 2 smoke result: `helpful_control_exact_margin_mean = -0.0469`, `helpful_control_cer_margin_mean = 0.0363`, `helpful_minus_zs_exact_mean = -0.0313`, `helpful_minus_zs_cer_mean = 0.5182`, with `0/8` exact-match-positive helpful-vs-control cells.
+- Provisional scientific takeaway from smoke: helpful examples are not yet cleanly outperforming matched controls on exact match, although they still improve CER on average relative to zero-shot; this weakens a simple content-specific story and makes the full control run necessary.
+- Next step in progress: launch `bash autoresearch.sh loop2_full` now that the harness/output-path bug is fixed.

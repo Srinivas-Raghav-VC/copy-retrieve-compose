@@ -174,8 +174,8 @@ mkdir -p "$REMOTE_RESULTS_REL"
 for model in 1b 4b; do
   for pair in aksharantar_hin_latin aksharantar_tel_latin; do
     for n_icl in 8 64; do
-      out="$REMOTE_RESULTS_REL/$model/$pair/nicl${n_icl}/neutral_filler_recency_controls.json"
-      mkdir -p "$(dirname "$out")"
+      out_dir="$REMOTE_RESULTS_REL/$model/$pair/nicl${n_icl}"
+      mkdir -p "$out_dir"
       echo "[loop2][remote] START model=$model pair=$pair n_icl=$n_icl"
       "$PYTHON_BIN" Draft_Results/paper2_fidelity_calibrated/run_neutral_filler_recency_controls.py \
         --model "$model" \
@@ -188,7 +188,7 @@ for model in 1b 4b; do
         --max-items "$MAX_ITEMS" \
         --external-only \
         --require-external-sources \
-        --out "$out"
+        --out "$out_dir"
       echo "[loop2][remote] DONE  model=$model pair=$pair n_icl=$n_icl"
     done
   done

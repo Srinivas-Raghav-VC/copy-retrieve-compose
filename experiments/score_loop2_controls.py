@@ -52,6 +52,23 @@ def _load_json(path: Path) -> Dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _resolve_payload_path(results_root: Path, model: str, pair: str, n_icl: int) -> Path:
+    base = results_root / model / pair / f"nicl{n_icl}"
+    candidates = [
+        base / "neutral_filler_recency_controls.json",
+        base / "neutral_filler_recency_controls.json" / "neutral_filler_recency_controls.json",
+    ]
+    for candidate in candidates:
+        if candidate.is_file():
+            return candidate
+    # Backward-compatible fallback for partially downloaded or malformed trees.
+    if (base / "neutral_filler_recency_controls.json").is_dir():
+        nested = base / "neutral_filler_recency_controls.json" / "neutral_filler_recency_controls.json"
+        if nested.exists():
+            return nested
+    return candidates[0]
+
+
 def _condition_metrics(summary_by_condition: Dict[str, Any], condition: str) -> Dict[str, float]:
     bucket = dict(summary_by_condition.get(condition) or {})
     return {
@@ -61,10 +78,6 @@ def _condition_metrics(summary_by_condition: Dict[str, Any], condition: str) -> 
         "first_prob": _safe_float(bucket.get("mean_first_prob")),
         "first_entry": _safe_float(bucket.get("mean_first_entry_correct")),
     }
-
-
-def _expected_path(results_root: Path, model: str, pair: str, n_icl: int) -> Path:
-    return results_root / model / pair / f"nicl{n_icl}" / "neutral_filler_recency_controls.json"
 
 
 def _pairwise_shot_delta(rows: List[Dict[str, Any]], model: str, pair: str, key: str) -> float:
@@ -91,8 +104,8 @@ def main() -> int:
     missing: List[str] = []
 
     for model, pair, n_icl in EXPECTED:
-        path = _expected_path(results_root, model, pair, n_icl)
-        if not path.exists():
+        path = _resolve_payload_path(results_root, model, pair, n_icl)
+        if not path.exists() or not path.is_file():
             missing.append(str(path))
             continue
         obj = _load_json(path)

@@ -250,4 +250,18 @@ VM_PASS='***' bash autoresearch.sh loop2_full
 - Patched `autoresearch.sh` to use a tar-over-SSH sync/fetch path instead of `rsync`, which is more robust for this VM.
 - Second smoke launch got into the remote benchmark body and failed at the first `1b × Hindi × n_icl=8` cell because the VM had no Hugging Face authentication for gated Gemma 3 checkpoints (`401 gated repo` on `google/gemma-3-1b-it`).
 - Verified that a secure local HF login already exists on this machine, copied that existing token file to the VM's standard Hugging Face token path, and confirmed remote access to `google/gemma-3-1b-it` via `huggingface_hub` without using the token that was exposed in chat.
-- Next step in progress: relaunch the Loop 2 smoke baseline now that VM auth is repaired.
+- Third smoke launch completed all 8 remote cells successfully on the VM, so the scientific benchmark itself now runs end-to-end for the `1B/4B × Hindi/Telugu × n_icl {8,64}` panel.
+- That run then crashed only at the local scoring stage because the harness passed `--out .../neutral_filler_recency_controls.json` to a script that interprets `--out` as an output directory, creating a nested `.../neutral_filler_recency_controls.json/neutral_filler_recency_controls.json` path.
+- Patched both the Loop 2 harness and the scorer to handle the directory-style output contract, then rescored the already-downloaded smoke artifacts locally without rerunning the VM benchmark.
+- Loop 2 smoke baseline result (8 items per cell):
+  - `helpful_control_exact_margin_mean = -0.0469`
+  - `helpful_control_cer_margin_mean = 0.0363`
+  - `helpful_minus_zs_exact_mean = -0.0313`
+  - `helpful_minus_zs_cer_mean = 0.5182`
+  - `positive_helpful_control_tasks = 0 / 8`
+  - `positive_helpful_vs_zs_tasks = 1 / 8`
+- Current interpretation status:
+  - established from smoke: the Loop 2 control benchmark runs end-to-end on the VM
+  - supported but provisional: under this small smoke sample, helpful examples do **not** beat the best matched controls on exact match
+  - supported but provisional: helpful prompts still improve CER on average relative to zero-shot, so the effect may be partially non-exact or partially explained by generic task framing / non-specific control prompts
+- Next step in progress: run the full Loop 2 control baseline (`loop2_full`) now that the harness path bug is fixed, because the smoke sample is too small to settle the helpful-vs-control question honestly.
