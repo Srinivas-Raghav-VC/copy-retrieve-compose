@@ -50,6 +50,11 @@
   - `1B × Hindi × n_icl=64` already fails at early target selection (helpful ICL reduces first-token probability and first-entry correctness versus zero-shot, with many Latin/source-like outputs).
   - `1B × Telugu × n_icl=64` succeeds at early target selection but fails at later query-specific continuation (helpful ICL makes the first token highly likely and usually script-correct, yet exact match stays at zero because the model often outputs a prompt-bank target string).
 - `4B × Telugu × n_icl=64` remains the clean positive anchor under the same decomposition: it improves both early target selection and whole-word continuation, and its residual mistakes are mostly near-misses rather than prompt-bank copies.
+- First-token competition audit (`research/results/autoresearch/first_token_competition_v1/results/summary.json`) strengthens the stage split:
+  - `1B × Hindi × n_icl=64` has a genuine early first-token routing failure under high-shot ICL, but that failure is not strongly content-specific because `icl_corrupt` is similarly bad.
+  - `1B × Telugu × n_icl=64` largely fixes the first-token stage under both helpful and corrupt ICL, so its main failure is later than the first token.
+  - `4B × Telugu × n_icl=64` is almost saturated at the first-token stage even under corrupt ICL, which localizes the helpful-vs-control advantage to later continuation / composition.
+- Prompt-bank copy rank analysis (`outputs/loop2_bank_copy_rank_2026-03-29.json`) shows that `1B × Telugu` copied targets are usually not arbitrary prompt-bank items: they come disproportionately from the query's nearest-neighbor similarity neighborhood, and the copy rate increases monotonically with `n_icl`.
 
 ## Open questions
 - Does the phenomenon genuinely show strong high-N degradation under the stricter multilingual Phase 0A setup, or does the current `>=0.10` degradation threshold need recalibration before declaring the problem statement verified?
@@ -64,7 +69,8 @@
 - Why does `1B × Telugu` improve substantially on CER / script compliance as `n_icl` grows even while more of the bank falls outside the local window, yet still fail to convert those gains into exact-match wins?
 - For `1B × Hindi`, where in the computation does the visible ICL signal fail: target-token selection, whole-word continuation, late-layer normalization, or something else?
 - For `1B × Hindi`, what is the dominant wrong first-token competitor under helpful ICL: a Latin/source-copy token, a script-valid but wrong Devanagari token, or an in-context-bank retrieval token?
-- For `1B × Telugu`, are the copied prompt-bank targets mainly the nearest orthographic neighbors to the query, or is the bank-copy behavior driven by some other retrieval heuristic (position, recency, tokenization overlap, or target frequency)?
+- For `1B × Telugu`, beyond the already-supported nearest-neighbor tendency, what specific retrieval heuristic dominates the copied-bank behavior: source-form similarity, prompt position/recency, target-subtoken overlap, or some interaction among them?
+- For `1B × Telugu`, why do corrupt high-shot prompts still largely fix the first token while failing on the whole word — is the early signal just generic target-script/task-mode activation, with query-specific selection collapsing later?
 
 ## Retired claims
 - Retired: "N up to 96 can be evaluated from frozen 16-example snapshots by deterministic repetition" as research-valid evidence. This is now considered debug-only and not acceptable for scientific claims.

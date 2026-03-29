@@ -101,3 +101,14 @@
   - `1b:aksharantar_tel_latin:64`
   - `4b:aksharantar_tel_latin:64`
 - The explicit oracle for this run is first-token-local: log the correct target-token probability, top-1 token identity/script, and target-vs-best-competitor logit gap under `zs`, `icl_helpful`, and `icl_corrupt`, so we can tell whether `1B Hindi` is losing immediately to Latin/source-like competitors while `1B Telugu` is already fine at the first-token stage.
+- That first-token competition audit then completed successfully.
+- Main result:
+  - `1B × Hindi × n_icl=64` really is an early first-token failure under high-shot ICL: helpful top-1 target rate drops to `0.467` (vs `0.600` in zero-shot), and top-1 tokens are Latin-script on `50%` of items.
+  - Important nuance: `icl_corrupt` is similarly bad on `1B Hindi` (`0.433` top-1 target rate), so the failure is not strongly content-specific; it looks more like a prompt-state / routing pathology than a beneficial retrieval signal that merely overfires.
+  - `1B × Telugu × n_icl=64` is not an early-stage failure: helpful top-1 target rate is `0.900`, and even corrupt reaches `0.767`, so the main remaining error lies downstream of the first token.
+  - `4B × Telugu × n_icl=64` is nearly saturated at the first-token stage for both helpful and corrupt (`0.967` top-1 target rate each), so the residual helpful-vs-control difference must be in later continuation / composition.
+- Added a local no-rerun follow-up script `experiments/analyze_prompt_bank_copy_ranks.py` to quantify where copied prompt-bank targets come from.
+- Local copy-rank result:
+  - `1B × Telugu × n_icl=64` copies exact prompt-bank targets on `24/30` items (`80%`), and those copied targets usually come from the query's similarity neighborhood (median rank `2.5`; `62.5%` in top 5; `75%` in top 10).
+  - The `1B × Telugu` copy rate rises monotonically with `n_icl` (`53.3% -> 70.0% -> 80.0%` for `48 -> 56 -> 64`).
+- Updated next-step plan: the most informative next bounded audit is now Telugu-specific prompt-bank retrieval analysis on fixed items, rather than another generic `1B` sweep.

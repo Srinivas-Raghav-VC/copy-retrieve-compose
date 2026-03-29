@@ -68,3 +68,6 @@ Do not let sessions disappear into chat history.
 - Worked: after the threshold sweep weakened the visibility-only story, the best next move was not another big model run; a cheap re-analysis of existing raw control traces was enough to reveal that `1B Hindi` and `1B Telugu` are failing at different stages.
 - Worked: adding a small reproducible analysis script (`experiments/analyze_loop2_failure_modes.py`) was a better investment than continuing to do one-off notebook-style inspection in chat.
 - New lesson: once exact-match behavior splits by language, do not keep talking about a single `1B` mechanism. Separate the candidate failure modes before proposing interventions.
+- Worked: the first-token competition audit was cheap, decisive, and fast enough to run interactively on the VM; it confirmed `1B Hindi` as an early-stage problem and ruled out a first-token explanation for `1B Telugu`.
+- Worked: the next smallest useful step after that was not another VM run but a local rank-analysis of copied prompt-bank targets, which showed a nearest-neighbor-style retrieval tendency for `1B Telugu`.
+- Prompt lesson: when a behavioral artifact already stores per-item prompt-bank metadata, exploit it before scheduling another model run.

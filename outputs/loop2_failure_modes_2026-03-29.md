@@ -74,6 +74,23 @@ Representative failures:
 
 `4B × Telugu × n_icl=64` improves both early and late metrics. Helpful exact match reaches 0.300, while helpful bank-copy rate is only 6.7%. Residual errors are usually near-misses rather than verbatim prompt-bank retrieval.
 
+## Addendum: first-token audit and nearest-neighbor copy ranks
+
+A separate bounded audit on the VM (`research/results/autoresearch/first_token_competition_v1/results/summary.json`) confirms and sharpens the earlier stage split.
+
+- **1B Hindi first-token stage:** under `icl_helpful`, top-1 first-token accuracy falls to `0.467` (vs `0.600` in zero-shot), and the top-1 token is **Latin-script in 50% of items**. The most common failed first-token competitor is plain Latin `a`-like continuations (`a`, `aa`, `aad`).
+- **Important nuance:** `icl_corrupt` is similarly bad at the first token for `1B Hindi` (`top1_target_rate = 0.433`), so this early-routing failure is not strongly content-specific. It looks like a high-shot prompt-state / routing pathology more than a helpful-example benefit that simply went wrong.
+- **1B Telugu first-token stage:** under `icl_helpful`, top-1 first-token accuracy rises to `0.900` and mean target-token probability to `0.869`; even `icl_corrupt` reaches `0.767`. So the first-token fix is mostly present before exact-match success appears.
+- **Important nuance:** `4B Telugu` shows the same pattern even more strongly: `icl_helpful` and `icl_corrupt` both reach `top1_target_rate = 0.967`, but only helpful examples deliver the stronger whole-word exact-match behavior. This reinforces that the first-token stage is not the whole story.
+- **Prompt-bank copy rank analysis:** for `1B Telugu`, copied bank targets are usually drawn from the **similarity-neighborhood** of the query rather than from arbitrary prompt positions. At `n_icl=64`, `24/30` helpful predictions are exact bank copies; among those copied targets, the matched example has median source-similarity rank `2.5`, `62.5%` are in the top 5, and `75%` are in the top 10. The copy rate also rises with `n_icl` (`53.3% -> 70.0% -> 80.0%` for `48 -> 56 -> 64`).
+- **4B Telugu comparison:** only `2/30` helpful predictions are exact bank copies, though when they happen they come from the very top nearest-neighbor rank.
+
+This makes the current best explanation:
+
+- `1B Hindi`: an early routing failure in which high-shot ICL often pushes the model toward Latin/source-like first-token competitors.
+- `1B Telugu`: a later nearest-neighbor-style retrieval/composition failure in which the model often selects the right script and first token but then emits a similar in-context target string instead of the query-specific answer.
+- `4B Telugu`: the clean anchor because it escapes both failure modes often enough to turn early token selection into correct whole-word continuation.
+
 ## Claim ledger
 
 - **Established:** `1B × Hindi` high-shot fragility includes an early target-selection failure; helpful ICL often pushes the model toward Latin/source-like or wrong-bank outputs rather than toward the correct Devanagari target.
@@ -104,3 +121,5 @@ Representative failures:
 - file:///mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/loop2_full/score.json
 - file:///mnt/d/Research/Honors/research/results/autoresearch/loop2_vm_controls/threshold_1b_seed42/score.json
 - file:///mnt/d/Research/Honors/research/results/autoresearch/token_visibility_v1/results/token_visibility_summary.csv
+- file:///mnt/d/Research/Honors/research/results/autoresearch/first_token_competition_v1/results/summary.json
+- file:///mnt/d/Research/Honors/outputs/loop2_bank_copy_rank_2026-03-29.json

@@ -1,0 +1,952 @@
+{
+  "tasks": [
+    {
+      "model": "1b",
+      "pair": "aksharantar_hin_latin",
+      "n_icl": 64,
+      "path": "/home/srinivasr/Research/Honors/research/results/autoresearch/first_token_competition_v1/1b/aksharantar_hin_latin/nicl64/first_token_competition_audit.json",
+      "summary_by_condition": {
+        "zs": {
+          "n_items": 30,
+          "mean_prompt_tokens": 76.63333333333334,
+          "mean_target_prob": 0.5793185148805233,
+          "mean_top1_prob": 0.7484702438116073,
+          "top1_target_rate": 0.6,
+          "mean_target_minus_competitor_logit": -0.07083333333333333,
+          "top1_script_counts": {
+            "devanagari": 29,
+            "latin": 1
+          },
+          "top1_script_rates": {
+            "devanagari": 0.9666666666666667,
+            "latin": 0.03333333333333333
+          },
+          "competitor_script_counts": {
+            "devanagari": 28,
+            "latin": 2
+          },
+          "competitor_script_rates": {
+            "devanagari": 0.9333333333333333,
+            "latin": 0.06666666666666667
+          },
+          "failed_top1_examples": [
+            {
+              "word_ood": "aadeshpaalak",
+              "gold": "आदेशपालक",
+              "target_token_text": "आ",
+              "top1_token_text": "अ",
+              "top1_script": "devanagari",
+              "competitor_token_text": "अ",
+              "competitor_script": "devanagari",
+              "target_prob": 0.040155138820409775,
+              "target_minus_competitor_logit": -3.0
+            },
+            {
+              "word_ood": "aabhyantarikaran",
+              "gold": "आभ्यंतरीकरण",
+              "target_token_text": "आ",
+              "top1_token_text": "ab",
+              "top1_script": "latin",
+              "competitor_token_text": "ab",
+              "competitor_script": "latin",
+              "target_prob": 0.13607339560985565,
+              "target_minus_competitor_logit": -1.375
+            },
+            {
+              "word_ood": "aafatakaal",
+              "gold": "आफ़तकाल",
+              "target_token_text": "आ",
+              "top1_token_text": "अ",
+              "top1_script": "devanagari",
+              "competitor_token_text": "अ",
+              "competitor_script": "devanagari",
+              "target_prob": 0.39995768666267395,
+              "target_minus_competitor_logit": -0.375
+            },
+            {
+              "word_ood": "aadhyatmakta",
+              "gold": "आध्यात्मकता",
+              "target_token_text": "आ",
+              "top1_token_text": "अ",
+              "top1_script": "devanagari",
+              "competitor_token_text": "अ",
+              "competitor_script": "devanagari",
+              "target_prob": 0.3189314603805542,
+              "target_minus_competitor_logit": -0.75
+            },
+            {
+              "word_ood": "aahalya",
+              "gold": "आहल्या",
+              "target_token_text": "आ",
+              "top1_token_text": "अ",
+              "top1_script": "devanagari",
+              "competitor_token_text": "अ",
+              "competitor_script": "devanagari",
+              "target_prob": 0.3489316701889038,
+              "target_minus_competitor_logit": -0.5
+            },
+            {
+              "word_ood": "aachegaav",
+              "gold": "आचेगाव",
+              "target_token_text": "आ",
+              "top1_token_text": "अ",
+              "top1_script": "devanagari",
+              "competitor_token_text": "अ",
+              "competitor_script": "devanagari",
+              "target_prob": 0.3898601233959198,
+              "target_minus_competitor_logit": -0.125
+            },
+            {
+              "word_ood": "aagehun",
+              "gold": "आगेहुँ",
+              "target_token_text": "आगे",
+              "top1_token_text": "आ",
+              "top1_script": "devanagari",
+              "competitor_token_text": "आ",
+              "competitor_script": "devanagari",
+              "target_prob": 3.5396096791373566e-06,
+              "target_minus_competitor_logit": -12.25
+            },
+            {
+              "word_ood": "aaeeeesee",
+              "gold": "आईईसी",
+              "target_token_text": "आई",
+              "top1_token_text": "आ",
+              "top1_script": "devanagari",
+              "competitor_token_text": "आ",
+              "competitor_script": "devanagari",
+              "target_prob": 2.2786274200825574e-08,
+              "target_minus_competitor_logit": -17.0
+            }
+          ],
+          "most_common_failed_top1_tokens": [
+            {
+              "token_text": "अ",
+              "count": 9
+            },
+            {
+              "token_text": "आ",
+              "count": 2
+            },
+            {
+              "token_text": "ab",
+              "count": 1
+            }
+          ]
+        },
+        "icl_helpful": {
+          "n_items": 30,
+          "mean_prompt_tokens": 656.6333333333333,
+          "mean_target_prob": 0.48130098731132115,
+          "mean_top1_prob": 0.9092758586009343,
+          "top1_target_rate": 0.4666666666666667,
+          "mean_target_minus_competitor_logit": 0.5041666666666667,
+          "top1_script_counts": {
+            "latin": 15,
+            "devanagari": 15
+          },
+          "top1_script_rates": {
+            "latin": 0.5,
+            "devanagari": 0.5
+          },
+          "competitor_script_counts": {
+            "latin": 22,
+            "devanagari": 6,
+            "other": 1,
+            "tamil": 1
+          },
+          "competitor_script_rates": {
+            "latin": 0.7333333333333333,
+            "devanagari": 0.2,
+            "other": 0.03333333333333333,
+            "tamil": 0.03333333333333333
+          },
+          "failed_top1_examples": [
+            {
+              "word_ood": "aaegi",
+              "gold": "आएगी",
+              "target_token_text": "आ",
+              "top1_token_text": "aa",
+              "top1_script": "latin",
+              "competitor_token_text": "aa",
+              "competitor_script": "latin",
+              "target_prob": 0.0034332158975303173,
+              "target_minus_competitor_logit": -5.625
+            },
+            {
+              "word_ood": "aadesho",
+              "gold": "आदेशो",
+              "target_token_text": "आ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.006671332288533449,
+              "target_minus_competitor_logit": -5.0
+            },
+            {
+              "word_ood": "aafatakaal",
+              "gold": "आफ़तकाल",
+              "target_token_text": "आ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.0018447026377543807,
+              "target_minus_competitor_logit": -6.0
+            },
+            {
+              "word_ood": "aadalgachchh",
+              "gold": "आदलगच्छ",
+              "target_token_text": "आ",
+              "top1_token_text": "aad",
+              "top1_script": "latin",
+              "competitor_token_text": "aad",
+              "competitor_script": "latin",
+              "target_prob": 0.0008909279713407159,
+              "target_minus_competitor_logit": -6.625
+            },
+            {
+              "word_ood": "aahalya",
+              "gold": "आहल्या",
+              "target_token_text": "आ",
+              "top1_token_text": "ah",
+              "top1_script": "latin",
+              "competitor_token_text": "ah",
+              "competitor_script": "latin",
+              "target_prob": 0.08957988768815994,
+              "target_minus_competitor_logit": -1.375
+            },
+            {
+              "word_ood": "aahankar",
+              "gold": "आहंकार",
+              "target_token_text": "आ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.000696520961355418,
+              "target_minus_competitor_logit": -7.25
+            },
+            {
+              "word_ood": "aachegaav",
+              "gold": "आचेगाव",
+              "target_token_text": "आ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.00012044851609971374,
+              "target_minus_competitor_logit": -8.875
+            },
+            {
+              "word_ood": "aagehun",
+              "gold": "आगेहुँ",
+              "target_token_text": "आगे",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.009067458100616932,
+              "target_minus_competitor_logit": -4.625
+            }
+          ],
+          "most_common_failed_top1_tokens": [
+            {
+              "token_text": "a",
+              "count": 9
+            },
+            {
+              "token_text": "aad",
+              "count": 3
+            },
+            {
+              "token_text": "aa",
+              "count": 2
+            },
+            {
+              "token_text": "ah",
+              "count": 1
+            },
+            {
+              "token_text": "आद",
+              "count": 1
+            }
+          ]
+        },
+        "icl_corrupt": {
+          "n_items": 30,
+          "mean_prompt_tokens": 656.6333333333333,
+          "mean_target_prob": 0.4311816240426887,
+          "mean_top1_prob": 0.8899953742822011,
+          "top1_target_rate": 0.43333333333333335,
+          "mean_target_minus_competitor_logit": -0.9020833333333333,
+          "top1_script_counts": {
+            "latin": 15,
+            "devanagari": 15
+          },
+          "top1_script_rates": {
+            "latin": 0.5,
+            "devanagari": 0.5
+          },
+          "competitor_script_counts": {
+            "latin": 26,
+            "other": 1,
+            "devanagari": 3
+          },
+          "competitor_script_rates": {
+            "latin": 0.8666666666666667,
+            "other": 0.03333333333333333,
+            "devanagari": 0.1
+          },
+          "failed_top1_examples": [
+            {
+              "word_ood": "aaegi",
+              "gold": "आएगी",
+              "target_token_text": "आ",
+              "top1_token_text": "aa",
+              "top1_script": "latin",
+              "competitor_token_text": "aa",
+              "competitor_script": "latin",
+              "target_prob": 0.008042646571993828,
+              "target_minus_competitor_logit": -4.75
+            },
+            {
+              "word_ood": "aadesho",
+              "gold": "आदेशो",
+              "target_token_text": "आ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.0031627314165234566,
+              "target_minus_competitor_logit": -5.75
+            },
+            {
+              "word_ood": "aafatakaal",
+              "gold": "आफ़तकाल",
+              "target_token_text": "आ",
+              "top1_token_text": "aaf",
+              "top1_script": "latin",
+              "competitor_token_text": "aaf",
+              "competitor_script": "latin",
+              "target_prob": 0.00890528317540884,
+              "target_minus_competitor_logit": -4.125
+            },
+            {
+              "word_ood": "aadalgachchh",
+              "gold": "आदलगच्छ",
+              "target_token_text": "आ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.006767533719539642,
+              "target_minus_competitor_logit": -4.875
+            },
+            {
+              "word_ood": "aahalya",
+              "gold": "आहल्या",
+              "target_token_text": "आ",
+              "top1_token_text": "aha",
+              "top1_script": "latin",
+              "competitor_token_text": "aha",
+              "competitor_script": "latin",
+              "target_prob": 0.04055415466427803,
+              "target_minus_competitor_logit": -2.625
+            },
+            {
+              "word_ood": "aahankar",
+              "gold": "आहंकार",
+              "target_token_text": "आ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.0002927599416580051,
+              "target_minus_competitor_logit": -8.125
+            },
+            {
+              "word_ood": "aachegaav",
+              "gold": "आचेगाव",
+              "target_token_text": "आ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.00015798657841514796,
+              "target_minus_competitor_logit": -8.75
+            },
+            {
+              "word_ood": "aadhunikvaadi",
+              "gold": "आधुनिकवादी",
+              "target_token_text": "आ",
+              "top1_token_text": "आधार",
+              "top1_script": "devanagari",
+              "competitor_token_text": "आधार",
+              "competitor_script": "devanagari",
+              "target_prob": 0.26745715737342834,
+              "target_minus_competitor_logit": -1.0
+            }
+          ],
+          "most_common_failed_top1_tokens": [
+            {
+              "token_text": "a",
+              "count": 11
+            },
+            {
+              "token_text": "aa",
+              "count": 2
+            },
+            {
+              "token_text": "aaf",
+              "count": 1
+            },
+            {
+              "token_text": "aha",
+              "count": 1
+            },
+            {
+              "token_text": "आधार",
+              "count": 1
+            },
+            {
+              "token_text": "आ",
+              "count": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model": "1b",
+      "pair": "aksharantar_tel_latin",
+      "n_icl": 64,
+      "path": "/home/srinivasr/Research/Honors/research/results/autoresearch/first_token_competition_v1/1b/aksharantar_tel_latin/nicl64/first_token_competition_audit.json",
+      "summary_by_condition": {
+        "zs": {
+          "n_items": 30,
+          "mean_prompt_tokens": 75.6,
+          "mean_target_prob": 0.0016938187882866865,
+          "mean_top1_prob": 0.7537816911935806,
+          "top1_target_rate": 0.0,
+          "mean_target_minus_competitor_logit": -6.4875,
+          "top1_script_counts": {
+            "telugu": 27,
+            "latin": 3
+          },
+          "top1_script_rates": {
+            "telugu": 0.9,
+            "latin": 0.1
+          },
+          "competitor_script_counts": {
+            "telugu": 27,
+            "latin": 3
+          },
+          "competitor_script_rates": {
+            "telugu": 0.9,
+            "latin": 0.1
+          },
+          "failed_top1_examples": [
+            {
+              "word_ood": "aadaallameeda",
+              "gold": "ఆడాళ్ళమీద",
+              "target_token_text": "ఆ",
+              "top1_token_text": "అ",
+              "top1_script": "telugu",
+              "competitor_token_text": "అ",
+              "competitor_script": "telugu",
+              "target_prob": 0.0023266319185495377,
+              "target_minus_competitor_logit": -5.6875
+            },
+            {
+              "word_ood": "aacharanaatmakathatho",
+              "gold": "ఆచరణాత్మకతతో",
+              "target_token_text": "ఆ",
+              "top1_token_text": "అ",
+              "top1_script": "telugu",
+              "competitor_token_text": "అ",
+              "competitor_script": "telugu",
+              "target_prob": 0.0022549626883119345,
+              "target_minus_competitor_logit": -6.0625
+            },
+            {
+              "word_ood": "aacharanaatmamgaa",
+              "gold": "ఆచరణాత్మంగా",
+              "target_token_text": "ఆ",
+              "top1_token_text": "అ",
+              "top1_script": "telugu",
+              "competitor_token_text": "అ",
+              "competitor_script": "telugu",
+              "target_prob": 0.001207973575219512,
+              "target_minus_competitor_logit": -6.6875
+            },
+            {
+              "word_ood": "aacharinchabadedi",
+              "gold": "ఆచరించబడేది",
+              "target_token_text": "ఆ",
+              "top1_token_text": "అ",
+              "top1_script": "telugu",
+              "competitor_token_text": "అ",
+              "competitor_script": "telugu",
+              "target_prob": 0.0008372599841095507,
+              "target_minus_competitor_logit": -7.0625
+            },
+            {
+              "word_ood": "aabharanamgaano",
+              "gold": "ఆభరణంగానో",
+              "target_token_text": "ఆ",
+              "top1_token_text": "అ",
+              "top1_script": "telugu",
+              "competitor_token_text": "అ",
+              "competitor_script": "telugu",
+              "target_prob": 2.9612347134388983e-05,
+              "target_minus_competitor_logit": -10.375
+            },
+            {
+              "word_ood": "aadaamannadaanipaine",
+              "gold": "ఆడామన్నదానిపైనే",
+              "target_token_text": "ఆ",
+              "top1_token_text": "అ",
+              "top1_script": "telugu",
+              "competitor_token_text": "అ",
+              "competitor_script": "telugu",
+              "target_prob": 0.0029184934683144093,
+              "target_minus_competitor_logit": -5.625
+            },
+            {
+              "word_ood": "aacharinchutalo",
+              "gold": "ఆచరించుటలో",
+              "target_token_text": "ఆ",
+              "top1_token_text": "అ",
+              "top1_script": "telugu",
+              "competitor_token_text": "అ",
+              "competitor_script": "telugu",
+              "target_prob": 0.002214141422882676,
+              "target_minus_competitor_logit": -6.0625
+            },
+            {
+              "word_ood": "aachaaravyavahaaramula",
+              "gold": "ఆచారవ్యవహారముల",
+              "target_token_text": "ఆ",
+              "top1_token_text": "అ",
+              "top1_script": "telugu",
+              "competitor_token_text": "అ",
+              "competitor_script": "telugu",
+              "target_prob": 0.00024995909188874066,
+              "target_minus_competitor_logit": -8.125
+            }
+          ],
+          "most_common_failed_top1_tokens": [
+            {
+              "token_text": "అ",
+              "count": 27
+            },
+            {
+              "token_text": "ach",
+              "count": 3
+            }
+          ]
+        },
+        "icl_helpful": {
+          "n_items": 30,
+          "mean_prompt_tokens": 876.6,
+          "mean_target_prob": 0.8686298467529316,
+          "mean_top1_prob": 0.93513778646787,
+          "top1_target_rate": 0.9,
+          "mean_target_minus_competitor_logit": 4.652083333333334,
+          "top1_script_counts": {
+            "telugu": 27,
+            "latin": 3
+          },
+          "top1_script_rates": {
+            "telugu": 0.9,
+            "latin": 0.1
+          },
+          "competitor_script_counts": {
+            "telugu": 10,
+            "latin": 20
+          },
+          "competitor_script_rates": {
+            "telugu": 0.3333333333333333,
+            "latin": 0.6666666666666666
+          },
+          "failed_top1_examples": [
+            {
+              "word_ood": "aabraham",
+              "gold": "ఆబ్రహం",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.05056043714284897,
+              "target_minus_competitor_logit": -2.875
+            },
+            {
+              "word_ood": "aachaaryulandaruu",
+              "gold": "ఆచార్యులందరూ",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.4043879806995392,
+              "target_minus_competitor_logit": -0.375
+            },
+            {
+              "word_ood": "aachitrampai",
+              "gold": "ఆచిత్రంపై",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.014887929894030094,
+              "target_minus_competitor_logit": -4.1875
+            }
+          ],
+          "most_common_failed_top1_tokens": [
+            {
+              "token_text": "a",
+              "count": 3
+            }
+          ]
+        },
+        "icl_corrupt": {
+          "n_items": 30,
+          "mean_prompt_tokens": 876.6,
+          "mean_target_prob": 0.790902566513978,
+          "mean_top1_prob": 0.9488602876663208,
+          "top1_target_rate": 0.7666666666666667,
+          "mean_target_minus_competitor_logit": 4.072916666666667,
+          "top1_script_counts": {
+            "telugu": 25,
+            "latin": 5
+          },
+          "top1_script_rates": {
+            "telugu": 0.8333333333333334,
+            "latin": 0.16666666666666666
+          },
+          "competitor_script_counts": {
+            "latin": 21,
+            "telugu": 7,
+            "other": 2
+          },
+          "competitor_script_rates": {
+            "latin": 0.7,
+            "telugu": 0.23333333333333334,
+            "other": 0.06666666666666667
+          },
+          "failed_top1_examples": [
+            {
+              "word_ood": "aabharanamgaano",
+              "gold": "ఆభరణంగానో",
+              "target_token_text": "ఆ",
+              "top1_token_text": "ఆడ",
+              "top1_script": "telugu",
+              "competitor_token_text": "ఆడ",
+              "competitor_script": "telugu",
+              "target_prob": 0.4962284564971924,
+              "target_minus_competitor_logit": 0.0
+            },
+            {
+              "word_ood": "aabraham",
+              "gold": "ఆబ్రహం",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.010706547647714615,
+              "target_minus_competitor_logit": -4.5
+            },
+            {
+              "word_ood": "aachaaryulandaruu",
+              "gold": "ఆచార్యులందరూ",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.047355324029922485,
+              "target_minus_competitor_logit": -3.0
+            },
+            {
+              "word_ood": "aacharanalapai",
+              "gold": "ఆచరణలపై",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.05321253463625908,
+              "target_minus_competitor_logit": -2.875
+            },
+            {
+              "word_ood": "aachitrampai",
+              "gold": "ఆచిత్రంపై",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.11808597296476364,
+              "target_minus_competitor_logit": -2.0
+            },
+            {
+              "word_ood": "aabharanaalalo",
+              "gold": "ఆభరణాలలో",
+              "target_token_text": "ఆ",
+              "top1_token_text": "ఆడ",
+              "top1_script": "telugu",
+              "competitor_token_text": "ఆడ",
+              "competitor_script": "telugu",
+              "target_prob": 0.37570348381996155,
+              "target_minus_competitor_logit": -0.5
+            },
+            {
+              "word_ood": "aachaara",
+              "gold": "ఆచార",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.0027988955844193697,
+              "target_minus_competitor_logit": -5.875
+            }
+          ],
+          "most_common_failed_top1_tokens": [
+            {
+              "token_text": "a",
+              "count": 5
+            },
+            {
+              "token_text": "ఆడ",
+              "count": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model": "4b",
+      "pair": "aksharantar_tel_latin",
+      "n_icl": 64,
+      "path": "/home/srinivasr/Research/Honors/research/results/autoresearch/first_token_competition_v1/4b/aksharantar_tel_latin/nicl64/first_token_competition_audit.json",
+      "summary_by_condition": {
+        "zs": {
+          "n_items": 30,
+          "mean_prompt_tokens": 75.6,
+          "mean_target_prob": 0.0020076561767095203,
+          "mean_top1_prob": 0.8194911122322083,
+          "top1_target_rate": 0.0,
+          "mean_target_minus_competitor_logit": -12.3125,
+          "top1_script_counts": {
+            "latin": 29,
+            "devanagari": 1
+          },
+          "top1_script_rates": {
+            "latin": 0.9666666666666667,
+            "devanagari": 0.03333333333333333
+          },
+          "competitor_script_counts": {
+            "latin": 29,
+            "devanagari": 1
+          },
+          "competitor_script_rates": {
+            "latin": 0.9666666666666667,
+            "devanagari": 0.03333333333333333
+          },
+          "failed_top1_examples": [
+            {
+              "word_ood": "aadaallameeda",
+              "gold": "ఆడాళ్ళమీద",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 0.0016258255345746875,
+              "target_minus_competitor_logit": -5.75
+            },
+            {
+              "word_ood": "aacharanaatmakathatho",
+              "gold": "ఆచరణాత్మకతతో",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 1.243035256948133e-07,
+              "target_minus_competitor_logit": -15.875
+            },
+            {
+              "word_ood": "aacharanaatmamgaa",
+              "gold": "ఆచరణాత్మంగా",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 4.635097639038577e-07,
+              "target_minus_competitor_logit": -14.5
+            },
+            {
+              "word_ood": "aacharinchabadedi",
+              "gold": "ఆచరించబడేది",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 2.324470784742516e-07,
+              "target_minus_competitor_logit": -15.25
+            },
+            {
+              "word_ood": "aabharanamgaano",
+              "gold": "ఆభరణంగానో",
+              "target_token_text": "ఆ",
+              "top1_token_text": "आ",
+              "top1_script": "devanagari",
+              "competitor_token_text": "आ",
+              "competitor_script": "devanagari",
+              "target_prob": 0.016477543860673904,
+              "target_minus_competitor_logit": -3.125
+            },
+            {
+              "word_ood": "aadaamannadaanipaine",
+              "gold": "ఆడామన్నదానిపైనే",
+              "target_token_text": "ఆ",
+              "top1_token_text": "ā",
+              "top1_script": "latin",
+              "competitor_token_text": "ā",
+              "competitor_script": "latin",
+              "target_prob": 0.025469660758972168,
+              "target_minus_competitor_logit": -2.75
+            },
+            {
+              "word_ood": "aacharinchutalo",
+              "gold": "ఆచరించుటలో",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 6.255834250623593e-07,
+              "target_minus_competitor_logit": -14.25
+            },
+            {
+              "word_ood": "aachaaravyavahaaramula",
+              "gold": "ఆచారవ్యవహారముల",
+              "target_token_text": "ఆ",
+              "top1_token_text": "a",
+              "top1_script": "latin",
+              "competitor_token_text": "a",
+              "competitor_script": "latin",
+              "target_prob": 2.777681140653243e-10,
+              "target_minus_competitor_logit": -22.0
+            }
+          ],
+          "most_common_failed_top1_tokens": [
+            {
+              "token_text": "a",
+              "count": 25
+            },
+            {
+              "token_text": "ā",
+              "count": 3
+            },
+            {
+              "token_text": "आ",
+              "count": 1
+            },
+            {
+              "token_text": "Abraham",
+              "count": 1
+            }
+          ]
+        },
+        "icl_helpful": {
+          "n_items": 30,
+          "mean_prompt_tokens": 876.6,
+          "mean_target_prob": 0.9789645969867706,
+          "mean_top1_prob": 0.987127830584844,
+          "top1_target_rate": 0.9666666666666667,
+          "mean_target_minus_competitor_logit": 10.741666666666667,
+          "top1_script_counts": {
+            "telugu": 30
+          },
+          "top1_script_rates": {
+            "telugu": 1.0
+          },
+          "competitor_script_counts": {
+            "telugu": 30
+          },
+          "competitor_script_rates": {
+            "telugu": 1.0
+          },
+          "failed_top1_examples": [
+            {
+              "word_ood": "aabraham",
+              "gold": "ఆబ్రహం",
+              "target_token_text": "ఆ",
+              "top1_token_text": "అ",
+              "top1_script": "telugu",
+              "competitor_token_text": "అ",
+              "competitor_script": "telugu",
+              "target_prob": 0.3775072693824768,
+              "target_minus_competitor_logit": -0.5
+            }
+          ],
+          "most_common_failed_top1_tokens": [
+            {
+              "token_text": "అ",
+              "count": 1
+            }
+          ]
+        },
+        "icl_corrupt": {
+          "n_items": 30,
+          "mean_prompt_tokens": 876.6,
+          "mean_target_prob": 0.9706400811672211,
+          "mean_top1_prob": 0.9903990348180135,
+          "top1_target_rate": 0.9666666666666667,
+          "mean_target_minus_competitor_logit": 6.795833333333333,
+          "top1_script_counts": {
+            "telugu": 30
+          },
+          "top1_script_rates": {
+            "telugu": 1.0
+          },
+          "competitor_script_counts": {
+            "telugu": 30
+          },
+          "competitor_script_rates": {
+            "telugu": 1.0
+          },
+          "failed_top1_examples": [
+            {
+              "word_ood": "aabraham",
+              "gold": "ఆబ్రహం",
+              "target_token_text": "ఆ",
+              "top1_token_text": "అ",
+              "top1_script": "telugu",
+              "competitor_token_text": "అ",
+              "competitor_script": "telugu",
+              "target_prob": 0.20059329271316528,
+              "target_minus_competitor_logit": -1.375
+            }
+          ],
+          "most_common_failed_top1_tokens": [
+            {
+              "token_text": "అ",
+              "count": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

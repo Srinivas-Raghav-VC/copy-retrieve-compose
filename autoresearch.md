@@ -406,3 +406,22 @@ VM_PASS='***' bash autoresearch.sh loop2_full
 - Oracle for this audit:
   - for each task and each condition (`zs`, `icl_helpful`, `icl_corrupt`), record the correct first target token probability, the top-1 predicted first token, its script bucket, and the target-vs-best-competitor logit gap.
   - minimal decision rule: if `1B Hindi` helpful prompts often lose the first target token to Latin/source-like top-1 competitors, the early-routing hypothesis gains support; if `1B Telugu` already wins the first token cleanly, that reinforces the later continuation / retrieval-composition hypothesis.
+- The first-token competition audit completed successfully at `research/results/autoresearch/first_token_competition_v1/results/summary.json`.
+- Audit result:
+  - `1B × Hindi × n_icl=64`: the early-routing hypothesis is supported. Under `icl_helpful`, top-1 target rate falls to `0.467` (vs `0.600` in zero-shot), and the top-1 token is Latin-script in `50%` of items. However, `icl_corrupt` is similarly bad (`0.433`), so the early failure is not strongly content-specific.
+  - `1B × Telugu × n_icl=64`: the first-token stage is largely fixed under high-shot ICL. `icl_helpful` reaches top-1 target rate `0.900` and mean target-token probability `0.869`; even `icl_corrupt` reaches `0.767` / `0.791`.
+  - `4B × Telugu × n_icl=64`: the first-token stage is nearly saturated for both `icl_helpful` and `icl_corrupt` (`0.967` top-1 target rate each), so the helpful-vs-control difference that remains must be downstream of the first token.
+- Additional bounded follow-up completed locally from existing raw control artifacts:
+  - `experiments/analyze_prompt_bank_copy_ranks.py`
+  - output: `outputs/loop2_bank_copy_rank_2026-03-29.json`
+- Prompt-bank copy rank result:
+  - `1B × Telugu × n_icl=64` copies an exact prompt-bank target on `24/30` items (`80%`). Those copied targets are usually drawn from the similarity neighborhood of the query: median source-similarity rank `2.5`, `62.5%` from the top 5, `75%` from the top 10.
+  - As `n_icl` increases from `48 -> 56 -> 64`, the `1B × Telugu` bank-copy rate rises from `53.3% -> 70.0% -> 80.0%`.
+  - `4B × Telugu × n_icl=64` has only `2/30` exact bank copies.
+- Interpretation after these follow-ups:
+  - established: the `1B` failure story splits by language *and by stage*.
+  - established: `1B Hindi` is best framed as an early routing problem that is not strongly content-specific under high-shot ICL.
+  - established: `1B Telugu` is best framed as a nearest-neighbor-style retrieval/composition problem rather than a first-token failure.
+- Recommended next bounded experiment:
+  - do **not** rerun more generic high-shot sweeps.
+  - instead run a narrow Telugu prompt-bank retrieval audit that explicitly links each copied output to the matched in-context example identity / similarity rank and compares helpful vs corrupt vs reversed ordering on the same fixed items.
