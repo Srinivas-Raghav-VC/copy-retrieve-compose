@@ -68,3 +68,5 @@
 - The positive side of the story broadened: all three new `4B` languages (`Marathi`, `Bengali`, `Tamil`) are positive against matched controls, with `Bengali` and `Tamil` cleaner than `Marathi`.
 - The weak side of the story also broadened: `1B` still fails to convert the new languages into exact-match helpful wins, and `Bengali` / `Tamil` are worse than zero-shot on CER even when beating weak controls.
 - This is enough evidence to proceed to a bounded mechanistic screening phase focused on the best validated anchor (`4b × Telugu × n_icl=64`) and the clearest fragility comparison (`1b × Hindi × n_icl=64`), rather than trying to mechanistically open every language at once.
+- Added a dedicated VM launcher `experiments/run_vm_script_space_screen.sh` for the first cheap mechanistic screening pass.
+- First mechanistic screening run is now in progress on three cells: `4b × Telugu`, `1b × Hindi`, and `4b × Hindi`, using `run_script_space_map.py` with `n_icl=64`, `seed=42`, and `max_words=30`.

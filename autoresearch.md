@@ -334,3 +334,9 @@ VM_PASS='***' bash autoresearch.sh loop2_full
 - Decision after bounded expansion:
   - mechanistic probing should stay focused on the cleanest validated anchor (`4b × Telugu × n_icl=64`) and the clearest fragility comparison (`1b × Hindi × n_icl=64`), with `4b × Hindi` as an optional strong-base-capability comparison cell.
 - Next step in progress: run a cheap mechanistic screening pass (representation-level, not full causal claims yet) on the validated anchor cells before any heavier intervention pipeline.
+- Mechanistic screening plan chosen:
+  - tool: `run_script_space_map.py`
+  - tasks: `4b:aksharantar_tel_latin`, `1b:aksharantar_hin_latin`, `4b:aksharantar_hin_latin`
+  - purpose: compare a clean positive anchor (`4B Telugu`), a clear fragility anchor (`1B Hindi`), and a strong-base-capability comparison cell (`4B Hindi`) before any heavier causal intervention work
+  - budget: `max_words=30`, `seed=42`, `n_icl=64`
+- A dedicated VM launcher was added at `experiments/run_vm_script_space_screen.sh`, and the first screening run is now in progress.
