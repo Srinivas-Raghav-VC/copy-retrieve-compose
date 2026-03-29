@@ -472,6 +472,74 @@ That is the shortest path to a thesis that still has real mechanistic backing.
 
 ---
 
+## Deep organizing intuition
+
+The deepest principle I currently trust is:
+
+> **Do not ask "where is the transliteration circuit?" first. Ask which computational stage is failing, and only then ask where that stage lives in the network.**
+
+That principle is strongly supported by the current behavioral evidence.
+
+### The two-stage decomposition
+
+For this thesis, the most useful abstraction is:
+
+1. **early routing / target-script activation**
+2. **later query-specific continuation / composition**
+
+The strongest facts so far fit that decomposition unusually well:
+
+- `1B Hindi` high-shot failure: early routing is already weak.
+- `1B Telugu` high-shot failure: early routing is mostly okay, later continuation collapses.
+- `4B Telugu` high-shot success: both stages are much stronger.
+
+### Broadening the intuition with the new four-language seed-42 panel
+
+The current `seed42` four-language panel suggests that `1B` high-shot failure may itself split into a broader family of regimes:
+
+- **Bengali (`1B`, `n_icl=64`)**: catastrophic early collapse.
+  - helpful first-token probability is extremely low (`0.035`),
+  - script compliance is very low (`0.193`),
+  - manual audit shows heavy source-copy behavior.
+- **Hindi (`1B`, `n_icl=64`)**: substantial early routing failure.
+  - helpful first-token probability remains low (`0.481`),
+  - script compliance is poor (`0.487`),
+  - source-copy and Latin/source-like competition remain common.
+- **Tamil (`1B`, `n_icl=64`)**: mixed regime.
+  - first-token / first-entry behavior is much stronger than Bengali/Hindi,
+  - but exact match still stays at zero,
+  - manual audit shows a mix of bank-copy and source-copy behavior.
+- **Telugu (`1B`, `n_icl=64`)**: late retrieval/composition collapse.
+  - first-token behavior is very strong (`0.869`),
+  - exact match still stays at zero,
+  - copied-bank targets dominate many failures.
+
+This suggests a useful provisional 2-axis picture:
+
+`Axis 1: target-script / task-mode activation`
+`Axis 2: query-specific continuation`
+
+Then the language-scale cells fall roughly like this:
+
+- `1B Bengali` -> weak on both axes
+- `1B Hindi` -> weak early routing, weak continuation
+- `1B Tamil` -> medium early routing, weak continuation
+- `1B Telugu` -> strong early routing, weak continuation
+- `4B` languages -> stronger on both axes, with Telugu/Tamil especially clean on early routing and much better on continuation
+
+This is a much deeper organizing story than a one-number benchmark.
+
+### What strongly pulls us toward fact rather than story
+
+The strongest pulls toward a real fact are:
+
+- the stage split already survives manual audit,
+- the stage split survives across multiple conditions (`helpful`, `corrupt`, ordering variants),
+- the broadening languages do **not** all fail the same way,
+- and the 4B model does **not** just uniformly look better — it looks like it occupies a different computational regime.
+
+That is exactly the kind of structure worth mechanistic study.
+
 ## Exact mech-interp tool stack to use for this thesis
 
 This is the concrete answer to "what tools from ARENA / Transformer Circuits / Anthropic-style mech interp are we actually going to use?"
@@ -572,6 +640,45 @@ Use for:
 Role:
 - heuristic ranking tool, not standalone evidence.
 
+### Repo-backed readiness map
+
+This matters because a good plan is not just conceptual — it should be implementable with the code we already have.
+
+#### Ready now (high confidence)
+
+- `experiments/first_token_competition_audit.py`
+  - already proven useful for the `1B Hindi` / `1B Telugu` split.
+- `Draft_Results/paper2_fidelity_calibrated/run_target_competitor_logit_gap.py`
+  - good base for Hindi first-token target-vs-competitor localization.
+- `Draft_Results/paper2_fidelity_calibrated/run_logit_lens_rescue_trajectory.py`
+  - useful layerwise trajectory probe.
+- `Draft_Results/paper2_fidelity_calibrated/run_script_space_map.py`
+  - already validated as a coarse localization tool.
+- `core.run_patching_experiment(...)`
+  - existing causal patching primitive with teacher-forced and generation-level metrics.
+
+#### Likely useful with adaptation
+
+- `Draft_Results/paper2_fidelity_calibrated/run_neighbor_layer_causality.py`
+  - good template for localized causal follow-up once a band is selected.
+- `Draft_Results/paper2_fidelity_calibrated/run_component_localization_panel.py`
+  - useful if we want attention-vs-MLP comparisons after stage localization.
+- `Draft_Results/paper2_fidelity_calibrated/run_layer_output_alignment_panel.py`
+  - good for testing whether a whole-layer state replacement carries the relevant information.
+- `Draft_Results/paper2_fidelity_calibrated/run_cfom_function_vector_tests.py`
+  - potentially valuable for testing generic task-mode vectors versus query-specific signals, but should remain secondary until the main localized story is clean.
+- `Draft_Results/paper2_fidelity_calibrated/run_attribution_graph_pair.py`
+  - possible later triage or appendix tool.
+
+#### Defer unless the bounded case studies get very clean
+
+- `run_language_script_feature_suppression.py`
+- `run_head_to_mlp_edge_attribution.py`
+- `run_shared_head_sufficiency_panel.py`
+- larger circuit-sufficiency and graph-style pipelines
+
+These are interesting, but they are not the fastest or clearest route to a thesis-quality result.
+
 ### Tier 3 — exploratory / appendix-level tools
 
 #### 8. Transcoders / sparse feature tools
@@ -668,6 +775,20 @@ This is the bar that actually deserves to appear in the thesis as mechanistic su
 - https://arxiv.org/abs/2501.17727
 - https://arxiv.org/abs/2503.01822
 - https://arxiv.org/abs/2410.11767
+- https://arxiv.org/abs/2309.16042
+- https://arxiv.org/abs/2404.15255
+- https://arxiv.org/abs/2304.05969
+- https://arxiv.org/abs/2502.14010
+- https://arxiv.org/abs/2504.00132
+- https://arxiv.org/abs/2310.15213
 - file:///mnt/d/Research/Honors/outputs/thesis_strategy_grander_goal_2026-03-29.md
 - file:///mnt/d/Research/Honors/outputs/loop2_failure_modes_2026-03-29.md
 - file:///mnt/d/Research/Honors/research/spec.md
+- file:///mnt/d/Research/Honors/research/results/autoresearch/four_lang_thesis_panel/seed42/score.json
+- file:///mnt/d/Research/Honors/Draft_Results/paper2_fidelity_calibrated/run_target_competitor_logit_gap.py
+- file:///mnt/d/Research/Honors/Draft_Results/paper2_fidelity_calibrated/run_logit_lens_rescue_trajectory.py
+- file:///mnt/d/Research/Honors/Draft_Results/paper2_fidelity_calibrated/run_component_localization_panel.py
+- file:///mnt/d/Research/Honors/Draft_Results/paper2_fidelity_calibrated/run_layer_output_alignment_panel.py
+- file:///mnt/d/Research/Honors/Draft_Results/paper2_fidelity_calibrated/run_neighbor_layer_causality.py
+- file:///mnt/d/Research/Honors/Draft_Results/paper2_fidelity_calibrated/run_cfom_function_vector_tests.py
+- file:///mnt/d/Research/Honors/experiments/first_token_competition_audit.py

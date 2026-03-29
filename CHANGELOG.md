@@ -153,4 +153,9 @@
   - `seed101` has not started yet.
   - the local wrapper is gone, but a remote transliteration process is still live on the VM, so transport/process supervision is still imperfect even though the benchmark itself is continuing.
 - Expanded `outputs/mechanistic_technique_playbook_and_fast_direction_2026-03-29.md` with the exact planned mech-interp tool stack: teacher-forced token competition, logit-lens trajectories, activation patching / causal tracing, narrow ablations, and supporting roles for script-space maps, attention-path inspection, and transcoders.
+- Deepened that memo further with:
+  - a two-stage organizing principle (early routing vs later continuation),
+  - a provisional 2-axis regime map across the current four languages,
+  - alphaXiv-backed patching best practices and cautions,
+  - and a repo-backed readiness map of which local mechanistic scripts are ready now versus exploratory.
 - Extended `research/spec.md` with an explicit reviewer acceptance bar describing what would and would not be thesis-acceptable evidence.

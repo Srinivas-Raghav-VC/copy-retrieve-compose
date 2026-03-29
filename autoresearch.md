@@ -586,3 +586,16 @@ Broaden the work only when the additional breadth reduces real uncertainty. The 
   - `1B Hindi` early-routing case study,
   - `1B Telugu` vs `4B Telugu` later-continuation comparison,
   - and a final claim about copying vs retrieval vs composition across scale.
+- Deeper mechanistic planning update from further paper/code review:
+  - organizing principle: localize **stage** before localizing **site**.
+  - primary stage split remains `early routing` vs `later continuation / composition`.
+  - broadening languages suggest a provisional 2-axis map for `1B` high-shot behavior:
+    - Bengali: catastrophic early collapse,
+    - Hindi: substantial early routing failure,
+    - Tamil: mixed regime,
+    - Telugu: late retrieval/composition collapse.
+  - primary mechanistic tools should therefore be:
+    1. teacher-forced token competition,
+    2. logit-lens trajectories,
+    3. activation patching / narrow ablation,
+    with transcoders and larger attribution-graph tools treated as secondary instruments rather than the main proof.
