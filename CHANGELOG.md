@@ -147,4 +147,9 @@
 - Patched `autoresearch.sh` to add SSH keepalive options (`ServerAliveInterval`, `ServerAliveCountMax`) for future long VM runs.
 - Added `experiments/recover_four_lang_thesis_panel.sh` to resume the missing seed-42 cells, rescore the full seed-42 panel, rebuild manual audit packets, continue seeds `11/101`, and re-aggregate all three seeds.
 - Wrote a dedicated technique-and-direction memo `outputs/mechanistic_technique_playbook_and_fast_direction_2026-03-29.md` summarizing what the main web / paper sources contribute, which techniques to actually use in this thesis, and what the fastest defensible thesis direction is if we need to wrap quickly.
+- After checking the VM again, confirmed that the recovery partially succeeded already:
+  - `seed42` is now complete on the VM (`16/16` raw files) and has a full local score.
+  - `seed11` has started and is writing artifacts on the VM.
+  - `seed101` has not started yet.
+  - the local wrapper is gone, but a remote transliteration process is still live on the VM, so transport/process supervision is still imperfect even though the benchmark itself is continuing.
 - Extended `research/spec.md` with an explicit reviewer acceptance bar describing what would and would not be thesis-acceptable evidence.

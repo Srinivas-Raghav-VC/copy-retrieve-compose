@@ -574,6 +574,11 @@ Broaden the work only when the additional breadth reduces real uncertainty. The 
   4. rebuild manual audit packets for the recovered seed,
   5. continue seeds `11` and `101`,
   6. aggregate all three seeds at the end.
+- Recovery status update after checking the VM again:
+  - `seed42` is now fully complete (`16/16` files on the VM and a full local `score.json`).
+  - `seed11` has begun on the VM and has at least `3` raw artifacts written so far.
+  - the local recovery wrapper is no longer attached, but a remote transliteration process is still running on the VM (`1b × Telugu × n_icl=64` at the time of inspection).
+  - `seed101` has not started yet.
 - A dedicated fast-direction / technique memo now exists at `outputs/mechanistic_technique_playbook_and_fast_direction_2026-03-29.md`.
 - If time pressure becomes dominant, the thesis should collapse to:
   - 4-language multi-seed phase map,
