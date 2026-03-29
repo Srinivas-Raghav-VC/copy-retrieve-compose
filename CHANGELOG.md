@@ -137,3 +137,6 @@
 - Rewrote `research/spec.md` around the new thesis identity: multilingual transliteration as a model organism for ICL regimes (copying, prompt-bank retrieval, nearest-neighbor retrieval, composition), with a 4-language confirmatory panel and bounded mechanistic case studies.
 - Launched the first thesis-scale background run (`proc_12`, `four-lang-thesis-panel`) using the new 4-language multi-seed VM script.
 - Added a durable manual-audit policy to `autoresearch.md`: manual spot-checks are now required after seed-level panel outputs, before trusting verifier/judge outputs, before escalating to mechanistic claims, and after bug fixes that could affect interpretation.
+- Added `experiments/build_manual_audit_packet.py`, a reusable helper that converts a `neutral_filler_recency_controls.json` artifact into a reviewer-friendly manual audit packet (JSON + Markdown) with targeted example slices such as helpful-vs-ZS losses, bank copies, source copies, and likely near-misses.
+- Tested that helper on the existing `1B Hindi × n_icl=64` artifact and confirmed it surfaces the expected mix of source-copy and bank-copy failure cases.
+- Extended `research/spec.md` with an explicit reviewer acceptance bar describing what would and would not be thesis-acceptable evidence.

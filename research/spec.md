@@ -427,3 +427,51 @@ A successful thesis from this repo would produce:
 4. a clean final story about when ICL behaves like copying, retrieval, or composition in Gemma 3 transliteration.
 
 That is ambitious, but it is still honest and testable.
+
+---
+
+## 14. Reviewer acceptance bar
+
+A recurring planning question for this project is:
+
+> **Would I accept this if I were a skeptical reviewer, and why should anyone else accept it?**
+
+### I would not accept the thesis if it only provided
+
+- top-level exact-match plots with weak manual auditing,
+- a judge-heavy story without calibration,
+- language anecdotes that do not survive multi-seed checks,
+- mechanistic language without stage localization,
+- or causal claims that remain broad, weak, and post-hoc.
+
+### I would accept the thesis if it provides all of the following
+
+1. **A real four-language confirmatory result**, not just Hindi/Telugu anecdotes.
+2. **Multi-seed stability** for the main behavioral claims.
+3. **Manual audit evidence** showing that the claimed failure modes are visible in raw examples and not just in derived metrics.
+4. **A calibrated verifier stack** whose disagreements with humans and deterministic metrics are explicitly reported.
+5. **At least one bounded mechanistic case study** that is localized enough to support a specific computational claim.
+6. **Explicit negative results and retired claims**, so the work is clearly not just story-fitting.
+
+### Manual-audit rule under this bar
+
+At any stage where a result looks cleaner or more surprising than expected, perform explicit spot-checks before upgrading the claim.
+
+A reusable helper for this now exists:
+
+```bash
+python3 experiments/build_manual_audit_packet.py \
+  --input path/to/neutral_filler_recency_controls.json \
+  --out-json notes/audit_packet.json \
+  --out-md notes/audit_packet.md
+```
+
+### Current gap to acceptance
+
+The project is not yet at the acceptance bar because it still needs:
+
+- the full four-language multi-seed panel,
+- the verifier calibration package,
+- and the next layer of mechanistic localization for `1B Hindi` and `1B Telugu`.
+
+That gap is exactly what the current thesis-scale program is meant to close.
