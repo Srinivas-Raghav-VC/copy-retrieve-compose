@@ -136,3 +136,4 @@
 - Added a reusable launcher `experiments/run_vm_four_lang_thesis_panel.sh` to run the 4-language `1B/4B × n_icl {8,64} × seeds {42,11,101}` helpful-vs-control panel on the shared VM and aggregate the resulting scores.
 - Rewrote `research/spec.md` around the new thesis identity: multilingual transliteration as a model organism for ICL regimes (copying, prompt-bank retrieval, nearest-neighbor retrieval, composition), with a 4-language confirmatory panel and bounded mechanistic case studies.
 - Launched the first thesis-scale background run (`proc_12`, `four-lang-thesis-panel`) using the new 4-language multi-seed VM script.
+- Added a durable manual-audit policy to `autoresearch.md`: manual spot-checks are now required after seed-level panel outputs, before trusting verifier/judge outputs, before escalating to mechanistic claims, and after bug fixes that could affect interpretation.

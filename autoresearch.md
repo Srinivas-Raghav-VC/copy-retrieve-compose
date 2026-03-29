@@ -538,6 +538,19 @@ The first thesis-scale campaign to launch is:
 - scope: `1B/4B × {Hindi, Telugu, Bengali, Tamil} × n_icl {8,64} × seeds {42,11,101}`
 - outputs root: `research/results/autoresearch/four_lang_thesis_panel/`
 
+### Manual audit policy
+
+Do not rely only on aggregates or automated labels.
+
+Manual spot-checks are now mandatory at the following checkpoints:
+
+1. after each seed-level four-language panel finishes,
+2. before trusting any verifier / judge output as a thesis-facing metric,
+3. before escalating a behavioral pattern into a mechanistic claim,
+4. after any bug fix that could change prompt construction, scoring, or artifact interpretation.
+
+Prefer small, explicit audit slices with saved notes over vague "looks good" judgments.
+
 ### Current decision rule
 
 Do **not** let the new broader mandate collapse into aimless sprawl.
