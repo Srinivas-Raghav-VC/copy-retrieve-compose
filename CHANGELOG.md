@@ -141,4 +141,5 @@
 - Tested that helper on the existing `1B Hindi × n_icl=64` artifact and confirmed it surfaces the expected mix of source-copy and bank-copy failure cases.
 - Also tested the helper on `4B Telugu × n_icl=64` and confirmed it surfaces the expected mix of clear helpful wins plus many non-bank near-miss continuations.
 - Updated `experiments/run_vm_four_lang_thesis_panel.sh` so future thesis-panel runs automatically emit manual audit packets for every downloaded cell after each seed completes.
+- Patched `Draft_Results/paper2_fidelity_calibrated/run_neutral_filler_recency_controls.py` to avoid noisy `Mean of empty slice` warnings when a summary field is entirely NaN; future reruns will now surface cleaner logs without changing the metric semantics.
 - Extended `research/spec.md` with an explicit reviewer acceptance bar describing what would and would not be thesis-acceptable evidence.
