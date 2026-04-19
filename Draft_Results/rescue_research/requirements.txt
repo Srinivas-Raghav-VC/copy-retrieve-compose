@@ -1,0 +1,4 @@
+# Rescue research pipeline reuses the parent workspace deps.
+# Install from workspace root: pip install -r requirements.txt
+# Then run: python -m rescue_research.run --stage full
+-r ../requirements.txt

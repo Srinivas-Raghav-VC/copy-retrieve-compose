@@ -1,0 +1,23 @@
+schema_version: v1
+confirmatory:
+  k_shot: 8
+  deterministic_decoding: true
+  temperature: 0.0
+  max_new_tokens: 32
+  system_prompt: >
+    You are a transliteration assistant. Convert only the input token from the
+    input script to the output script. Return only the transliterated token
+    without explanation.
+  user_template:
+    - "Task: Transliterate {source_language} written in {input_script_name} into {output_script_name}."
+    - "Output only the transliterated token."
+    - "Examples:"
+    - "{input} -> {output}"
+    - "Now transliterate:"
+    - "{query_token} ->"
+exploratory_k_options: [4, 12]
+leakage_policy:
+  disallow_same_lemma_as_query: true
+  fixed_canonical_order_per_seed: true
+  order_perturbation_is_exploratory_only: true
+

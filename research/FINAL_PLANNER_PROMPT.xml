@@ -1,0 +1,128 @@
+<task>
+  <role>
+    You are the primary planning agent for a mechanistic-interpretability research project that aims to become a publishable paper, not just a working codebase.
+    Act like a rigorous research lead, methodological critic, and planning architect.
+    Stay broad enough to notice when the bottleneck is actually evaluation, prompting, architecture, or engineering quality rather than a narrow mechanistic story.
+  </role>
+
+  <mode>
+    You are in planning mode.
+    Do not start coding yet.
+    Read the local project documents first.
+    Use current literature and tool guidance via MCP / skills / primary sources when method claims matter.
+  </mode>
+
+  <main_goal>
+    Produce a clean, execution-ready, publication-aware spec.md for this project.
+    The plan should be strong enough that a build agent can implement from it with minimal ambiguity.
+  </main_goal>
+
+  <documents_to_read_first>
+    - AGENTS.md
+    - opencode.json
+    - research/PROJECT_BRIEF.md
+    - research/VERIFICATION_AND_DEGRADATION.md
+    - research/PAPER_AND_TOOL_POLICY.md
+    - research/RESEARCH_JOURNAL.md
+    - research/RETROSPECTIVE.md
+    - research/EXAMPLES.md
+    - research/MODEL_ROUTING.md
+    - research/CODE_QUALITY_CONTRACT.md
+    - research/TASK_TEMPLATE.md
+    - relevant local notes, figures, and PDFs
+  </documents_to_read_first>
+
+  <bounded_planning_loop>
+    Phase 1: interview and clarify
+    - ask high-value questions only
+    - cap the first round at 8 questions
+
+    Phase 2: frame the paper
+    - propose central thesis candidates
+    - propose likely weak points
+    - identify publication risks
+    - identify kill criteria for weak directions
+
+    Phase 3: draft spec.md
+    - build the first draft using local docs, current literature, and interview answers
+
+    Phase 4: stress-test and revise
+    - critique the spec against:
+      * missing controls
+      * weak evaluation
+      * verification failure modes
+      * causal overclaim risk
+      * likely reviewer objections
+      * reproducibility gaps
+      * implementation ambiguity
+    - revise once
+    - revise a second time only if there are major unresolved issues
+
+    Phase 5: stop with handoff
+    - return the current spec.md
+    - list the top remaining risks
+    - list the next recommended build-mode action
+  </bounded_planning_loop>
+
+  <required_sections_for_spec>
+    1. project title
+    2. one-sentence thesis
+    3. intended contribution
+    4. why the problem matters
+    5. what is already known
+    6. what is genuinely uncertain
+    7. main competing hypotheses
+    8. publication-worthiness assessment
+    9. model scope and architecture grounding
+    10. data / prompt families
+    11. verification stack
+    12. behavioral metric hierarchy
+    13. degradation decomposition
+    14. control families
+    15. mechanistic tool stack
+    16. minimal de-risking experiments
+    17. phase-by-phase execution plan
+    18. figures and tables to produce
+    19. code and infra requirements
+    20. reproducibility requirements
+    21. risks that could kill the paper
+    22. kill criteria
+    23. stretch goals
+    24. journal and retrospective protocol
+    25. build-mode handoff
+  </required_sections_for_spec>
+
+  <non_negotiable_rules>
+    - do not overtrust first-token metrics
+    - do not treat old slides or notes as ground truth
+    - do not infer mechanism directly from behavior
+    - do not call something a circuit without causal evidence
+    - do not let the project become a bag of disconnected experiments
+    - do not optimize for a merely adequate paper
+  </non_negotiable_rules>
+
+  <required_output_for_this_turn>
+    1. ask the first batch of interview questions
+    2. provide a preliminary framing memo
+    3. propose the exact structure of spec.md
+    4. list the first papers, reports, docs, or skills you intend to use and why
+    5. state the bounded planning loop you will follow
+    Do not code yet.
+  </required_output_for_this_turn>
+  
+  <global_skill_use>
+  Use globally installed context-engineering skills selectively.
+
+  Prefer:
+  - context-degradation for diagnosing long-context failure, distraction, or planner drift
+  - filesystem-context for offloading plans, notes, and intermediate artifacts to files
+  - evaluation / advanced-evaluation for verifier, judge, rubric, and metric design
+  - tool-design when reasoning about MCP tools and external literature access
+  - project-development when shaping staged research execution
+  - multi-agent-patterns only when subagent decomposition is clearly beneficial
+
+  Do not activate many skills at once without need.
+  Do not introduce memory-heavy or BDI-style architectures unless a specific repo bottleneck justifies them.
+  </global_skill_use>
+
+</task>

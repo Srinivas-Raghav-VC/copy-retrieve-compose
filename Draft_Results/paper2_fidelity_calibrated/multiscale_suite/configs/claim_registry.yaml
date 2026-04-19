@@ -1,0 +1,26 @@
+claims:
+  - id: C1
+    label: premise-gap-exists
+    evidence_family: premise_behavior
+    strength_target: high
+    applies_to: [270m, 1b, 4b]
+  - id: C2
+    label: proxy-is-partial
+    evidence_family: proxy_bridge
+    strength_target: high
+    applies_to: [1b, 4b]
+  - id: C3
+    label: 1b-content-specific-rescue
+    evidence_family: logit_lens
+    strength_target: high
+    applies_to: [1b]
+  - id: C4
+    label: 1b-coupled-attention-mlp
+    evidence_family: component_patching
+    strength_target: high
+    applies_to: [1b]
+  - id: C5
+    label: scale-differences-are-real
+    evidence_family: scale_synthesis
+    strength_target: moderate
+    applies_to: [270m, 1b, 4b]

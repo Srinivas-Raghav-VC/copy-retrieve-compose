@@ -1,0 +1,30 @@
+schema_version: v1
+alpha: 0.05
+hypotheses:
+  - id: "H1"
+    statement: "DeltaPE > 0 for selected features vs corrupt control"
+  - id: "H2"
+    statement: "Necessity ablation decreases rescue vs intact ICL"
+  - id: "H3"
+    statement: "Mediated component is positive and directionally aligned with H1/H2"
+confirmatory_correction: "holm"
+exploratory_correction: "benjamini_hochberg"
+primary_estimands:
+  - "E1_delta_pe"
+  - "E2_necessity_drop"
+  - "E3_mediated_component"   # NIE direction only; nie_ratio is exploratory (nonlinear decomposition)
+practical_floor:
+  metric: "E1_delta_pe"
+  minimum: 0.015
+pair_directionality_min_pairs: 3
+
+# Feature selection strategy for patching experiments.
+# topk_abs_delta selects features by |ICL_activation - ZS_activation|,
+# which is principled per Zhang & Nanda 2023 — identifies features
+# specifically activated by rescue rather than generally active features.
+feature_selection: "topk_abs_delta"
+
+# Mediation band: run causal mediation at top-K layers from layer sweep (not just best).
+# Justification: layer sweep ranks by PE-corrupt; top-K band allows sensitivity analysis
+# and robustness of NIE across neighboring layers (STATS_APPENDIX).
+mediation_band_size: 3

@@ -1,0 +1,12 @@
+{
+  "name": "hard_4b",
+  "seed": 456,
+  "n_icl": 64,
+  "n_select": 300,
+  "n_eval": 200,
+  "pairs": [
+    "aksharantar_hin_latin",
+    "aksharantar_tel_latin"
+  ],
+  "purpose": "Reserve for difficult 4B slices if the full-set premise gap is too weak."
+}

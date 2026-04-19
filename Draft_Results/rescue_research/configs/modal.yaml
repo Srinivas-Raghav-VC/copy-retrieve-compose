@@ -1,0 +1,18 @@
+schema_version: v1
+backend: "modal"
+resources:
+  gpu: "A100-80GB"
+  cpu: 8
+  memory_gb: 64
+  timeout_minutes: 180
+retry:
+  attempts: 2
+  backoff: "exponential"
+  base_delay_seconds: 1.5
+job_unit: "pair_model_seed"
+checkpoints:
+  enabled: true
+  path: "artifacts/audit/checkpoints"
+cost_guardrails:
+  pause_exploratory_when_confirmatory_pending: true
+

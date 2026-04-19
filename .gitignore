@@ -1,0 +1,66 @@
+# --- Local agent / workspace state ---
+.cache/
+.opencode/
+.pi/
+.ralph/
+.sisyphus/
+
+# --- Virtual environments ---
+.venv/
+.venv*/
+venv/
+
+# --- Python caches ---
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# --- Local notebooks / session dumps / debug ---
+feynman-session-*.html
+*.nohup.log
+run_debug.py
+
+# --- Generated manuscript build artifacts ---
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+
+# --- Generated research artifacts (keep source, not bulky outputs) ---
+outputs/
+notes/
+research/results/
+Draft_Results/results/
+Draft_Results/paper2_fidelity_calibrated/results/
+Draft_Results/rescue_research/results*/
+
+# --- Local paper / presentation trees ---
+Paper Template and Paper/
+
+# --- Local tool configs / scratch helpers ---
+opencode/
+opencode.json
+autoresearch.jsonl
+api.txt
+**/api.txt
+plan.md
+fix_*.py
+generate_clean_excalidraw.py
+
+# --- Large local data caches ---
+*.tar.gz
+
+# --- OS/editor noise ---
+.DS_Store
+Thumbs.db

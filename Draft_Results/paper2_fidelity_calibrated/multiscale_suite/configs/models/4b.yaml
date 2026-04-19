@@ -1,0 +1,9 @@
+model_key: 4b
+family: gemma-3
+hf_hint: google/gemma-3-4b-it
+context_tokens: 131072
+sliding_window: 1024
+role: scale-up comparison
+notes:
+  - Treat as a potentially knowledge-dominant regime.
+  - Hard subsets may be necessary if premise gaps are weak on the full set.

@@ -1,0 +1,12 @@
+{
+  "name": "anchor_v2",
+  "seed": 123,
+  "n_icl": 64,
+  "n_select": 300,
+  "n_eval": 200,
+  "pairs": [
+    "aksharantar_hin_latin",
+    "aksharantar_tel_latin"
+  ],
+  "purpose": "Split-sensitivity replication family for the strongest negative claims."
+}

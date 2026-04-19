@@ -1,0 +1,12 @@
+{
+  "name": "anchor_v1",
+  "seed": 42,
+  "n_icl": 64,
+  "n_select": 300,
+  "n_eval": 200,
+  "pairs": [
+    "aksharantar_hin_latin",
+    "aksharantar_tel_latin"
+  ],
+  "purpose": "Primary frozen split family for premise and scaling lanes."
+}

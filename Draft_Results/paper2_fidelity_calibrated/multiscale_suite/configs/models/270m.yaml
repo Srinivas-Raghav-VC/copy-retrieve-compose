@@ -1,0 +1,9 @@
+model_key: 270m
+family: gemma
+hf_hint: resolve-via-project-config
+context_tokens: null
+sliding_window: null
+role: floor-model contrast
+notes:
+  - Use for premise gating and scaling-floor comparisons.
+  - Do not force mechanistic symmetry if the premise gate fails.

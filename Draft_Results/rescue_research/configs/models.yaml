@@ -1,0 +1,30 @@
+schema_version: v1
+models:
+  - name: "270m"
+    role: "calibration_anchor"
+    confirmatory_required: false
+  - name: "1b"
+    role: "core_confirmatory"
+    confirmatory_required: true
+  - name: "4b"
+    role: "core_confirmatory"
+    confirmatory_required: true
+  - name: "12b"
+    role: "robustness_subset"
+    confirmatory_required: false
+transcoder:
+  compare_variants:
+    - "affine_skip"
+    - "skipless_or_non_affine"
+  acceptance_thresholds:
+    min_reconstruction_cosine: 0.80
+    max_reconstruction_rel_error: 0.50
+    min_feature_coverage_ratio: 0.0010
+    min_selected_feature_fraction: 0.0001
+    max_selected_feature_fraction: 0.0500
+    min_decoded_patch_norm_ratio: 0.0005
+  acceptance_checks:
+    - "reconstruction_fidelity_threshold"
+    - "activation_coverage_threshold"
+    - "sparsity_distribution_threshold"
+

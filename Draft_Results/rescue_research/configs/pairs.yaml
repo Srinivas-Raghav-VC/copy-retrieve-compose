@@ -1,0 +1,27 @@
+schema_version: v1
+locked_pairs:
+  - pair_id: "hindi_telugu"
+    family: "indic"
+    source_language: "Hindi"
+    source_script: "Devanagari"
+    target_script: "Telugu"
+    backups: ["hindi_kannada", "hindi_malayalam"]
+  - pair_id: "hindi_tamil"
+    family: "indic"
+    source_language: "Hindi"
+    source_script: "Devanagari"
+    target_script: "Tamil"
+    backups: ["hindi_bengali", "hindi_gujarati"]
+  - pair_id: "english_arabic"
+    family: "non_indic"
+    source_language: "English"
+    source_script: "Latin"
+    target_script: "Arabic"
+    backups: ["english_hebrew", "english_katakana"]
+  - pair_id: "english_cyrillic"
+    family: "non_indic"
+    source_language: "English"
+    source_script: "Latin"
+    target_script: "Cyrillic (Russian)"
+    backups: ["english_georgian", "english_devanagari"]
+

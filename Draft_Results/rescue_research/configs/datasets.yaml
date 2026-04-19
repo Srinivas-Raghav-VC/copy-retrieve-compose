@@ -1,0 +1,18 @@
+schema_version: v1
+external_data_root_env: RESCUE_DATA_ROOT
+
+# Optional external sources per pair. If left empty, ingestion uses:
+# 1) config_multiscript built-ins
+# 2) auto-discovery under $RESCUE_DATA_ROOT and data/transliteration/
+#
+# Example:
+# pair_sources:
+#   hindi_telugu:
+#     - type: file
+#       name: aksharantar_hi_te_train
+#       paths:
+#         - "data/transliteration/hindi_telugu.jsonl"
+#       url: "https://github.com/google-research-datasets/aksharantar"
+#       license: "CC BY 4.0"
+#       version_date: "2026-02-18"
+pair_sources: {}

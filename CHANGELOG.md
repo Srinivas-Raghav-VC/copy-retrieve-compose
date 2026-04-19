@@ -1,5 +1,199 @@
 # CHANGELOG
 
+## 2026-04-15 — ICML v29: caption-calibration and Hindi bridge strengthening pass
+- **Checked the live `v28` manuscript against another fresh technical review and fixed the points that were still actually present**:
+  - **Hindi token-level to akshara-level bridge strengthened using held-out item rows from `hindi_1b_practical_patch_eval.json`**:
+    - on the same 200-item held-out patch panel already used in the paper, the itemwise correlation between patch-induced `ΔL` and itemwise change in akshara-level first-entry correctness is `0.40`
+    - among the `119` baseline first-entry failures, the `51` rescued items have larger mean `ΔL` improvement than the `68` non-rescued failures (`+8.26` vs `+5.65`)
+    - added this directly to the Hindi mechanistic subsection so the token-level causal readout is now bridged to the paper's akshara-level early-start axis by more than just agreement counts
+  - **Caption-level Telugu claim calibration fixed**:
+    - Figure 4 / mechanism-bridge caption no longer says Telugu `resists static edits`
+    - it now states the bounded claim explicitly: within the tested full-state mean-shift family, the shared-prefix-conditioned oracle diagnostic does not rescue continuation-only outcomes
+  - **Telugu tested-family qualifier standardized more consistently across compressed summary language**:
+    - abstract and conclusion now both say `full-state mean-shift family` rather than the looser `static mean-shift family`
+    - the Telugu intervention subsection opening now refers explicitly to a `full-state mean-shift edit`
+    - bounded-summary wording in the limitations section now uses the same family label
+  - **Hindi summary wording aligned back to the same bounded localization standard used elsewhere**:
+    - the boundaries section now says `candidate compact near-output bottleneck under prompt-final alignment` rather than a more final-sounding `compact near-output bottleneck`
+  - **Related-work compression softened slightly**:
+    - replaced `broader less-editable bottleneck` with wording tied to the actually tested Telugu full-state mean-shift diagnostic
+- Compiled `v29` successfully via out-of-tree `tectonic` build, copied the validated PDF back into the repo, and promoted `v29` to canonical final
+
+## 2026-04-15 — ICML v28: review-calibration and terminology cleanup pass
+- **Checked the live `v27` manuscript against a fresh technical review and fixed the issues that were still actually present**:
+  - **Telugu competitor-definition caveat strengthened with exact mismatch rates from stored artifacts**:
+    - from `telugu_temperature_sweep.json`, on the 57-item helpful panel at `T=0.0`, the source-side top-1 heuristic competitor matches the actually copied exemplar on only `8/24` exact-copy cases
+    - from `prompt_composition_ablation.json`, on the 200-item helpful panel, the same top-1 heuristic matches on only `22/81` exact-copy cases
+    - added both numbers to the manuscript so the single-competitor nature of `\Delta \mathcal{L}_{\mathrm{div}}` is now quantified rather than only verbally caveated
+  - **Telugu negative intervention claim narrowed further**:
+    - renamed the subsection from `Static Patch Fails` to `Mean-Shift Patch Fails`
+    - replaced the broader `not amenable ...; a context-dependent corrector is a more viable hypothesis` sentence with a tighter within-family statement: the tested full-state mean-shift oracle diagnostic does not rescue continuation-only outcomes, but this does not rule out alternative static edit bases, objectives, or multi-site edits
+  - **Hindi first-step causal metric renamed more literally**:
+    - changed `target-vs-Latin logit gap` to `target-vs-majority-Latin/ASCII logit gap`
+    - updated all downstream references to match the actual `V_{Latin}` implementation, which can include ASCII digits/punctuation-only tokens
+  - **Two clarity fixes requested by review added**:
+    - main behavioral figure caption now explicitly states that akshara CER is normalized by gold length and not clipped to `[0,1]`, so gains above `1` are possible
+    - added an earlier in-text sentence after the stage-sensitive table stating that `CER_tail` is the direct late-axis metric and bank-copy is a narrower proxy unless stated otherwise
+- Compiled `v28` successfully via out-of-tree `tectonic` build, copied the valid PDF back into the repo, and promoted `v28` to canonical final
+
+## 2026-04-15 — ICML v27: item-level follow-up conditioning pass
+- **Used the stored item-level outputs to strengthen three reviewer-facing follow-up claims instead of only weakening the prose**:
+  - **Hindi token→akshara bridge added to main text from raw held-out patch items**:
+    - computed directly from `hindi_1b_practical_patch_eval.json`
+    - on the 200-item helpful held-out panel, `E_tok` and `E_ak` agree on `167/200` items (`83.5%`)
+    - disagreement breakdown added to the paper: `19` token-miss/akshara-hit and `14` token-hit/akshara-miss cases
+  - **k-shot late-attractor follow-up partially stage-conditioned from raw items**:
+    - computed Telugu exact bank-copy conditional on correct first akshara from `kshot_regime_sweep.json`
+    - rates are `0.43 / 0.40 / 0.40 / 0.74 / 0.20` at `k = 8 / 16 / 32 / 64 / 128` with eligible counts `21 / 20 / 25 / 31 / 25`
+    - main text now states that the `k=64` rise is not only an entry-expansion artifact
+  - **Prompt-composition and cross-family follow-ups partially stage-conditioned from raw items**:
+    - prompt-composition conditional exact bank-copy from `prompt_composition_ablation.json`:
+      - helpful `0.75` (n=108), similarity-front `0.73` (n=124), similarity-back `0.63` (n=43)
+      - main text now says the unconditional front/back contrast is partly entry-driven but not fully removed by conditioning
+    - cross-family Telugu conditional fuzzy bank-copy from the `cross_model_behavioral.json` files:
+      - Qwen 2.5 1.5B `0.121` (n=199)
+      - Qwen 2.5 3B `0.072` (n=180)
+      - Llama 3.2 3B `0.130` (n=200)
+      - main text now notes that because helpful `E_ak` is already near one in these rows, the unconditional proxy is less stage-mixed there than it first appears
+- Also fixed the remaining live reviewer issues still present in `v26`:
+  - removed the false manuscript-internal claim about `front/back/reversed checks shown here`
+  - finished cleaning the remaining stage-vs-depth `late` terminology drift
+  - softened top-level framing from `mechanistically localize` to `mechanistically analyze` / `mechanistic evidence`
+- Compiled `v27` successfully and promoted it to canonical final
+
+## 2026-04-15 — ICML v26: second artifact-grounded review response
+- **Checked the live `v25` manuscript against the later April 15 review and fixed the issues that were still actually present**:
+  - **Hindi token→akshara bridge partially closed from stored results**: computed agreement directly from `hindi_1b_practical_patch_eval.json` on the 200-item held-out helpful panel and added it to the paper: `E_tok` and `E_ak` agree on `167/200` items (`83.5%`), with `19` token-miss/akshara-hit and `14` token-hit/akshara-miss cases.
+  - **Removed the false internal claim about a shown reversed prompt-order check**: changed `front/back/reversed checks shown here` to `front/back-style checks shown here`.
+  - **Further demoted the k-shot late-attractor interpretation**: now described explicitly as `proxy-level supportive evidence, not stage-conditioned proof`.
+  - **Finished cleaning stage-vs-depth terminology drift**: replaced remaining network-depth uses of `late` with `high-layer` / `residual-site` / `near-output` where appropriate, including introduction, mechanistic section, conclusion, panel summary, and appendix caption.
+  - **Softened top-level mechanistic framing one more notch**: abstract now says `mechanistically analyze` instead of `mechanistically localize`; introduction contribution now says `mechanistic evidence` rather than over-strong localization wording.
+- **Used alpha to verify the cited comparison-set novelty framing remains honest**:
+  - `transliticl` (`2407.02320`) does not separate early target start from later continuation drift as explicit evaluation axes.
+  - `romanlens` (`2502.07424`) does not use this early-vs-late decomposition either.
+  - `scriptbarrier` (`2603.17070`) focuses on broader cross-script reasoning/knowledge transfer, not separate early-start vs continuation metrics.
+- Compiled `v26` successfully and promoted it to canonical final
+
+## 2026-04-15 — ICML v25: code/result-grounded correction pass
+- **Read the actual experiment code and stored result artifacts after the v23/v24 review-response edits and corrected three implementation-facing mismatches**:
+  - Verified Hindi patch construction directly in `experiments/hindi_1b_practical_patch_eval.py` and `hindi_1b_practical_patch_eval.json`:
+    - per-item mean-delta construction uses each item's own prompt-final aligned position
+    - selected alpha remains `2.0`
+    - held-out Hindi numbers still match manuscript (`CER 0.8267 -> 0.7029`, `ΔCER +0.1238`, `ΔE_ak +0.25`)
+  - Verified Telugu oracle patch construction directly in `experiments/telugu_continuation_practical_patch_eval.py` and `telugu_continuation_practical_patch_eval.json`:
+    - the shared gold-bank prefix is appended to **all** conditions, including the zero-shot donor
+    - selected alpha remains `0.25`
+    - held-out continuation-only negative result still matches manuscript (`continuation EM 0.0`, `Δ continuation CER improvement -0.0026`, `Δ first-divergence gap -0.139`)
+  - Verified metric implementation in `Draft_Results/paper2_fidelity_calibrated/eval_utils.py` and corrected the paper to match code exactly:
+    - `CER_tail` does **not** exclude one-akshara items; when the gold tail is empty it returns `0.0` if prediction also has no tail and `1.0` if extra tail material is generated
+    - the Latin-mask helper counts Unicode-LATIN characters and also any ASCII characters as Latin, so digits/punctuation-only ASCII tokens can enter `V_Latin`
+- **Concrete manuscript corrections from this code-grounded pass**:
+  - fixed the `CER_tail` empty-suffix definition to match implementation
+  - fixed the Telugu donor-conditioning sentence to state that zero-shot donors are collected under the same oracle-appended shared-prefix setup
+  - fixed the `V_Latin` implementation paragraph to reflect the actual script-classifier behavior
+- Compiled `v25` successfully and promoted it to canonical final
+
+## 2026-04-15 — ICML v24: Second full review response
+- **Created `v24` from `v23` and addressed all points from the second April 15 technical review**:
+  - **(Technical-1/Priority-1) Hindi localization language softened**: Changed "localized bottleneck" to "candidate bottleneck under prompt-final alignment" throughout abstract, introduction, contribution list, and conclusion. The paper now correctly communicates that the L25 result is suggestively rather than cleanly localized because the same-length donor control has not been run.
+  - **(Technical-2/Priority-2) Intervention contrast reframed**: Rewrote contribution item 3 and conclusion to explicitly state that the Hindi and Telugu interventions are "separate within-case results rather than a controlled tractability comparison" because they differ in edit basis, conditioning, and evaluation protocol. Removed language inviting a direct compactness-vs-breadth causal inference.
+  - **(Technical-3/Priority-3) Per-item averaging notation made explicit**: Added explicit per-item averaging formula for Hindi patch means ($\bar c = \frac{1}{N}\sum_i c^{(i)}_{p^{(i)}}$). For Telugu, added explicit statement that zero-shot donor states are NOT collected under the oracle-appended shared-prefix setup but from bare zero-shot runs.
+  - **(Technical-4/Priority-4) Cross-family/prompt-order demoted to hypothesis-generating**: Added explicit "hypothesis-generating rather than direct evidence" / "hypothesis-generating rather than confirmatory" labels to both the cross-family and prompt-composition paragraphs.
+  - **(Technical-5) "Late" terminology drift fixed**: Reserved "early/late" for behavioral stage only. Replaced "late MLP site", "compact late bottleneck", "late residual state" with "near-output MLP site", "near-output bottleneck", "high-layer residual state" when referring to network depth.
+  - **(Editorial-1) "Dravidian scripts" → named scripts directly**: Changed to "Telugu (Telugu script), Tamil (Tamil script), and Bengali (Bengali script)".
+  - **(Editorial-2) V_Latin definition cleaned**: Removed "Latin/ASCII" encoding confusion; now says "majority-Latin (by Unicode script property)".
+  - **(Editorial-3) Abstract sentences split for caveat visibility**: Separated the Hindi positive result from the Telugu non-parallel oracle diagnostic into distinct sentences. Moved "not parallel" caveat to the first clause. Added explicit "should not be read as a controlled comparison of intervention tractability" sentence.
+  - **(External-1) Literature claim narrowed**: Changed from "to our knowledge" to "in the specific papers we cite" with explicit "We have not conducted an exhaustive survey" disclaimer.
+  - **(External-2) Bibliography metadata verified**: Spot-checked all 2025-2026 arXiv entries against alphaXiv; titles, authors, and IDs confirmed correct.
+- Compiled `v24` successfully; promoted to canonical final
+- All 28 verification needles (8 from v23 + 20 new) pass automated check
+
+## 2026-04-15 — ICML v23: Full review response
+- **Created `v23` from canonical final and addressed all 8 review points from the April 13 technical review**:
+  - **(Point 1) k-shot/cross-family/prompt-comp unconditional bank-copy confound**: Added explicit acknowledgment that bank-copy rates are unconditional across all late-attractor-supporting panels. Added disproportionality argument for k-shot (bank-copy rises 130% vs E_ak rises 24%). Added unconditional-rate caveats to cross-family and prompt-composition discussions. Suggested conditional bank-copy as future strengthening.
+  - **(Point 2) E_tok vs E_ak bridging gap**: Added explicit paragraph in Hindi mechanistic section noting we have not formally quantified the token-to-akshara agreement rate and flagging this as a limitation.
+  - **(Point 3) CER_tail empty-suffix**: Added explicit statement that one-akshara gold items with correct first akshara are excluded from CER_tail mean rather than assigned trivial zero.
+  - **(Point 4) Hindi activation-patching length confound**: Added full paragraph acknowledging the prompt-length/positional confound, noting corrupt provides partial same-length evidence, and flagging helpful←corrupt localization sweep as the definitive control not yet run.
+  - **(Point 5) Block-vs-tensor descriptor drift**: Standardized to canonical phrase "L25 MLP pathway (localized at MLP output; edited at pre-down-projection channels)" in abstract, introduction, and conclusion.
+  - **(Point 6) Telugu negative result overgeneralized**: Added "within the tested static mean-shift family" immediately adjacent to the negative conclusion in both abstract and conclusion.
+  - **(Point 7) Late-drift/bank-copy/continuation interchangeability**: Added full proxy-hierarchy paragraph at the start of Section 7 defining CER_tail as the direct metric, bank-copy as a specific proxy, and "late drift" as the broader interpretive label.
+  - **(Point 8) Literature novelty claim**: Narrowed to "to our knowledge, in the cited transliteration-ICL and romanization literature" with explicit citation backing.
+  - **(Additional) Extended formal limitations list**: Added token-to-akshara agreement quantification and same-length localization control to the explicit limitations enumeration.
+- Compiled `v23` successfully; promoted to canonical final
+- All 14 verification needles pass automated check
+
+## 2026-04-08
+- **Presentation fixes** (`Final_Honors_Presentation/presentation.tex`):
+  - Fixed page 19 (Hindi Intervention slide): reduced image height and padding to prevent content cutoff
+  - Fixed page 25 (Channel Selection slide): reduced font sizes to scriptsize to fit all content blocks
+  - Refined page 33 wording to sound more professional and claim-bounded
+  - Recompiled and visually verified updated page 33
+  - All three updated slides now display fully without overflow
+- **Report title page fix** (`Final_Honors_Report/report.tex`):
+  - Reduced font sizes and spacing throughout title page to fit on single page
+  - Title now 20pt (was 22pt), subtitle now 16pt (was 18pt)
+  - Reduced logo width and various vertical spacing
+  - Declaration page now correctly starts on page 2 (roman numeral ii)
+- **Technical review memo polish** (`outputs/icml2026_v3_technical_review_2026-04-08.tex`):
+  - Rewrote the review into a cleaner, more professional memo while preserving the substantive findings
+  - Fixed internal style issues (typo, terminology consistency, over-strong wording, process-jargon phrasing)
+  - Clarified that the memo targets manuscript v3 specifically and tightened recommendation language
+  - Added minor LaTeX polish (`microtype`, `xurl`, `\emergencystretch`) and compiled successfully to PDF
+- **Second technical review memo polish** (`outputs/icml2026_v3_technical_review_2026-04-09.tex`):
+  - Polished the April 9 review draft into a cleaner v3-specific technical memo with tighter claim calibration
+  - Tightened opening scope language, standardized reviewer tone, and reduced internal-style references in table mentions
+  - Preserved the substantive review findings on Telugu specification, statistical calibration, Latin-competitor boundary cases, Marathi scope, and cross-family wording
+  - Added minor LaTeX polish and compiled successfully to PDF
+- **ICML paper updated from April 9 review** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v5.tex`):
+  - Created `v5` from `v4` and applied the remaining wording/method-specification fixes from the later technical review
+  - Added exact in-paper definitions for Telugu nearest-bank selection, fuzzy bank-copy (`0.85` threshold), and similarity-front/back ordering
+  - Tightened `V_{Latin}` wording with no-letter / mixed-script edge-case policy text
+  - Added an explicit evidence-tier / exploratory-vs-confirmatory note in Methods and removed manuscript-level p-value emphasis from abstract/localization prose
+  - Replaced over-strong Marathi wording with targeted same-script diagnostic wording and tightened cross-family contribution wording
+  - Added concrete temperature-sweep bank-copy rates for Telugu and standardized regime vocabulary toward `retrieval-like late drift`
+  - Compiled `v5` successfully and visually spot-checked the modified pages
+- **ICML paper updated again from follow-up review** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v6.tex`):
+  - Created `v6` from `v5` to address the new review's remaining concerns about Telugu retrieval robustness and stage-table interpretation
+  - Added a small target-side robustness check for Telugu exact bank copies and saved the analysis artifacts in `outputs/telugu_similarity_robustness_2026-04-09.{json,md}`
+  - Updated the paper to report that exact bank copies remain concentrated under both source-side and target-side similarity rankings in the 30-item helpful panel
+  - Clarified in the stage-sensitive table caption that exact `Bank_help` should be read as a lower-bound proxy for the broader late-drift regime
+  - Removed leftover generic methods wording about reported p-values now that the manuscript no longer foregrounds them
+  - Compiled `v6` successfully and visually spot-checked the modified pages
+- **ICML paper updated to reviewer-proof `v7`** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v7.tex`):
+  - Created `v7` from `v6` to address the still-live review concerns rather than the stale ones from older draft references
+  - Tightened the early-axis language throughout the paper toward `first-akshara correctness` / `early target start` and made the stricter operationalization explicit in the introduction and metrics
+  - Added missing implementation-facing clarifications: `A_y` is now defined as the akshara sequence of string `y`, and Eq. (2) now states that only the chosen layer-position activation is transplanted while the rest of the run stays on the helpful trajectory
+  - Quantified the held-out Telugu null intervention in the main text using the existing 191-item review panel (`L26_layer_output`, `alpha=0.25`), including the near-zero CER change and the negative first-divergence-gap shift
+  - Replaced the ambiguous `improves Hindi CER by 15%` wording with explicit absolute and relative change text
+  - Added reproducible follow-up summary artifacts via `experiments/summarize_icml_v7_followups.py`, saved to `outputs/icml_v7_followup_summaries_2026-04-09.{json,md}`
+  - Exposed previously prose-only follow-ups in the appendix:
+    - cross-family table now includes exact/fuzzy helpful-condition bank-copy columns
+    - Telugu prompt-composition ablation now has its own appendix table
+    - small Hindi patch safety audit now has a compact appendix table with task definitions, `n`, and EM intervals
+  - Softened Marathi and cross-family interpretation wording one notch further to keep the evidentiary hierarchy explicit
+  - Compiled `v7` successfully and visually spot-checked the modified main-text and appendix pages
+- **ICML paper updated again to reviewer-proof `v8`** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v8.tex`):
+  - Created `v8` from `v7` to address the remaining review concerns about asymmetric axis operationalization, unshown `k`-shot evidence, Telugu patch specification, and small-audit wording
+  - Added a direct late-axis metric to the paper: `CER_tail`, defined as continuation akshara CER conditioned on a correct first akshara
+  - Reworked the stage-sensitive main-text table to report `E_ak`, `CER_tail`, and exact prompt-bank copy so the second axis is no longer purely proxy-defined
+  - Added an explicit definition of the Telugu `first-divergence gold-vs-bank gap` metric in Methods
+  - Added an explicit Telugu static-patch equation in the intervention section for the full residual-state `L26_layer_output` mean-shift patch and stated how `alpha` is selected
+  - Added a reproducible stage-axis and `k`-shot summary script (`experiments/summarize_icml_v8_axes_kshot.py`) with saved outputs at `outputs/icml_v8_axes_kshot_summaries_2026-04-09.{json,md}`
+  - Added an appendix `k`-shot sweep table and aligned the main-text `k`-sweep paragraph to the actual fixed-split Hindi/Telugu artifact numbers
+  - Standardized residual `first-entry` wording to `first-akshara correctness` and softened the small safety-audit phrasing to `suggests off-task degradation`
+  - Compiled `v8` successfully and visually spot-checked the updated main-text and appendix pages
+
+## 2026-04-07
+- **ICML workshop draft prose revision** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v4.tex`):
+  - Fixed choppy sentence patterns throughout the paper
+  - Combined short declarative sentences into better-flowing longer sentences
+  - Replaced awkward "This is..." / "It is..." constructions with more natural phrasings
+  - Converted many full-stop sentence pairs into dash- or semicolon-joined constructions where appropriate
+  - Improved transitions between paragraphs and sections
+  - Made prose read more like a professional paper rather than compressed notes
+  - Preserved all technical content while improving readability
+  - Recompiled and visually verified all seven pages
+
 ## 2026-03-27
 - Initialized Loop 1 autoresearch for the honors transliteration project.
 - Fixed the plan around a bounded cross-scale behavioral anchor rather than open-ended score chasing.
@@ -30,6 +224,74 @@
 - `4b × Hindi` is already strong under explicit-ZS and gets only a moderate boost from ICL (`0.300 -> 0.360` EM), consistent with reduced ICL dependence once the base capability is present.
 - Loop 1 therefore achieved its behavioral-goal milestone: we now have a structured cross-scale anchor landscape rather than noise.
 - Recommended next step: move to a targeted robustness / control phase centered on `4b × Telugu` (positive anchor) and `1b × Hindi` (high-N fragility anchor), using low-shot vs high-shot and helpful-vs-control comparisons.
+
+## 2026-04-05
+- Polished the conference-paper figure set after visual QA feedback.
+- Enlarged Figure 3 in `gemma_1b_icl_paper_conference_v1.tex` and removed the extra baseline rules from `fig_behavioral_regime_summary_tikz.tex` so the two-panel regime map reads more cleanly on the page.
+- Removed the distracting bottom separator rules from `fig_cross_family_behavior_tikz.tex` so Figure 8 no longer shows the extra gray line beneath each `Hin-8 / Hin-64 / Tel-8 / Tel-64` block.
+- Reworked the Figure 9 prompt-composition plot generator in `experiments/plot_final_paper_figures.py`: shorter labels, connector lines, tighter axis titles, and cleaner right-panel annotation spacing.
+- Regenerated the paper figure assets, recompiled `Paper Template and Paper/Paper/gemma_1b_icl_paper_conference_v1.pdf`, and visually rechecked the relevant pages (Figures 3, 8, and 9).
+- Followed up on a Figure 3 readability bug: moved the bottom language labels to render after the heatmap cells and adjusted their placement so `Hindi` / `Marathi` / the other x-labels are fully visible in the conference PDF.
+- Replaced the conference Figure 9 with a cleaner native TikZ version that shows only the four representative prompt variants (`helpful`, `similarity-front`, `similarity-back`, `corrupt`) to avoid reviewer-facing label/marker clutter from the full prompt-variant set.
+- Performed a major rewrite of the Honors presentation (`Paper Template and Paper/Final_Honors_Presentation/presentation.tex`) with:
+  - Significantly deeper first-principles explanations throughout
+  - Clear narrative arc from SAE failure → pivot → two-axis discovery → mechanisms
+  - Intuitive analogies for why Hindi bottleneck is compact (ridge/valley) vs Telugu is distributed (thermostat drift)
+  - More explicit causal reasoning about why same-script helps entry more than continuation
+  - Better structured slides with clearer takeaways
+  - End-to-end story that reads as a coherent research journey
+- Fixed presentation slide overflow issues on slides 7, 11, 14, 15, 16, 18, 19, 20, 21, 22:
+  - Condensed content to fit within slide boundaries
+  - Fixed overlapping "Pivot" label on slide 7
+  - Simplified text and tables to avoid overflow
+- Updated email to srinivas22bcs16@iiitkottayam.ac.in
+- Removed "First understand. Then control." from summary slide
+- Expanded the Honors presentation into a more self-contained technical walkthrough:
+  - Added a metrics explainer slide clarifying Exact Match, CER, first-token target rate, and bank-copy rate with concrete examples
+  - Reworked the Marathi slide to make the same-script-vs-continuation distinction much clearer
+  - Added an explicit activation-patching visualization and explanation of the causal readout logic
+  - Added a slide explaining why an MLP bottleneck can dominate even in an ICL task that is upstream attention-fed
+  - Added a channel explainer plus the held-out pair-selection evidence for Hindi channels `5486` and `2299` (including the top-4 candidates and pair scores)
+  - Added a full end-to-end Hindi mechanism slide with before/after patch numbers showing entry rescue vs residual continuation error
+  - Added a writer-head explainer plus Telugu writer-head evidence (`L18H0`, `L18H2`, `L19H1`) and grouped-head probe result
+  - Added a full end-to-end Telugu mechanism slide with the distributed late-band story and final-site evidence
+  - Reworked cross-family validation to explicitly separate behavioral generalization from mechanistic non-generalization
+  - Added a "What is the contribution, exactly?" slide clarifying diagnosis vs partial repair vs open problems
+- Added workshop-positioning polish for the Honors presentation:
+  - Updated the review date to April 2026
+  - Added a title-slide note that the work is being prepared as a claim-bounded submission to the ICML 2026 Mechanistic Interpretability Workshop
+  - Added the same workshop target, in a more understated way, to the closing slide
+- Ported the paper draft into the official ICML 2026 LaTeX format under `Paper Template and Paper/Paper/icml2026/`:
+  - `gemma_1b_icl_paper_icml2026_workshop_v1.tex`
+  - `gemma_1b_icl_paper_submission_8plus2_icml2026_v1.tex`
+  - Both compile successfully in anonymous review mode with the ICML style
+- **Major professional rewrite of ICML workshop draft (V4)** applying ML paper writing best practices:
+  - Rewrote abstract using Farquhar's 5-sentence formula: Achievement → Why hard → How → Evidence → Best number
+  - Restructured introduction with clear What/Why/So What pillars and numbered contributions
+  - Applied Gopen & Swan sentence-level clarity: subject-verb proximity, stress position, old-before-new
+  - Eliminated hedging language per Lipton: removed "may", "can", "somewhat", "appears to"
+  - Used action verbs per Perez: "We analyzed" not "We performed analysis"
+  - Deleted filler words: "actually", "basically", "essentially", "quite"
+  - Removed awkward run-in paragraph headings and dash-heavy prose that looked unprofessional in ICML two-column layout
+  - Expanded the draft selectively to improve paper-like readability: stronger intro motivation, clearer task/metric rationale, fuller behavioral-to-mechanistic transitions, and a more explicit bounded-claims framing
+  - Repositioned the Gemma architecture figure back into the Models section to reduce float-related layout weirdness around the Mechanistic Contrast section
+  - Recompiled and visually rechecked the updated PDF; current version is 7 pages total, still under the 8-page workshop limit
+  - Added more paper-style detail in the highest-value places: stronger protocol/statistics wording, a clearer figure-reading paragraph, a stronger behavioral-to-mechanistic bridge, and a dedicated `Related Work` section
+  - Cleaned citation hygiene by explicitly citing Gemma 3 in the model section and removing uncited bibliography entries from the manual reference list
+  - Ran two reviewer passes with the `reviewer` agent; addressed the highest-value issues it flagged (professional tone, positioning/Related Work, citation targeting, and protocol clarity)
+  - File: `Paper Template and Paper/Paper/icml2026/gemma_1b_icl_paper_submission_8plus2_icml2026_v4.tex`
+- Tightened the ICML workshop draft into a cleaner, page-budget-respecting submission candidate:
+  - Created `Paper Template and Paper/Paper/icml2026/gemma_1b_icl_paper_submission_8plus2_icml2026_v2.tex`
+  - Removed the appendix entirely for the current workshop version
+  - Cut the overlong predictive / prior-work material into a shorter `Boundaries and Broader Checks` section plus a tighter conclusion
+  - Removed the overflowing phase-map table and the Telugu practical-patching table that were causing visual/page-layout problems
+  - Enlarged key figures (notably the teaser and behavioral regime figure) and restored the Hindi intervention figure to a cleaner in-body placement
+  - Fixed the ICML running header so pages now show a short running title instead of `Title Suppressed Due to Excessive Size`
+  - Recompiled and visually rechecked the new PDF; it is now 9 total pages with references starting on page 8, so the main body fits within the workshop's 8-page limit
+- Performed a major rewrite of key Honors report chapters with the same deep, first-principles explanatory style:
+  - `chapters/chapter5.tex` (Behavioral Results): Added deep explanations of WHY entry and continuation are separable, intuitive analogies, and clearer causal reasoning for each language's pattern
+  - `chapters/chapter6.tex` (Mechanistic Analysis): Added first-principles explanations of why Hindi bottleneck is compact (categorical routing → sharp boundary) vs Telugu is distributed (ongoing competition → gradual drift), with ball/ridge and boat/drift analogies
+  - `chapters/chapter8.tex` (Discussion): Synthesized findings into explicit first-principles understanding with claim status table, clear separation of what is established vs supported vs speculative
 
 ## 2026-03-29
 - Started Loop 2 on a fresh branch: `autoresearch-loop2-vm-controls`.
@@ -159,3 +421,797 @@
   - alphaXiv-backed patching best practices and cautions,
   - and a repo-backed readiness map of which local mechanistic scripts are ready now versus exploratory.
 - Extended `research/spec.md` with an explicit reviewer acceptance bar describing what would and would not be thesis-acceptable evidence.
+- Re-read the durable planning / evidence artifacts (`research/spec.md`, `research/RESEARCH_JOURNAL.md`, `research/RETROSPECTIVE.md`, `outputs/loop2_failure_modes_2026-03-29.md`, `outputs/thesis_strategy_grander_goal_2026-03-29.md`, `outputs/mechanistic_technique_playbook_and_fast_direction_2026-03-29.md`, `outputs/ranked_problem_discovery_2026-03-27.md`, `outputs/honors_cross_scale_understanding_frame_2026-03-27.md`) and refreshed project memory before choosing the next mechanistic move.
+- Added targeted alphaXiv grounding on multilingual internal representations and Romanization / English-centric intermediates:
+  - `RomanLens` (`2502.07424`)
+  - `Separating Tongue from Thought` (`2411.08745`)
+  - `Do Multilingual LLMs Think In English?` (`2502.15603`)
+  - plus direct re-checks of `Contextualize-then-Aggregate` (`2504.00132`) and `Competition Dynamics Shape Algorithmic Phases of ICL` (`2412.01003`).
+- Current planning conclusion after that review: literature grounding is now sufficient to begin **bounded mechanistic work** without pretending the literature review is globally complete.
+- Exact methodological decision: start with teacher-forced target-vs-competitor tracing for `1B Hindi`, continuation-localized gold-vs-bank tracing for `1B Telugu`, and matched continuation localization for `4B Telugu`; keep transcoders / attribution graphs secondary until the causal story is cleaner.
+- Abstract project frame remains: transliteration as a model organism for ICL regimes, with scale changing the balance between copying, prompt-bank retrieval, nearest-neighbor retrieval, and composition.
+- Remaining non-mechanistic blocker is now narrow: finish `seed101` for the four-language confirmatory panel so the final thesis-wide behavioral map is complete.
+- Repaired the `1B Hindi` mechanistic localizer after finding two real implementation bugs: (1) the localizer was not using the exact audited split/prompt path, and (2) the final hidden state for Gemma 3 text was being passed through the final norm **twice** before unembedding.
+- Verified the second bug directly on the VM by inspecting installed `transformers` source for `Gemma3TextModel.forward` / `Gemma3ForCausalLM.forward`: the text model already returns final-normalized hidden states, so the correct final-layer readout is the model's actual `out.logits`, not `final_norm(hidden_states[-1])` again.
+- Launched the repaired localizer (`mech-localizer-hindi-v7`) on the same audited `1B Hindi @ n_icl=64` split used by the first-token audit and downloaded the new artifact at `research/results/autoresearch/mech_localizer_v1/1b/aksharantar_hin_latin/nicl64/layerwise_routing_trace.json`.
+- Validation result: the repaired localizer now matches the trusted first-token audit essentially exactly at the final layer:
+  - `zs`: mean target prob `0.5776` vs audit `0.5793`, top1 target rate `0.600`
+  - `icl_helpful`: `0.4824` vs `0.4813`, top1 target rate `0.467`
+  - `icl_corrupt`: `0.4362` vs `0.4312`, top1 target rate `0.433`
+- First clean mechanistic readout from that repaired trace:
+  - both helpful and corrupt ICL raise the correct Devanagari first-token probability above zero-shot in layers roughly `18–25`,
+  - the strongest pre-final rise is in `23–25`,
+  - but the final output step still often flips competition toward Latin/source-like tokens (`a`, `aa`, `aad`, `ah`), which matches the manual audits.
+- Wrote the first durable writeup of this result to `outputs/1b_hindi_localizer_validation_2026-03-29.md`.
+- Hardened `experiments/run_vm_mech_localizer_hindi.sh` so future runs sync the broader repo state to the VM rather than assuming old remote files are still present.
+- Ran the first Hindi causal patch panel on the validated `1B Hindi @ n_icl=64` audited split. The first version patched the **query last-subtoken** position and produced near-zero effects; this is now treated as a methodological lesson rather than a scientific negative result because next-token competition is read from the **last prompt position**, not directly from the earlier query-token state.
+- Patched `experiments/hindi_1b_causal_patch_panel.py` and `experiments/run_vm_hindi_1b_patch_panel.sh` to support explicit `patch_position_mode` and reusable result roots, then reran the Hindi patch panel at the **last token**.
+- Last-token causal result: the cleanest site so far is `layer 25 MLP output`.
+  - helpful `<-` zs patch: `delta_mean_gap_latin = +3.358`, `delta_top1_target_rate = +0.200`, `rescue_rate_on_base_failures = 0.375`, `harm_rate_on_base_successes = 0.000`
+  - zs `<-` helpful patch: `delta_mean_gap_latin = -4.708`, `delta_top1_target_rate = -0.133`
+- Broader `layer_output` patches at layers `20/23/24/25` also move the regime strongly, but they are much less clean because they rescue many failures **and** harm many already-correct items; these now look like coarse late-state moves rather than the cleanest bottleneck.
+- Ran a final-state (`final_norm` output) last-token patch sanity check. Its aggregate effect matches the `layer 25 layer_output` patch almost exactly, which supports the view that by the end of layer 25 the harmful/helpful regime distinction is already encoded in the last-token readout state.
+- Updated the canonical Hindi memo `outputs/1b_hindi_localizer_validation_2026-03-29.md` with the causal patching results and a sharpened claim: the clearest current implementational bottleneck is the **last-token layer-25 MLP output**.
+- Implemented a held-out **L25 MLP subspace patch** experiment for `1B Hindi`:
+  - new script: `experiments/hindi_1b_mlp_subspace_patch.py`
+  - new launcher: `experiments/run_vm_hindi_1b_mlp_subspace_patch.sh`
+  - new analysis helper: `experiments/analyze_hindi_mlp_subspace_patch.py`
+- Experimental contract for this run:
+  - rank coordinates using only the **selection split**,
+  - evaluate on the held-out 30-item mechanistic panel,
+  - compare selected top-k coordinate replacement against dense patch, deterministic random-coordinate controls, and self-patch no-op checks.
+- First full subspace result (`hindi_mlp_subspace_patch_v1`): the `L25 MLP` effect is **not captured by a tiny raw coordinate subset** under naive absolute-delta ranking.
+  - helpful `<-` zs curve:
+    - `k=64`: `dgapLatin=+1.483` (`44%` of dense)
+    - `k=256`: `+2.723` (`81%` of dense)
+    - `k=512`: `+2.948` (`88%` of dense)
+    - dense (`k=1152`): `+3.358`
+  - small-k absolute-ranked subsets were actually harmful (`k=1/4/16` all negative on `dgapLatin`).
+  - self-patch no-op was exact (`0.0` on gap and top1 deltas).
+- Interpretation update from the first subspace pass:
+  - the Hindi `L25 MLP` bottleneck is real, but it is **not yet a sparse raw-neuron story**.
+  - raw-coordinate concentration appears moderate/broad: roughly `256/1152` coordinates recover most of the dense effect.
+  - the harmful small-k result strongly suggests that **sign-mixed coordinates** matter; naive absolute ranking is too crude.
+- Started a focused follow-up run (`hindi_mlp_subspace_signsplit_v1`) to separate **positive-signed** and **negative-signed** coordinate subsets after the absolute-ranked run revealed sign mixing.
+- Completed the focused sign-split follow-up (`hindi_mlp_subspace_signsplit_v1`) after the first subspace run revealed that naive absolute-ranked small-k subsets were harmful.
+- Sign-split result on the held-out 30-item panel:
+  - for helpful `<-` zs, **negative-signed** raw coordinates are the cleaner small-k rescue direction:
+    - `k=4`: `delta_mean_gap_latin = +1.571`, bootstrap CI `[+1.135, +2.027]`
+    - `k=16`: `+1.352`, bootstrap CI `[+0.600, +2.092]`
+  - **positive-signed** raw coordinates are strongly harmful at small k:
+    - `k=4`: `-2.921`, bootstrap CI `[-3.306, -2.496]`
+    - `k=16`: `-2.535`, bootstrap CI `[-3.071, -1.996]`
+  - bidirectionally, the same negative-signed family harms zero-shot when patched with helpful donor values (`zs <- helpful`, `k=4`: `-1.125`, CI `[-1.483, -0.773]`).
+- Interpretation update: the Hindi `L25 MLP` bottleneck is now better described as a **moderately distributed, sign-asymmetric harmful state**, likely with an overshoot-like component in coordinates where helpful activations exceed zero-shot activations, rather than as a tiny raw-neuron circuit.
+- Updated the canonical Hindi memo `outputs/1b_hindi_localizer_validation_2026-03-29.md` and the research journal to reflect the subspace and sign-split findings.
+- Moved from raw-coordinate analyses into a **true better-basis test** at the Hindi `L25 MLP` site by implementing direct patching in the actual MLP channel basis (the `down_proj` input channels, size `6912`) rather than the residual-output basis.
+- New files:
+  - `experiments/hindi_1b_mlp_channel_patch.py`
+  - `experiments/run_vm_hindi_1b_mlp_channel_patch.sh`
+- Smoke result (`hindi_mlp_channel_patch_smoke_v1`) is already encouraging and qualitatively different from the raw-basis result:
+  - helpful `<-` zs in channel basis:
+    - `abs k=4`: `dgapLatin=+1.875`
+    - `abs k=16`: `+3.375`
+    - `neg k=4`: `+3.750`
+    - `neg k=16`: `+3.312`
+  - this is much cleaner than the raw-basis small-k behavior, where `abs k=4/16` were harmful.
+- Interpretation of the smoke result: the actual MLP channel basis may be substantially closer to the operative computation than the raw output basis, which is exactly the better-basis hypothesis we wanted to test.
+- Launched the full held-out run (`proc_17`, `hindi-mlp-channel-v1`) on the shared VM: `1B Hindi`, `L25`, channel basis, selector policies `abs/pos/neg`, selection split `100`, eval panel `30`, `k ∈ {1,4,16,64,256,512,1024,2048,6912}`.
+- Completed the full top-negative channel subset panel (`hindi_mlp_channel_subset_panel_v1`) and then the full pairwise top-negative panel (`hindi_mlp_channel_pair_panel_v1`).
+- Key new mechanistic result from the pairwise panel:
+  - among the top four negative-signed channels `[6015, 5486, 2299, 789]`, the strongest pair on the eval panel is **`[5486, 2299]`**.
+  - helpful `<-` zs for pair `[5486,2299]`: `delta_mean_gap_latin = +3.838`, bootstrap CI `[+3.283, +4.404]`, `delta_top1_target_rate = +0.167`, `rescue_rate_on_base_failures = 0.3125`, `harm_rate_on_base_successes = 0.0`
+  - zs `<-` helpful for the same pair: `delta_mean_gap_latin = -2.318`, CI `[-2.609, -2.022]`, `delta_top1_target_rate = -0.167`
+- The pairwise structure is informative:
+  - channel `5486` looks especially important (leaving it out collapses the effect),
+  - channel `2299` is a strong secondary contributor,
+  - channel `789` is not necessary and slightly dilutes the stronger 3-channel set,
+  - channel `6015` alone is near-null and is not clearly necessary once `5486` and `2299` are present.
+- Important rigor note: the strongest pair `[5486,2299]` was discovered on the eval panel, so treat it as **hypothesis-generating**, not yet the final held-out pair claim.
+- To address that exact reviewer objection, I implemented a new selection→eval script:
+  - `experiments/hindi_1b_mlp_channel_pair_select_eval.py`
+  - launcher: `experiments/run_vm_hindi_1b_mlp_channel_pair_select_eval.sh`
+- Smoke run of the new held-out pair selector chose the **same pair** `[5486,2299]` from the selection split, which is encouraging.
+- Launched the full held-out pair-selection verification (`proc_21`, `hindi-pair-select-eval-v1`) with random-pair controls so the pair claim can be stated without eval-selection leakage if it survives.
+- Completed the held-out pair-selection verification with random-pair controls (`hindi_mlp_channel_pair_select_eval_v1`).
+- The selection split independently chose the same pair `[5486,2299]` that the earlier exploratory eval-panel pairwise sweep suggested.
+- Held-out eval result for the chosen pair:
+  - helpful `<-` zs: `delta_mean_gap_latin = +3.838`, `delta_top1_target_rate = +0.167`, `rescue_rate_on_base_failures = 0.3125`, `harm_rate_on_base_successes = 0.0`
+  - matched random-pair mean: `+0.001`
+  - chosen-minus-random gap: `+3.836`, bootstrap CI `[+3.256, +4.425]`
+  - chosen-minus-random top1 effect: `+0.167`, CI `[+0.033, +0.300]`
+  - reverse-direction `zs <- helpful`: chosen-minus-random gap `-2.310`, CI `[-2.597, -2.030]`
+- This is the first Hindi result in the session that I would now describe as a **held-out, random-controlled two-channel core claim** at the `L25` MLP channel basis.
+- Updated the canonical Hindi memo `outputs/1b_hindi_localizer_validation_2026-03-29.md` accordingly.
+- To resolve the remaining minimal-core ambiguity after the held-out pair result, I extended `experiments/hindi_1b_mlp_channel_subset_panel.py` to include explicit singleton subsets for each top negative-signed channel (`neg_single_<channel>`), not just `neg_top1`.
+- Smoke run (`hindi_mlp_channel_subset_single_smoke_v1`) succeeded and already suggested the strongest individual channels are likely `5486` and `2299`, whereas `6015` is weak alone.
+- Launched full singleton-augmented subset panel (`proc_22`, `hindi-mlp-channel-singletons-v1`) to directly test whether the held-out pair is synergistic or mostly reducible to one dominant individual channel.
+- Completed singleton-augmented subset panel (`hindi_mlp_channel_subset_single_v1`).
+- Key new result:
+  - `5486` is the strongest individual negative channel on the held-out eval panel:
+    - helpful `<-` zs: `delta_mean_gap_latin = +2.381`, CI `[+2.040, +2.746]`, `delta_top1_target_rate = +0.100`, `3` rescues, `0` harms
+  - `2299` is a real but weaker secondary contributor:
+    - helpful `<-` zs: `+1.644`, CI `[+1.377, +1.906]`, `delta_top1_target_rate = +0.033`, `1` rescue, `0` harms
+  - `6015` is effectively null alone; `789` is slightly harmful alone.
+- Interpretation update:
+  - the best current Hindi story is **not** a one-channel story,
+  - but also not a broad diffuse high-dimensional story,
+  - instead it is a **small two-channel core candidate** (`5486`, `2299`) with asymmetric contributions, where `5486` is the strongest individual channel and `2299` materially strengthens the effect.
+- Important caution retained: this is still a bounded channel-level result, not yet a human-interpretable feature/circuit claim.
+- Started the next bounded interpretation step after the two-channel core result: a direct raw-value audit of channels `5486`, `2299`, `6015`, and `789` at the L25 MLP channel basis.
+- New script: `experiments/hindi_1b_channel_value_audit.py`
+- New launcher: `experiments/run_vm_hindi_1b_channel_value_audit.sh`
+- Smoke run already suggests the helpful condition pushes all four candidate channels upward relative to zero-shot, but causal importance is selective rather than explained by simple mean-shift alone.
+- Launched full value-audit run in background (`proc_23`, `hindi-channel-value-audit-v1`).
+- Completed channel value audit (`hindi_channel_value_audit_v1`).
+- Main result: simple mean activation shift does **not** explain causal importance.
+  - All four candidate channels move upward from ZS to helpful on nearly every item.
+  - Non-causal channel `6015` actually shows one of the largest mean helpful-vs-ZS shifts (`helpful-zs ≈ +11.744`), despite near-zero singleton patch effect.
+  - Therefore, raw value shift magnitude alone is not the right mechanistic explanation for why `5486`/`2299` matter.
+- Implemented a more discriminating follow-up:
+  - `experiments/hindi_1b_channel_sensitivity_audit.py`
+  - launcher: `experiments/run_vm_hindi_1b_channel_sensitivity_audit.sh`
+- Smoke result already supports the next hypothesis:
+  - `5486`: strong negative local sensitivity and positive predicted rescue effect
+  - `2299`: same sign pattern, somewhat weaker
+  - `6015`: near-zero local sensitivity despite large value shift
+  - `789`: opposite-sign sensitivity, consistent with slight harm
+- Launched full sensitivity audit (`proc_24`, `hindi-channel-sensitivity-audit-v1`) to test whether local readout sensitivity explains the singleton causal ranking better than mean activation shift alone.
+- Completed full channel sensitivity audit (`hindi_channel_sensitivity_audit_v1`).
+- Strong result: local first-order sensitivity explains the singleton causal ranking much better than raw value shift magnitude.
+  - `5486`: grad `≈ -0.212`, delta `≈ -11.141`, predicted effect `≈ +2.362`, actual `≈ +2.381`, predicted-vs-actual corr `≈ 0.973`
+  - `2299`: grad `≈ -0.233`, delta `≈ -7.998`, predicted `≈ +1.869`, actual `≈ +1.644`, corr `≈ 0.893`
+  - `6015`: grad `≈ -0.0079`, delta `≈ -11.744`, predicted `≈ +0.087`, actual `≈ +0.017`
+  - `789`: grad `≈ +0.0204`, delta `≈ -6.570`, predicted `≈ -0.131`, actual `≈ -0.163`
+- This sharpens the Hindi mechanism story:
+  - channel importance is better explained by **local readout sensitivity × state shift** than by activation magnitude shift alone.
+  - `6015` is now a strong negative control because it shifts strongly but has near-zero local sensitivity and near-zero causal effect.
+- Additional local synthesis from existing artifacts:
+  - the `[5486,2299]` pair is strong but looks closer to **mostly additive / mostly linear** than sharply superadditive on the target-vs-Latin margin metric.
+  - pair mean effect `≈ +3.838` vs singleton-sum `≈ +4.025` and first-order predicted sum `≈ +4.230`.
+- Closure plan for the Hindi channel story is now concretized into two final bounded runs before moving to the next mechanistic branch:
+  1. `hindi-channel-readout-geometry-v1` (`proc_25`): direct down_proj-column -> local readout geometry audit for channels `5486`, `2299`, `6015`, `789`.
+  2. `hindi-pair-seed11-v1` (`proc_26`): one cheap robustness repeat of the held-out pair-selection test on seed `11` with random-pair controls.
+- Also fixed the pair launcher to accept `SEED` and used a dedicated remote staging directory for the seed-11 run to avoid VM sync collisions.
+- New files for closure step:
+  - `experiments/hindi_1b_channel_readout_geometry_audit.py`
+  - `experiments/run_vm_hindi_1b_channel_readout_geometry_audit.sh`
+- Completed the final two Hindi closure runs.
+- Readout-geometry audit (`hindi_channel_readout_geometry_v1`) passed cleanly:
+  - `5486`: dot `≈ -0.212`, cosine `≈ -0.084`, predicted `≈ +2.361`, actual `≈ +2.381`
+  - `2299`: dot `≈ -0.233`, cosine `≈ -0.075`, predicted `≈ +1.868`, actual `≈ +1.644`
+  - `6015`: dot `≈ -0.0079`, cosine `≈ -0.004`, predicted `≈ +0.087`, actual `≈ +0.017`
+  - `789`: dot `≈ +0.0204`, cosine `≈ +0.011`, predicted `≈ -0.131`, actual `≈ -0.163`
+- This finalized the channel-to-readout explanation: `5486/2299` have the right-sign readout alignment, `6015` is near-null despite large shift, and `789` is weakly opposite-signed.
+- Seed-11 held-out pair repeat (`hindi_mlp_channel_pair_select_eval_seed11_v1`) also passed cleanly:
+  - selection again chose `[5486,2299]`
+  - helpful `<-` zs chosen-minus-random `delta_mean_gap_latin = +4.004`, bootstrap CI `[+3.429, +4.589]`, `delta_top1_target_rate = +0.200`
+  - reverse direction chosen-minus-random `delta_mean_gap_latin = -2.416`, CI `[-2.720, -2.117]`
+- Decision update: the bounded Hindi mechanism story is now strong enough to freeze for writing and hand off to the next mechanistic branch.
+- हिंदी bounded mechanism branch is now frozen enough for writing after the readout-geometry and seed-11 pair-repeat closures both passed.
+- Began the next branch: `4B Telugu` positive-control continuation analysis.
+- Implemented:
+  - `experiments/telugu_continuation_competition_audit.py`
+  - `experiments/run_vm_telugu_continuation_competition_audit.sh`
+- Smoke run (`telugu_continuation_competition_smoke_v1`) succeeded and already suggests a useful continuation-level contrast against the nearest-bank competitor:
+  - `zs`: strong positive gold-vs-bank continuation gap (`+19.183`)
+  - `icl_helpful`: still positive (`+12.968`)
+  - `icl_helpful_similarity_desc`: weaker but still positive (`+4.482`)
+  - `icl_helpful_similarity_asc`: negative (`-2.254`)
+  - `icl_corrupt`: slightly negative (`-1.024`)
+- Interpretation of the smoke result: for `4B Telugu`, the first-token competition against the nearest-bank target is often tied, so the interesting signal is in **continuation preference**, exactly where we wanted the positive-control branch to focus.
+- Launched the full 30-item `4B Telugu` continuation competition audit (`proc_27`, `4b-telugu-continuation-v1`).
+- Completed full `4B Telugu` continuation competition audit (`telugu_continuation_competition_v1`).
+- Strong new positive-control result:
+  - against the nearest-bank target competitor, the discriminating signal is entirely in **continuation**, not first token (`same_first_token_rate = 1.0` for all tested conditions in this panel).
+  - `icl_helpful` preserves a large positive gold-vs-bank continuation preference: sequence/continuation gap `≈ +21.670`, gold generation rate `0.300`, bank generation rate `0.067`.
+  - `icl_corrupt` sharply weakens that continuation preference: gap `≈ +5.194`, gold generation rate `0.200`, bank generation rate `0.100`.
+  - `icl_helpful_reversed` remains strong (`≈ +20.819`), suggesting exact order is less important here than preserving aligned source-target content.
+  - `similarity_desc` and `similarity_asc` are both still positive but weaker (`≈ +16.394` and `≈ +15.877`).
+- Interpretation: in `4B Telugu`, the main positive-control signal is a **query-specific continuation preference over a nearest-bank alternative** once the first token is already tied. This is a useful mechanistic contrast against the smaller-model Telugu failure regime.
+- Started the matched `1B Telugu` continuation audit (`proc_28`, `1b-telugu-continuation-v1`) using the same gold-vs-nearest-bank teacher-forced protocol as the completed `4B Telugu` run. This should give the cleanest direct 1B-vs-4B comparison for the continuation-stage hypothesis.
+- Completed matched `1B Telugu` continuation audit (`telugu_continuation_competition_1b_v1`).
+- The `1B` vs `4B` Telugu comparison is now much cleaner:
+  - in this nearest-bank-target competition setup, `same_first_token_rate = 1.0` for both models, so the discriminating signal lies entirely in **continuation**.
+  - `1B Telugu` collapses under helpful ICL to a negative gold-vs-bank continuation preference:
+    - `icl_helpful` sequence/continuation gap `≈ -6.720`
+    - nearest-bank generation rate `≈ 0.267`
+    - `similarity_desc` is even worse (`≈ -8.150`, bank generation `≈ 0.433`)
+  - `4B Telugu` stays strongly positive under the same protocol:
+    - `icl_helpful` gap `≈ +21.670`
+    - nearest-bank generation rate `≈ 0.067`
+    - corrupt weakens but does not erase the preference (`≈ +5.194`)
+- This strengthens the cross-case regime story:
+  - `1B Hindi`: late first-token competition failure
+  - `1B Telugu`: later continuation / nearest-bank retrieval failure
+  - `4B Telugu`: preserved query-specific continuation preference over nearest-bank alternatives.
+- Started the larger-N stability phase to test whether the 30-item stage conclusions hold more broadly.
+- Launched `proc_29` (`four-cell-first-token-100`): a 100-item first-token competition audit over all four core cells:
+  - `1b/4b × aksharantar_hin_latin/aksharantar_tel_latin × n_icl=64`
+- Launched `proc_30` (`four-cell-continuation-100`): a sequential 100-item continuation-competition audit over all four core cells using the same gold-vs-nearest-bank protocol.
+- These two runs are intended to answer the main remaining stability question: whether the current 30-item stage decomposition survives at larger N before we decide which deeper mechanistic interventions are truly worth doing.
+- Wrote canonical four-cell planning/synthesis artifact: `outputs/four_cell_mechanistic_clarity_plan_2026-03-29.md`.
+- User clarified the bar again: do not stop at a clever 30-item story; push the two-language panel to a more complete thesis-ready understanding, then reconnect to multilingual expansion.
+- I updated the active Ralph loop and the canonical four-cell clarity artifact accordingly.
+- New gating principle for this phase: larger-N stability + manual-audit confirmation + explicit established/provisional/speculative split before claiming the two-language core is really clear enough.
+- Completed `proc_29` (`four-cell-first-token-100`).
+- The 100-item first-token audit strongly preserves the current four-cell stage map:
+  - `1B Hindi`: helpful top1-target rate `0.39` vs zero-shot `0.63`; Latin top1 share rises to `0.51` under helpful ICL.
+  - `4B Hindi`: top1-target stays high (`0.86 -> 0.89`) and top1 remains fully Devanagari.
+  - `1B Telugu`: first token becomes mostly correct under both helpful and corrupt high-shot ICL (`0.74 / 0.74`).
+  - `4B Telugu`: first token becomes almost perfectly correct under helpful/corrupt ICL (`0.96 / 0.95`).
+- This is an important stability result because it suggests the 30-item stage decomposition was not a thin sample artifact at least for the first-token side.
+- Wrote interim larger-N first-token synthesis artifact: `outputs/four_cell_first_token_100_interim_2026-03-29.md`.
+- This memo records the main larger-N result so far: the first-token stage map is stable at 100 items.
+- Updated `.ralph/four-cell-mechanistic-clarity.md` to reflect the stricter grounding bar:
+  - keep pushing until the picture is as clear as possible,
+  - use alpha/alphaXiv for paper-side grounding,
+  - use official docs/web sources for current facts when needed,
+  - and escalate to manual audit whenever an aggregate looks suspicious.
+- Completed `proc_30` (`four-cell-continuation-100`).
+- The 100-item continuation audit materially strengthens the four-cell stage map:
+  - `1B Telugu` remains negative against the nearest-bank alternative at continuation time.
+  - `4B Telugu` remains strongly positive against the nearest-bank alternative at continuation time.
+  - `1B Hindi` full-sequence preference degrades strongly under high-shot ICL, though the Hindi nearest-bank continuation instrument is less cleanly continuation-isolated than Telugu (`same_first_token_rate = 0.79`).
+  - `4B Hindi` remains a stable already-Hindi regime with high sequence preference and mostly within-script near misses.
+- I updated the canonical four-cell memo with the completed 100-item first-token + continuation results, larger-N manual-audit notes, an explicit decision not to prioritize deeper `4B Hindi` localization next, and a handoff plan toward `Hindi/Telugu` deep core plus `Bengali/Tamil` showing layer.
+- Used alpha/alphaXiv again to ground the next Telugu mechanism step:
+  - `2412.01003` for later-stage competition framing,
+  - `2504.00132` for contextualization-before-late-decision intuition,
+  - `2304.05969` for when path patching becomes appropriate after a clean localizer.
+- Implemented the next mechanistic probe:
+  - `experiments/telugu_continuation_localizer.py`
+  - `experiments/run_vm_telugu_continuation_localizer.sh`
+- The new localizer measures layerwise gold-vs-nearest-bank competition at the **first divergence token after the shared prefix**, which is the cleanest next state-localizer for the Telugu continuation contrast.
+- Started smoke process `proc_31` (`telugu-continuation-localizer-smoke`) on `1B` and `4B` Telugu.
+- `proc_31` surfaced a `4B`-specific localizer bug: the final norm for `Gemma3ForConditionalGeneration` lives under a different attribute chain than the `1B` text-only model.
+- I patched `experiments/telugu_continuation_localizer.py` with a more robust `_get_final_norm(...)` search and relaunched `4B` smoke as `proc_32`.
+- `proc_31` (Telugu continuation localizer smoke) exposed a concrete 4B-only implementation bug: the new localizer's final-norm lookup handled `1B` but not `Gemma3ForConditionalGeneration` used by `4B`.
+- I inspected the Gemma 3 HF source on the VM, found that `Gemma3ForConditionalGeneration` stores the text model norm under `model.language_model.norm`, patched the localizer with a broader `_get_final_norm(...)` chain search, revalidated locally, and relaunched the `4B` smoke as `proc_32`.
+- Relaunched the fixed `4B` Telugu continuation localizer smoke in the current process manager as `proc_1` (`telugu-continuation-localizer-4b-smoke`).
+- The Telugu continuation localizer smoke is now clean on both models.
+- `1B` smoke matches the existing failure story: final-layer divergence gap is `+4.533` in `zs`, `-5.036` in `icl_helpful`, and `-4.143` in `icl_corrupt`.
+- `4B` smoke matches the positive-control story: final-layer divergence gap is `+7.510` in `zs`, `+4.812` in `icl_helpful`, and only `-0.589` in `icl_corrupt`.
+- This is enough to treat the localizer as behaviorally aligned with the continuation audits and move to full Telugu localizer runs.
+- Launched the first full Telugu continuation localizer run as `proc_2` (`telugu-continuation-localizer-full`) for `1B` then `4B`.
+- `proc_2` did not fail for scientific reasons: `1B` full Telugu continuation localizer completed successfully, but the `4B` half died on a transient tokenizer-load network failure (`Temporary failure in name resolution` / `Cannot assign requested address`).
+- To reduce VM/HF flakiness, I patched `experiments/run_vm_telugu_continuation_localizer.sh` to default to `HF_HUB_OFFLINE=1` and `TRANSFORMERS_OFFLINE=1` on the remote run, relying on the already-cached Gemma 3 assets.
+- Relaunched the missing half only as `proc_3` (`telugu-continuation-localizer-4b-full`).
+- `proc_3` completed successfully, so the full Telugu continuation localizer is now complete on both `1B` and `4B`.
+- Full Telugu localizer result:
+  - `1B Telugu`: used `28` items, late collapse band roughly `L18–26`, strongest helpful-vs-zs collapse at final `L26` with `delta_gap ≈ -9.42`, `delta_competitor_top1 ≈ +0.43`.
+  - `4B Telugu`: used `28` items, late helpful-specific positive band roughly `L30–34`, strongest helpful-vs-corrupt separation at final `L34` with `delta_gap ≈ +10.26`.
+- This materially narrows the remaining uncertainty: the Telugu contrast is now stage-localized and partially layer-localized; the main remaining question is component/site localization inside those late bands.
+- I updated the canonical four-cell memo accordingly and changed the next mechanistic step from “run Telugu localizers” to “run a Telugu component localization / causal screen at the divergence token.”
+- User tightened the procedural bar again: keep updating the Ralph task file with improved goals and updated beliefs, keep manually auditing new results, and keep pushing until the remaining unclear questions are genuinely narrow.
+- Updated the Ralph plan again to reflect a stricter reviewer-style standard: key mechanistic claims should not rest only on 30-item panels when sample-size sensitivity is a live concern.
+- Added explicit checklist items for varying-N Telugu validation and for defining a reviewer-grade stopping rule for sample-size stability plus manual-audit sufficiency.
+- Updated the Ralph plan again to make the current Telugu intuition and next experiment explicit.
+- The current best belief is now written down clearly: the stage question is mostly answered, and the next Telugu bottleneck is component/site localization at the divergence token.
+- User emphasized the true endgame: complete the whole story end-to-end so we can answer why the work matters for ICL, what seems model-specific vs cross-model, and whether any architectural implications are supported.
+- I updated the Ralph file to include those endgame questions explicitly instead of treating them as optional final polish.
+- Updated the Ralph file with the latest durable beliefs about infrastructure and grounding:
+  - alpha remains the preferred paper tool,
+  - `alpha get 2309.16042` succeeded on a fresh smoke check,
+  - some `alpha ask` calls remain flaky,
+  - and `web_search` wrapper unreliability still means official docs/direct fetches may be needed for current facts.
+- Also logged the latest `proc_4` multilingual progress snapshot into the Ralph plan so the durable state reflects that seed101 is actively moving.
+- Alpha is partly recovered enough to keep as the default paper tool.
+- New alpha-backed grounding this iteration:
+  - `alpha ask 2309.16042` returned a concrete recommendation to prefer logit-difference-style metrics plus strong controls for component-patching screens.
+  - `alpha ask 2507.16003` suggested that some aspects of ICL may be broader than a single architecture-specific micro-mechanism.
+  - `alpha get 2510.23006` reinforced the thesis endgame caution that similar ICL behavior can coexist with different internals across architectures.
+- I updated both the canonical four-cell memo and the Ralph plan with a draft reviewer-grade stopping rule and a more explicit cross-model / architectural-synthesis status section.
+- `proc_4` is still the active bottleneck before the next Telugu component smoke, because I do not want to add avoidable VM contention while the missing four-language seed is still being completed.
+- Added a more explicit manual-audit section for the full Telugu localizer results to the canonical four-cell memo, including representative late-bank-flip items for `1B` and helpful-vs-corrupt preservation items for `4B`.
+- Added a stronger partial endgame synthesis section to the canonical memo:
+  - why the phenomenon matters for ICL,
+  - what currently looks Gemma-family-specific vs plausibly broader,
+  - and what architecture/training implications are cautiously supported.
+- Marked the reviewer-grade stopping-rule item as done in the active Ralph checklist because the rule is now explicit in the canonical memo and reflected in the plan.
+- Updated the multilingual progress note in the Ralph file using the latest `proc_4` status: seed101 has progressed through all currently seen `1B` Hindi/Telugu/Bengali cells and into `1B Tamil`.
+- Reflection iteration: updated the Ralph file with a new reflection checkpoint (iteration 9), explicitly recording that the next practical bottleneck is VM throughput while `proc_4` finishes, not uncertainty about what Telugu experiment comes next.
+- Added stronger alpha-backed endgame grounding:
+  - `2510.23006` reinforces that similar ICL behavior can coexist with different internals across architectures.
+  - `2505.16694` reinforces thinking about ICL as a multi-phase computation rather than a single mechanism.
+- Added a prepared varying-`N` Telugu localizer launcher:
+  - `experiments/run_vm_telugu_continuation_localizer_varying_n.sh`
+  so the next reviewer-style stability pass can be run quickly once the VM is free enough.
+- Updated the canonical four-cell memo to include the new cross-model grounding and to make varying-`N` Telugu validation part of the explicit experiment ladder.
+- `proc_4` (`four-lang-seed101-and-aggregate`) completed successfully.
+- Verified that the local four-language panel is now complete for all three seeds (`seed11/42/101`), each with `16/16` raw files, `16` manual-audit packets, and a `score.json`.
+- Verified that the three-seed aggregate exists at `research/results/autoresearch/four_lang_thesis_panel/seed_aggregate.json` and recorded its headline exact-match summary in the Ralph file and canonical memo.
+- Manual-audited representative new `seed101` packets:
+  - `1B Bengali @ 64`: catastrophic source-copy regime persists.
+  - `1B Tamil @ 64`: mixed source-copy + bank-copy regime persists.
+  - `4B Telugu @ 64`: strong positive anchor persists with few bank copies.
+  - `4B Tamil @ 64`: positive mostly-near-miss regime persists.
+- Launched the next Telugu mechanistic step now that the VM is free:
+  - `proc_5` / `telugu-component-smoke-v1`
+  - smoke settings: `MAX_ITEMS=8`, `N_EVAL=80`, `1B layers=18,22,26`, `4B layers=30,32,34`, all four component types.
+- First Telugu component smoke launch (`proc_5`) failed immediately due to a launcher quoting bug: the default `PATCH_PAIRS` values contain `<-`, and the remote shell interpreted them as redirection because `--patch-pairs` was not quoted.
+- Fixed `experiments/run_vm_telugu_continuation_component_panel.sh` by quoting the shell-passed arguments, especially `--patch-pairs`, and revalidated with `bash -n`.
+- Relaunched the Telugu component smoke as `proc_6` (`telugu-component-smoke-v2`).
+- Second Telugu component smoke launch (`proc_6`) failed on an indexing bug, not a science bug:
+  - the component panel was given human-facing layer labels like `L26`,
+  - but the hook helpers expect zero-based internal layer indices,
+  - so `1B` crashed at `index 26 is out of range`.
+- Fixed `experiments/telugu_continuation_component_panel.py` to:
+  - resolve user-facing 1-based layer labels to internal indices,
+  - validate the range against the loaded model,
+  - and record both `layer` (human label) and `layer_index` (internal) in the output.
+- Revalidated the Telugu component panel script with `python3 -m py_compile` and relaunched the smoke run as `proc_7` (`telugu-component-smoke-v3`).
+- Third Telugu component smoke launch (`proc_7`) showed the actual `1B` component run now executes end-to-end and writes a JSON artifact, so the core experiment body is no longer failing.
+- `proc_7` then failed during artifact download because the launcher passed `--out-root` as a single-quoted path beginning with `~`, preventing shell expansion and causing the artifact to be written under a malformed nested path like:
+  - `/home/srinivasr/Research/Honors_telugu_component/~/Research/Honors_telugu_component/...`
+- Fixed `experiments/run_vm_telugu_continuation_component_panel.sh` to pass a repo-relative out-root (`research/results/autoresearch/...`) instead of a quoted `~`-prefixed path.
+- Relaunched the smoke run again as `proc_8` (`telugu-component-smoke-v4`).
+- Fourth Telugu component smoke launch (`proc_8`) established that the full `1B` smoke path now works end-to-end, including download.
+- `proc_8` then failed on the `4B` half because my custom layer-locator helper still missed the actual `Gemma3ForConditionalGeneration` wrapper path.
+- I replaced the custom helper with `core.get_model_layers(...)`, which is already the repo's more robust decoder-layer locator and successfully resolves the `4B` model structure.
+- Revalidated the script and relaunched the smoke run as `proc_9` (`telugu-component-smoke-v5`).
+- `proc_9` (`telugu-component-smoke-v5`) completed successfully on both `1B` and `4B` Telugu.
+- Inspected the smoke artifacts:
+  - `1B` smoke suggests the divergence-token effect is strongest in late `layer_output`, with some smaller `attention_output` contribution and weak `mlp_output` evidence.
+  - strongest non-final-state `1B` smoke row: `icl_helpful <- zs @ L26 layer_output` with `delta_mean_gap ≈ +9.885`, `delta_gold_top1 ≈ +0.125`, `delta_competitor_top1 ≈ -0.375`, `rescue_on_base_competitor ≈ 0.25`, `harm_on_base_gold = 0.0`.
+  - `4B` smoke suggests the effect is also strongest in late `layer_output`, especially `icl_corrupt <- icl_helpful @ L34/L32`, while `attention_output` and `mlp_output` are much weaker.
+- Updated the Ralph file and canonical four-cell memo to record the smoke result and the current interpretation that Telugu looks more like a late layer-output/readout-state story than a clean narrow-MLP story.
+- Launched the full Telugu component panel as `proc_10` (`telugu-component-full-v1`) now that the smoke is clean.
+- `proc_10` (`telugu-component-full-v1`) completed successfully on both `1B` and `4B` Telugu.
+- Full component-panel readout (`28` usable items each after divergence filtering):
+  - `1B Telugu`: strongest non-final-state evidence is broad late `layer_output` (`L18–26`), especially `icl_helpful <- zs @ L26 layer_output` with `delta_mean_gap ≈ +9.424`, `delta_gold_top1 ≈ +0.179`, `delta_competitor_top1 ≈ -0.429`, `rescue_on_base_competitor ≈ 0.267`, `harm_on_base_gold ≈ 0.333`.
+  - `1B Telugu`: `L18 attention_output` is the strongest cleaner secondary row (`delta_mean_gap ≈ +6.523`, no observed harms on base-gold items), while `mlp_output` remains weak.
+  - `4B Telugu`: strongest non-final-state evidence is broad late `layer_output` (`L30–34`), especially `icl_corrupt <- icl_helpful @ L34 layer_output` with `delta_mean_gap ≈ +10.258`; `mlp_output` and `attention_output` are much weaker.
+- Updated the Ralph file and canonical four-cell memo to reflect the new full-panel interpretation: Telugu currently looks like a late broad layer-output/readout-state story rather than a clean narrow-MLP story.
+- Launched a focused larger-`N` Telugu mechanism validation run as `proc_11` (`telugu-component-focus60-v1`) to test selected candidate layers/components beyond the 30-item component panel.
+- `proc_11` (`telugu-component-focus60-v1`) completed successfully on both `1B` and `4B` Telugu.
+- The focused larger-`N` validation materially stabilized the Telugu component story:
+  - `1B Telugu`: `L18/L26 layer_output` remain strongly causal (`delta_mean_gap ≈ +7.24`) and `L18 attention_output` remains a meaningful but clearly secondary contributor (`≈ +4.78`); `mlp_output` stays near zero.
+  - `4B Telugu`: `L34/L30 layer_output` remain strongly causal (`≈ +9.10` / `≈ +7.89`), while `L34 mlp_output` is nonzero but still much weaker (`≈ +2.59`).
+- This clears the strongest reviewer-style concern that the Telugu component result was only a thin `N=30` artifact.
+- Launched a direct same-script-control hypothesis test as `proc_12` (`marathi-stage-probe-v1`).
+- This run uses the existing first-token and continuation instruments on `aksharantar_mar_latin` (`1B/4B`, `n_icl=64`, `max_items=60`) to test whether Marathi clusters more with Hindi (same-script / possible shared-script support) or with Telugu (non-Hindi / later-continuation-style failure).
+- `proc_12` (`marathi-stage-probe-v1`) completed successfully.
+- Marathi same-script control result:
+  - `1B Marathi` is hybrid: helpful ICL fixes much of the first-token stage (`top1_target_rate ≈ 0.75`) but later continuation still turns negative (`seq_gap ≈ -1.41`, bank-generation ≈ `0.15`).
+  - `4B Marathi` stays strongly positive in continuation (`helpful seq_gap ≈ +27.83`).
+- This strengthens the view that same-script support helps early routing, but does not by itself determine the whole failure mode.
+- Folded the completed Marathi same-script probe into the main four-cell memo and Ralph plan.
+- Sharpened the endgame synthesis in `outputs/four_cell_mechanistic_clarity_plan_2026-03-29.md`:
+  - explicit Gemma-established vs broader-but-provisional vs speculative claims,
+  - new two-axis intuition (early routing vs late continuation),
+  - Marathi used as evidence that same-script support helps the early stage more than the late stage.
+- Implemented Telugu late-band persistence / redundancy probe:
+  - `experiments/telugu_continuation_layer_band_panel.py`
+  - `experiments/run_vm_telugu_continuation_layer_band_panel.sh`
+- Smoke result suggests a new, more specific Telugu interpretation:
+  - for `1B`, `L26` layer-output patch already matches `L18+L26` / `L22+L26` / `L18+L22+L26` on the smoke slice;
+  - for `4B`, `L34` layer-output patch already matches `L30+L34` / `L32+L34` / `L30+L32+L34`.
+- This provisional pattern points toward a **persistent carried late state** rather than strongly additive gain from patching many late layers at once.
+- Launched full larger-`N` confirmation run as `proc_13` (`telugu-layerband-full-v1`).
+- Manually spot-checked the new Telugu layer-band smoke outputs and confirmed the clean redundancy pattern is visible per-item, not only in aggregated summaries.
+- `proc_13` (`telugu-layerband-full-v1`) completed successfully.
+- Full layer-band result confirms the smoke redundancy pattern at larger `N` for both Telugu models:
+  - `1B`: `L26` exactly matches all tested combinations that include `L26` on the 57-item usable panel.
+  - `4B`: `L34` exactly matches all tested combinations that include `L34` on the 57-item usable panel.
+- This materially sharpens the Telugu reading toward a **persistent carried late continuation state**.
+- Implemented next double-patching mediation probe:
+  - `experiments/telugu_continuation_mediation_panel.py`
+  - `experiments/run_vm_telugu_continuation_mediation_panel.sh`
+- Launched mediation smoke as `proc_14` (`telugu-mediation-smoke-v1`).
+- Early `1B` result from `proc_14` (`telugu-mediation-smoke-v1`) is already strong:
+  - `L18 attention_output` and `L18 layer_output` writer patches help on their own,
+  - but that help collapses to zero when `L26 layer_output` is overwritten back to the recipient state,
+  - while off-band overwrite leaves the writer rescue intact.
+- This is the first direct evidence that the earlier `1B Telugu` late candidates act through the final late mediator state.
+- `proc_14` (`telugu-mediation-smoke-v1`) completed successfully on both `1B` and `4B` Telugu.
+- `4B` mediation smoke matches the `1B` mediation signature:
+  - earlier writer-site rescue disappears when the final late mediator is overwritten back to the recipient state,
+  - but survives off-band overwrite.
+- This makes the carried-state mediation story look shared across both Telugu branches rather than only a `1B` quirk.
+- Launched full larger-`N` confirmation as `proc_15` (`telugu-mediation-full-v1`).
+- Full `1B Telugu` mediation confirmation is now in hand from `proc_15` while the `4B` half continues:
+  - `L18 attention_output` and `L18 layer_output` writer effects survive off-band overwrite but collapse to zero under mediator overwrite at `L26 layer_output`.
+- Added reviewer-style caution to the plan:
+  - current Telugu claim is strongest on mediation/necessity,
+  - not yet on full sufficiency.
+- Prepared the next likely confirmatory step conceptually: late-site sufficiency transplant after `proc_15` if `4B` matches.
+- `proc_15` (`telugu-mediation-full-v1`) completed successfully on both `1B` and `4B` Telugu.
+- Full mediation confirmation now supports the carried-state story at larger `N` on both branches.
+- Ran and passed Telugu final-site sufficiency smoke on both models:
+  - `1B L26` donor patch beats off-band and random-direction controls.
+  - `4B L34` donor patch beats off-band and random-direction controls.
+- Launched larger-`N` sufficiency confirmation as `proc_16` (`telugu-sufficiency-full-v1`).
+- `proc_16` (`telugu-sufficiency-full-v1`) completed successfully on both models.
+- Full final-site sufficiency confirmation now supports the Telugu late mediator as a dominant content-carrying bottleneck on both branches:
+  - `1B L26` donor patch beats off-band and random controls with positive bootstrap CIs.
+  - `4B L34` donor patch beats off-band and random controls with positive bootstrap CIs.
+- Remaining uncertainty is now finer-grained (feature/path identity, exclusivity, transfer), not whether a late mediated bottleneck exists.
+- Added a practical Hindi inference-time patch experiment:
+  - `experiments/hindi_1b_practical_patch_eval.py`
+  - `experiments/run_vm_hindi_1b_practical_patch_eval.sh`
+- Full held-out Hindi patch eval now shows a real practical gain from the bounded mechanism:
+  - baseline `EM 0.033`, `CER 0.817`
+  - chosen mean-shift patch `EM 0.067`, `CER 0.683`
+  - sign-flip hurts and random-pair / zero-ablation controls stay near baseline.
+- Added a Bengali/Tamil first-token follow-up panel (`bengali_tamil_first_token_60_v1`) to tighten the non-core language placement.
+- Added new paper figures:
+  - `fig_behavioral_regime_summary.png`
+  - `fig_hindi_practical_patch.png`
+  - `fig_telugu_bottleneck_summary.png`
+- Rewrote `Paper Template and Paper/Paper/gemma_1b_icl_paper_v11.tex` around the current thesis-safe end-to-end story.
+- LaTeX compilation remains blocked in-session because no LaTeX engine is installed locally or on the shared VM.
+- Added a follow-up held-out Hindi intervention panel:
+  - `experiments/hindi_1b_intervention_eval.py`
+  - `experiments/run_vm_hindi_1b_intervention_eval.sh`
+- New result: direct single-channel / dual-channel suppression is weaker than the calibrated signed two-channel patch.
+  - zero `5486`: small directional help (`EM 0.050`, `CER 0.796`)
+  - zero `2299`: near baseline (`EM 0.050`, `CER 0.812`)
+  - zero both: near baseline (`EM 0.033`, `CER 0.812`)
+  - calibrated mean shift remains the strongest held-out edit (`EM 0.067`, `CER 0.683`)
+  - sign flip is clearly harmful (`EM 0.017`, `CER 0.939`)
+- Updated the paper draft and canonical markdown summary to reflect that the Hindi mechanism is better described as a signed harmful subspace than as a pure lesion target.
+- Added a first practical Telugu late-state steering experiment and VM launcher:
+  - `experiments/telugu_continuation_practical_patch_eval.py`
+  - `experiments/run_vm_telugu_continuation_practical_patch_eval.sh`
+- Ran a 1B Telugu smoke test (`telugu_continuation_practical_patch_eval_smoke_v1`).
+- Result: the first fixed additive mean-delta patch at `L26 layer_output` is not yet a clean practical win after correcting continuation extraction, which narrows the next-step hypothesis: Telugu likely needs a different practical intervention family and/or a selection criterion aligned with continuation generation rather than only first-step gap.
+- Full Telugu practical patch evaluations completed for both `1B` and `4B`:
+  - `research/results/autoresearch/telugu_continuation_practical_patch_eval_v1/1b/aksharantar_tel_latin/seed42/nicl64/telugu_continuation_practical_patch_eval.json`
+  - `research/results/autoresearch/telugu_continuation_practical_patch_eval_v1/4b/aksharantar_tel_latin/seed42/nicl64/telugu_continuation_practical_patch_eval.json`
+- Main Telugu practical result: static fixed late-state patches are much weaker than the Hindi practical patch.
+  - `1B Telugu`: chosen mean shift is near-neutral on end-to-end CER and does not rescue exact match.
+  - `4B Telugu`: chosen mean shift is also only near-neutral, and not clearly directionally better than sign flip on end-to-end metrics.
+- Updated the canonical end-to-end summary artifact and paper draft to reflect the new contrastive conclusion: the Telugu bottleneck is mechanistically real but not yet cleanly editable with a single static practical patch.
+- Completed a skeptical paper-audit pass after the full Telugu practical results.
+- Tightened the abstract, practical-patching discussion, Telugu figure caption, and conclusion so the draft now treats Telugu practical patching as a negative/contrastive result rather than a clean rescue.
+- Added a compact Telugu practical-results table plus an explicit robustness note to the paper draft.
+- Polished and regenerated the three paper figures with a more consistent publication-style plotting theme and a cleaner Hindi practical-patch panel.
+- Provisioned a local Tectonic binary and compiled the main paper successfully to PDF:
+  - `Paper Template and Paper/Paper/gemma_1b_icl_paper_v11.pdf`
+- Updated the canonical closure artifact in place (`outputs/end_to_end_closure_and_patch_update_2026-03-30.md`) so it now reflects the full endgame state rather than the earlier mid-phase summary.
+- Endgame status is now thesis-safe: remaining open questions are narrow and non-blocking, so the core scientific loop can be treated as closed.
+- Ran a prose-polish pass on the paper draft after user feedback that it still read like a memo rather than a paper.
+- Rewrote the abstract, introduction, and conclusion into smoother workshop-paper prose while keeping the same scientific claims and caveats.
+- Redesign pass on all three figures:
+  - behavioral summary now uses paired dot/slope plots with language-family grouping,
+  - Hindi practical figure now separates selection metrics and adds a signed-steering-vs-lesioning panel,
+  - Telugu bottleneck figure now groups necessity vs sufficiency controls with direct value labels.
+- Recompiled the updated paper successfully to PDF.
+- Switched the paper's main quantitative figures to an Altair/Vega-Lite-style rendering path for a cleaner, more marimo-like visual feel, while preserving the same underlying results.
+- Added a reproducible Excalidraw rendering workflow using a local mcp_excalidraw canvas plus headless Chrome export.
+- Created new conceptual diagrams:
+  - `Paper Template and Paper/Paper/figures/fig_axes_excalidraw.{png,svg}`
+  - `Paper Template and Paper/Paper/figures/fig_mechanism_bridge_excalidraw.{png,svg}`
+  - raw scenes saved under `notes/excalidraw_scenes/`
+- Replaced the old TikZ two-axis figure in the paper with the new Excalidraw phase-map diagram and added a new mechanism-to-intervention bridge diagram.
+- Recompiled the paper successfully after the diagram updates.
+- Restyled all Excalidraw diagrams to have zero roughness and a clean Sans-Serif font (Helvetica style), drastically improving proportions and giving them a professional, academic vector look rather than a messy hand-drawn sketch style.
+- Resolved ugly pagination gaps across Figures 3 and 4 by switching from `[H]` (forced here) to `[htbp]` for more fluid and elegant LaTeX float placement.
+- Added a full 'Experimental Status and Claim Ledger' table to the Appendix (drawn directly from `research/spec.md`), offering a formal, transparent tracking of what is established, provisional, open, and retired.
+- Separated the Appendix to a clean new page.
+- Wove in more explicit mathematical notation for the Akshara CER and Activation Patching variables directly into the methodology sections, ensuring rigorous presentation.
+- Reverted Excalidraw styling to preserve the requested "hand-drawn" charm (`roughness: 1`, `fontFamily: 1`), but rigorously fixed the underlying programmatic layouts so they are perfectly proportioned, neatly wrapped, and devoid of the bad margins/gaps that plagued the earlier outputs.
+- Grounded the literature review deeper by using the `alpha` tool. Added verified citations mapping our findings to current research: Large Reasoning Models Across Scripts (2603.17070), Contextualize-then-Aggregate in Gemma (2504.00132), and explicitly discussed the intersection of activation patching with script barrier research in the Related Work.
+- Enhanced the academic rigor and methodology of the prose, expanding the discussion of pretraining priors and architectural features without losing clarity.
+- Addressed rigorous peer-review feedback by integrating formal mathematical definitions for the Akshara Character Error Rate and Activation Patching interventions, adding precision to the methodology section.
+- Fixed citation anomalies (e.g. replacing 'Authors' placeholders with accurate names for newly discovered preprints).
+- Deepened the literature review to explicitly relate 'bank-drift' failures to $k$NN-LMs and Telugu late-residual findings to 'function vectors'.
+- Replaced the Conclusion with a rigorous "Conclusion and Limitations" section, explicitly addressing assumptions (greedy decoding, limited model scope, non-transliteration side-effect tracking) and outlining precise future steps (temperature sweeps, Llama 3 validation, and conditional/dynamic interventions for Telugu).
+- Added exact 95% bootstrap confidence intervals to the practical Hindi patch results directly in the main text.
+- Started the Phase 2/3 compute push for the remaining experiment backlog and wrote new experiment code for:
+  - `experiments/hindi_1b_patch_safety_audit.py`
+  - `experiments/kshot_regime_sweep.py`
+  - `experiments/telugu_temperature_sweep.py`
+  - `experiments/telugu_writer_head_probe.py`
+  - plus supporting helpers / VM launchers / queue script.
+- Added `notes/2026-03-30_phase23_compute_queue_plan.md` as the durable execution plan for the remaining compute work.
+- Local validation passed for the new experiment files (`python3 -m py_compile` and `bash -n` on all new launchers).
+- Remote smoke runs passed for:
+  - Hindi patch safety audit (`hindi_patch_safety_audit_smoke_v2`)
+  - k-shot regime sweep (`kshot_regime_sweep_smoke_v1`)
+  - Telugu temperature sweep (`telugu_temperature_sweep_smoke_v1` for 1B and `smoke_v2` for 4B)
+  - Telugu writer-head probe (`telugu_writer_head_probe_smoke_v2` for 1B and `smoke_v4` for 4B)
+- Fixed a real writer-probe bug discovered during smoke testing: the initial head-probe script mixed human layer labels (`L26`, `L34`) with zero-based internal layer indices, then also assumed `model.model.layers` on 4B. Patched it to use label→index conversion consistently and `get_model_layers(model)` for architecture-safe layer access.
+- Launched the full sequential VM queue in background as `phase23-compute-queue` (`proc_5`), covering Hindi safety audit, fixed-split k-shot sweep, Telugu temperature sweep, and Telugu writer-head probe.
+
+## 2026-04-01
+- Synced the completed reviewer-followup VM artifacts back into the local repo:
+  - `research/results/autoresearch/cross_model_behavioral_v1/qwen2.5-1.5b/`
+  - `research/results/autoresearch/cross_model_behavioral_v1/llama3.2-1b/`
+  - `research/results/autoresearch/cross_model_behavioral_v1/llama3.2-3b/`
+  - `research/results/autoresearch/prompt_composition_ablation_v1/1b/aksharantar_tel_latin/seed42/nicl64/prompt_composition_ablation.json`
+  - `research/results/autoresearch/prompt_composition_ablation_v1/4b/aksharantar_tel_latin/seed42/nicl64/prompt_composition_ablation.json`
+  - `research/results/autoresearch/review_followup_queue_v1/remote_tmux_pending_2026-04-01_103934.log`
+- Wrote a new canonical reviewer-followup synthesis memo:
+  - `outputs/reviewer_followup_cross_model_prompt_composition_2026-04-01.md`
+- Main new external-family result: the behavioral regime map now has direct support beyond Gemma.
+  - `Qwen 2.5 1.5B`, `Qwen 2.5 3B`, and `Llama 3.2 3B` all preserve the broad Hindi-vs-Telugu asymmetry and show helpful-over-corrupt gains.
+  - `Llama 3.2 1B` is a genuine negative result / capability-floor counterexample rather than a Gemma-1B-style structured replicate.
+- Main new prompt-composition result: the larger-`N` Telugu ablation strengthens the bank-attractor story while falsifying an overly simple “one nearest exemplar causes the failure” account.
+  - In `1B Telugu`, bringing similar examples forward improves entry/CER while increasing nearest-bank copy.
+  - Moving similar examples back suppresses bank-copy but badly harms entry.
+  - Dropping the nearest or top-2 exemplars reduces copy pressure but does not restore exact match.
+- Updated `Paper Template and Paper/Paper/gemma_1b_icl_paper_v11.tex` to integrate the new reviewer-followup evidence:
+  - abstract and introduction now mention cross-family behavioral support with Gemma-only mechanistic scope,
+  - added a dedicated reviewer-followup section,
+  - conclusion/limitations now state that cross-family behavior is partially replicated while cross-family mechanism remains future work.
+- Recompiled the paper successfully after the new text updates:
+  - `Paper Template and Paper/Paper/gemma_1b_icl_paper_v11.pdf`
+- Added a reproducible end-to-end reverification script:
+  - `experiments/reverify_end_to_end_artifacts.py`
+- Ran the reverification pass against the VM and local repo:
+  - wrote `outputs/end_to_end_reverification_2026-04-01.{json,md}`
+  - verified `26/26` paper-critical artifacts exist locally and on the VM with matching SHA256 hashes.
+- Regenerated the paper figure suite and added two new quantitative reviewer-facing figures:
+  - `fig_cross_family_behavior.{png,svg}`
+  - `fig_prompt_composition_tradeoff.{png,svg}`
+- Updated the paper to address reviewer-style concerns around:
+  - tokenizer/script metric wording,
+  - akshara segmentation detail,
+  - fuzzy bank-copy reporting,
+  - layer/hook semantics,
+  - cross-family claim boundaries,
+  - Hindi review200 rerun numbers,
+  - Telugu legacy-panel vs reviewer-rerun practical reporting,
+  - and prompt-composition tradeoff interpretation.
+- Wrote the final session memo:
+  - `outputs/paper_reverification_reviewer_fix_2026-04-01.md`
+- Recompiled the updated paper successfully:
+  - `Paper Template and Paper/Paper/gemma_1b_icl_paper_v11.pdf`
+- Ran an alpha-grounded literature review and claim audit focused on:
+  - script barriers / transliteration / romanization / phonemic prompting,
+  - Gemma/ICL mechanistic papers,
+  - retrieval-based ICL / prompt-composition sensitivity.
+- Saved raw alpha outputs under:
+  - `notes/alpha_grounding_2026-04-01/`
+- Updated the paper's literature grounding to:
+  - distinguish multi-phase ICL work from implicit-update work,
+  - add RomanLens for cautious latent-romanization grounding,
+  - add retrieval-based ICL survey/retriever papers for prompt-composition grounding,
+  - and fix several incorrect bibliography author labels.
+- Saved alpha annotations for future use on:
+  - `2502.07424`, `2401.11624`, `2504.00132`
+- Re-ran the end-to-end reverification script after the literature pass:
+  - `experiments/reverify_end_to_end_artifacts.py`
+  - bounded science-critical checks still pass.
+- Wrote the canonical alpha-grounding memo:
+  - `outputs/alpha_grounded_literature_review_reverification_2026-04-01.md`
+- Recompiled the paper successfully after the alpha-grounding edits:
+  - `Paper Template and Paper/Paper/gemma_1b_icl_paper_v11.pdf`
+- Extended `experiments/reverify_end_to_end_artifacts.py` so the reverification oracle now also checks:
+  - the 200-item Hindi practical/intervention reruns,
+  - and the 191-item Telugu practical-review rerun null result.
+- Created a second, more workshop/conference-style paper variant rather than overwriting the current thesis-leaning draft:
+  - `Paper Template and Paper/Paper/gemma_1b_icl_paper_conference_v1.tex`
+  - `Paper Template and Paper/Paper/gemma_1b_icl_paper_conference_v1.pdf`
+- Used a Claude-backed editorial pass (`anthropic/claude-sonnet-4`) to push the paper toward a more submission-like front end.
+- Main conference-variant changes:
+  - shorter title,
+  - rewritten abstract,
+  - rewritten introduction opening,
+  - contributions box,
+  - early paper-overview teaser figure,
+  - section-level takeaway signposts,
+  - stronger caption takeaways,
+  - cleaner section naming,
+  - and removal of revision-history language from the main narrative.
+- Wrote the durable conference-variant memo:
+  - `outputs/conference_submission_variant_2026-04-01.md`
+- Wrote the durable Claude editorial note:
+  - `notes/claude_conference_submission_editorial_memo_2026-04-01.md`
+- Performed image-based visual verification of the conference-style paper by rendering PDF pages to screenshots and manually reviewing the rendered pages.
+- Found a real layout problem in the first TikZ draft of the main behavioral plot (panel overlap / label collision), fixed it, recompiled, and re-verified from the rendered page image.
+- Replaced the conference variant's main behavioral summary image with a native TikZ figure:
+  - `Paper Template and Paper/Paper/figures/fig_behavioral_regime_summary_tikz.tex`
+- Improved the conference variant's middle structure so Hindi and Telugu now live under one shared mechanism section:
+  - `Mechanistic Contrast: Early Entry vs. Late Continuation`
+- Removed the conference variant's date line for a more submission-like title page.
+- Ran an updated venue-fit pass using both alpha-grounded literature context and official web sources for current CFPs/deadlines.
+- Wrote the durable memo:
+  - `outputs/visual_verification_and_venue_fit_2026-04-01.md`
+- User approved keeping a separate submission-targeted paper instead of forcing one file to serve every role.
+- Created a new dedicated submission variant seed file:
+  - `Paper Template and Paper/Paper/gemma_1b_icl_paper_submission_8plus2_v1.tex`
+- Current plan is to use this new file for the tighter 8+2-style compression pass after the running robustness jobs finish.
+- Added a durable submission-endgame queue note:
+  - `notes/2026-04-01_submission_endgame_queue.md`
+- Added a background queue helper that waits for the last robustness artifacts and then runs the summary scripts:
+  - `experiments/run_submission_endgame_queue.sh`
+- Queued the remaining paper-completion tasks explicitly instead of opening another experiment branch.
+- Added a curiosity experiment note for a Marathi same-site patch follow-up:
+  - `notes/2026-04-01_curiosity_experiment_marathi_same_site_patch.md`
+- Added a background queue helper for that follow-up:
+  - `experiments/run_curiosity_marathi_same_site_patch_queue.sh`
+- Hindi tagged prompt-variant patch result landed and is mixed: first-token gap still improves, but CER does not improve under the tagged template, strengthening the need for explicit prompt-robustness reporting.
+- Extended `experiments/hindi_1b_practical_patch_eval.py` to support external patch payloads and fixed-alpha transfer evaluation:
+  - `--external-patch-json`
+  - `--external-patch-use-selected-alpha`
+  - `--override-alpha`
+- Extended `experiments/run_vm_hindi_1b_practical_patch_eval.sh` to upload an external patch JSON to the VM and pass transfer-evaluation flags through to the runner.
+- Added a second curiosity experiment note and queue helper for direct Hindi-vector transfer to Marathi:
+  - `notes/2026-04-01_curiosity_experiment_marathi_hindi_vector_transfer.md`
+  - `experiments/run_curiosity_marathi_hindi_vector_transfer_queue.sh`
+- Validated the new patch-transfer plumbing locally with:
+  - `python3 -m py_compile experiments/hindi_1b_practical_patch_eval.py`
+  - `bash -n experiments/run_vm_hindi_1b_practical_patch_eval.sh`
+  - `bash -n experiments/run_curiosity_marathi_same_site_patch_queue.sh`
+  - `bash -n experiments/run_curiosity_marathi_hindi_vector_transfer_queue.sh`
+- Ran a deeper first-principles interpretation pass grounded with `alpha` on:
+  - `2504.00132` (Contextualize-then-Aggregate)
+  - `2505.16694` (Beyond Induction Heads / multi-phase circuit emergence)
+  - `2502.07424` (RomanLens)
+  - `2406.19759` (script barrier alignment)
+  - `2407.02320` (transliteration in ICL)
+  - `2505.12075` (prompting methods and task representations)
+  - `2506.09048` (task vector limitations)
+- Saved a durable synthesis memo:
+  - `outputs/first_principles_understanding_memo_2026-04-01.md`
+- Added a reproducible local analysis of Hindi patch geometry across prompt variants:
+  - `experiments/analyze_hindi_patch_variant_geometry.py`
+  - `outputs/hindi_patch_variant_geometry_2026-04-01.json`
+  - `outputs/hindi_patch_variant_geometry_2026-04-01.md`
+- New analysis result: the canonical / compact / tagged Hindi patch directions are almost collinear (cosines `> 0.998`), so the tagged-template failure is not due to learning a different local direction.
+- New analysis result: under the tagged template, the patch still improves the first-token target-vs-Latin gap on `199/200` items, but this often fails to convert into generation-level entry improvements; this sharpens the interpretation toward prompt-conditioned operating-point effects rather than loss of the local Hindi axis itself.
+- Saved persistent alpha annotations for:
+  - `2505.12075`
+  - `2506.09048`
+- Added and queued a deeper first-principles curiosity follow-up for Hindi cross-template transfer:
+  - `notes/2026-04-01_curiosity_experiment_hindi_cross_template_transfer.md`
+  - `experiments/analyze_hindi_patch_cross_template_transfer.py`
+  - `experiments/run_curiosity_hindi_cross_template_transfer_queue.sh`
+- This queue waits for the Marathi curiosity chain to finish, then runs two discriminating transfers:
+  - tagged vector on canonical Hindi prompt
+  - canonical vector on tagged Hindi prompt
+- Goal: test whether the tagged Hindi failure is mainly due to prompt-conditioned operating-point geometry rather than a different local patch direction.
+- Diagnosed the Marathi curiosity-queue crash as a VM credential propagation issue in the queue wrappers, not a scientific or code-side failure of the patch runner itself.
+- Patched the three curiosity queue scripts to use the shared-VM fallback credential already documented elsewhere in the repo when `VM_PASS` is absent in the process environment:
+  - `experiments/run_curiosity_marathi_same_site_patch_queue.sh`
+  - `experiments/run_curiosity_marathi_hindi_vector_transfer_queue.sh`
+  - `experiments/run_curiosity_hindi_cross_template_transfer_queue.sh`
+- Revalidated those queue scripts with `bash -n` before restarting the curiosity chain.
+
+## 2026-04-04
+- Created comprehensive final Honors report structure at `Paper Template and Paper/Final_Honors_Report/`:
+  - Main `report.tex` with proper title page, declaration, certificate, acknowledgments, and abstract
+  - 9 chapter files covering the full thesis journey from Phase 1 (SAE) to Phase 2 (ICL mechanisms)
+  - Appendix with experimental details and claim coverage table
+  - Bibliography with all key references
+  - All paper figures copied to the figures directory
+- Created final Honors presentation at `Paper Template and Paper/Final_Honors_Presentation/`:
+  - 25-slide Beamer presentation covering the complete research journey
+  - Story-driven structure: Background → Phase 1 → Pivot → Phase 2 Results → Impact
+  - TikZ diagrams for key visualizations
+  - Figures integrated from the paper work
+- Fixed the curiosity queue scripts to use fallback VM credentials instead of requiring environment variable at runtime
+- Total LaTeX content: ~2625 lines across report chapters + 600 lines for presentation
+- Re-grounded the new final Honors report and presentation against the repo's key markdown synthesis artifacts (`spec.md`, `RESEARCH_JOURNAL.md`, first-principles memo, reviewer-followup memo, alpha-grounding memo, conference-variant memo) and re-used that evidence to tighten wording.
+- Ran an additional alpha-backed review pass on core literature used in the report (`2505.16694`, `2502.07424`, `2406.19759`, plus the earlier grounding set) to sharpen the discussion language around staged ICL, romanization/script barriers, and why Telugu should not be oversold as a simple nearest-neighbor copy story.
+- Upgraded the final Honors report for readability and story flow:
+  - added a clearer research-journey TikZ figure,
+  - added a cleaner intervention-pipeline TikZ figure,
+  - expanded the akshara explanation,
+  - clarified the prompt-variant geometry/conversion story,
+  - and tightened the first-principles discussion/citation mapping.
+- Switched the final report and presentation to `fontspec` with FreeFont family so Unicode/Indic text renders cleanly under Tectonic.
+- Fixed Beamer/TikZ compile issues in the final presentation and added a dedicated first-principles slide.
+- Recompiled successfully with Tectonic:
+  - `Paper Template and Paper/Final_Honors_Report/report.pdf`
+  - `Paper Template and Paper/Final_Honors_Presentation/presentation.pdf`
+- Performed PDF spot-checks via `document_parse` screenshots and fixed visual overflow in the new TikZ timeline/first-principles figures.
+- Ran one more full recheck of the final Honors report and presentation:
+  - rebuilt both with `tectonic`,
+  - searched rendered PDFs for placeholder/replacement-character issues,
+  - visually spot-checked representative report pages,
+  - rendered the full presentation deck for review,
+  - and wrote `outputs/final_honors_recheck_2026-04-04.md`.
+- Found and fixed one real remaining presentation issue: the summary slide TikZ layout was clipping/overlapping text, so it was rewritten with explicit text-width boxes and shorter phrasing.
+- Recompiled and re-checked the fixed presentation successfully.
+- Extended the final report recheck by rendering screenshots for all 90 PDF pages and scanning a contact-sheet view to catch gross layout failures across the whole document, not just a handful of spot-checked pages.
+- Rebased the final Honors report much closer to the official `Report_Template/Project-Template` aesthetic instead of the earlier custom thesis shell.
+- Main report-style changes:
+  - removed the custom global report look driven by `FreeSerif` as the main font,
+  - removed `fancyhdr` running headers,
+  - removed custom `geometry`,
+  - restored a more template-like plain `report` appearance with `parskip`,
+  - kept only the extra packages needed for figures, tables, boxes, and Unicode compatibility.
+- Added a local `\indic{...}` font wrapper so Devanagari snippets still render correctly while the main Latin text stays close to the stock template aesthetic.
+- Restored the template-like TOC behavior by adding `Abstract` back to the table of contents manually rather than relying on the old broader front-matter customization.
+- Recompiled and visually rechecked the updated `Final_Honors_Report/report.pdf`; the global page look is now materially closer to the institute template while preserving the thesis content and figures.
+- **Final honors report / presentation end-to-end cleanup** (`Final_Honors_Report/`, `Final_Honors_Presentation/`):
+  - Completed a full formatting and prose cleanup pass across the report chapters, reducing nonessential bullet lists and converting many list-heavy sections into narrative prose.
+  - Added explicit lead-in text before major sections/subsections where the report was jumping too abruptly into headings, figures, or tables.
+  - Enforced figure/table/equation citation-order discipline across the report so floats and labeled equations are now referenced before they appear.
+  - Upgraded Chapter 1 Thesis Organization to a proper `longtable` and tightened Chapter 1/4 float introductions for cleaner reviewer-facing flow.
+  - Added equation labels and in-text references for the self-attention, SAE, OOD split, CER, entry-gap, bank-copy, reconstruction-gap, and Hindi patch equations.
+  - Reduced remaining memo-like phrasing in Chapters 3--8 and converted several diagnostic / literature / limitation / intervention blocks into paragraph form.
+  - Corrected the report front-matter date to April 2026 to match the current final-review context.
+  - Hardened report appendix formatting: added appendix table references, converted the claim-coverage ledger to a compact full-width table, and enabled wrapped verbatim blocks via `fvextra` for cleaner code snippets.
+  - Recompiled `report.tex` successfully with Tectonic and visually spot-checked title page, TOC, mid-report mechanism pages, intervention pages, and presentation slides.
+  - Recompiled `presentation.tex` successfully with Tectonic after the final report-aligned cleanup pass; key slides (title, journey, Marathi, cross-family, MLP intuition, Telugu bottleneck) were visually checked.
+- **ICML workshop draft review-driven fix pass** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v4.tex`):
+  - Read the 2026-04-07 technical review and addressed the highest-priority manuscript issues directly in the ICML draft.
+  - Added a visible stage-sensitive regime table showing the actual two axes (entry vs. continuation) for Hindi, Marathi, and Telugu, rather than relying on EM/CER alone.
+  - Tightened metric definitions: distinguished akshara-level first-entry correctness from token-level first-token target rate and defined the Latin competitor logit set explicitly.
+  - Added the exact deployed Hindi fixed-patch equation with site, channel set, additive update form, and baseline definitions so the intervention is reproducible from the paper.
+  - Added explicit corrupt-control numbers for the Hindi prompt-state interpretation and weakened the wording from “equal harm” to a more faithful bounded claim.
+  - Fixed the confusing “core four-language comparison” wording to match the actual five-language setup with Marathi as a targeted same-script control.
+  - Rewrote the cross-family section to use bounded, quantitative behavioral wording instead of the stronger “extends beyond Gemma” framing.
+  - Split the dense limitations paragraph into shorter bounded-claim sentences.
+  - Verified recent-reference titles against arXiv/alpha-backed metadata and updated RomanLens / Contextualize-then-Aggregate / script-barrier titles accordingly.
+  - Recompiled successfully with Tectonic; the updated ICML PDF remains 7 pages total.
+- **ICML workshop draft final review-integration pass** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v4.tex`):
+  - Read the follow-up technical reviews `review-2026-04-07-192728-1.pdf` and `review-2026-04-07-192728-2.pdf` and addressed all remaining high-priority manuscript issues.
+  - Made the `V_{Latin}` rule fully operational in the text, matching the actual code path: decode with `skip_special_tokens=True`, normalize newline/whitespace handling, then classify by majority Unicode-script class.
+  - Softened the abstract Marathi claim from the categorical “aids entry but not continuation” to the more defensible comparative phrasing “aids entry more than continuation.”
+  - Added another explicit scope boundary between the aggregated multi-seed Figure 3 evidence and the smaller seed-42 diagnostic Table 1 evidence.
+  - Tightened Equation (3) wording to identify the exact intervention hook as the post-gating, pre-down-projection vector captured by a forward pre-hook on `mlp.down_proj`.
+  - Reworked the cross-family paragraph to be more interpretive and less number-dense, and added an appendix table with sample sizes plus entry/completion metrics for Qwen 2.5 and Llama 3.2 follow-up panels.
+  - Verified recent bibliography titles against current arXiv pages for RomanLens, Contextualize-then-Aggregate, and the cross-script transfer paper.
+  - Recompiled successfully with Tectonic and visually checked the updated PDF, including the appendix table page.
+- **Honors report title-page spacing fix** (`Final_Honors_Report/report.tex`):
+  - Reworked the first-page title block so the all-caps main title uses explicit line breaks and larger line spacing instead of an auto-wrapped bold line that made the title look cramped.
+  - Recompiled `report.tex` successfully with Tectonic and visually checked page 1 to confirm the title now has clear separation between lines while keeping the logo and institution block on the page.
+- **ICML paper updated again to reviewer-proof `v9`** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v9.tex`):
+  - Created `v9` from `v8` to address the latest narrow review about Telugu intervention comparability, `k`-shot title calibration, and conditional-tail metric reporting
+  - Made the Telugu patch's oracle-defined token position explicit in the abstract, introduction, intervention section, boundaries section, and conclusion
+  - Renamed Sec. 3.2 from `K-shot Scaling Confirms the Decomposition` to `K-shot Scaling Supports the Decomposition`
+  - Added eligible counts directly into Table 1 for `CER_tail^help` (`n=15/22/27` for Hindi/Marathi/Telugu) and clarified in the caption that these are the items contributing to each conditional mean
+  - Reworded the Telugu intervention subsection title to `Oracle-Positioned Static Patch Fails` and clarified that it is an oracle-positioned diagnostic rather than a deployment-style fixed edit parallel to the Hindi last-prompt patch
+  - Fixed the repeated `consistent with` phrasing in the abstract
+  - Added a reproducible continuation-tail eligibility summary script (`experiments/summarize_icml_v9_tail_counts.py`) with outputs at `outputs/icml_v9_tail_count_summary_2026-04-09.{json,md}`
+  - Compiled `v9` successfully and visually spot-checked the updated abstract, Table 1 / Sec. 3.2 page, and Telugu intervention page
+- **ICML paper updated again to reviewer-proof `v10`** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v10.tex`):
+  - Created `v10` from `v9` to fix the remaining Telugu temperature-sweep anchoring issue
+  - Anchored the Telugu temperature-sweep sentence in Sec. 4.2 to a separate 57-item helpful Telugu 1B follow-up panel and stated that nonzero temperatures use three sampled continuations per item
+  - Added an appendix temperature-sweep summary table (`A.5`, Table 6) so the `0.42 -> 0.50 -> 0.59` exact bank-copy progression is easy to audit and cannot be confused with the 30-item diagnostic panel from Table 1
+  - Added a reproducible temperature-sweep summary script (`experiments/summarize_icml_v10_temperature_sweep.py`) with outputs at `outputs/icml_v10_temperature_sweep_summary_2026-04-09.{json,md}`
+  - Compiled `v10` successfully and visually spot-checked the updated Telugu-mechanism page and the new appendix table
+- **ICML paper updated again to reviewer-proof `v11`** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v11.tex`):
+  - Created `v11` from `v10` to address the remaining support-gap review about Telugu `4B` / writer-head evidence and the unit-of-analysis ambiguity in the temperature-sweep table
+  - Clarified the high-level mechanistic wording so `L26` is the directly demonstrated `1B` Telugu site and `L34` is presented as same-pattern `4B` follow-up evidence rather than as an equally foregrounded main-text result
+  - Expanded Sec. 4.2 to anchor the `4B` late residual site and exploratory writer-head screens with concrete appendix-backed effect sizes
+  - Clarified the temperature-sweep appendix caption so all metrics other than `n_items` are explicitly sample-level summaries over `n_samples` generated continuations
+  - Added a new appendix subsection `A.6` with compact tables for:
+    - Telugu late-site follow-ups across `1B` and `4B`
+    - Telugu writer-head probe summaries across `1B` and `4B`
+  - Added a reproducible Telugu follow-up summary script (`experiments/summarize_icml_v11_telugu_followups.py`) with outputs at `outputs/icml_v11_telugu_followups_2026-04-09.{json,md}`
+  - Compiled `v11` successfully and visually spot-checked the updated abstract/main Telugu-mechanism page plus the new appendix tables
+- **ICML paper updated again to reviewer-proof `v12`** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v12.tex`):
+  - Created `v12` from `v11` to address the remaining method-label, sign-semantics, and summary-attachment issues from the latest review
+  - Replaced the unsupported `patching, mediation, and donor-style tests` phrasing in Sec. 4.2 with `patching panels and donor-replacement follow-ups` so the named evidence categories match what is actually presented
+  - Rewrote the introduction's Telugu summary so the `L34` same-pattern `4B` follow-up and the negative `1B` intervention result no longer share an ambiguous `where` clause
+  - Normalized the writer-head appendix's grouped comparison into a regime-aligned effect so the `1B` and `4B` rows can be read without inferring an unstated sign convention
+  - Updated the writer-head appendix caption to define the regime-aligned sign explicitly (`+1` for `1B`, `-1` for `4B`)
+  - Compiled `v12` successfully and visually spot-checked the updated summary sentence, Telugu mechanistic section, and writer-head appendix table
+- **ICML paper updated again to reviewer-proof `v13`** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v13.tex`):
+  - Created `v13` from `v12` to address the remaining appendix-caption mismatch, writer-score definition gap, and Telugu-summary readability issue
+  - Added the missing `4B` no-op comparison to the late-site appendix row so the row contents now match the caption's promised comparison set
+  - Defined the writer-head table's aligned writer score operationally in the appendix caption and explained that the 38 usable items are the subset of the first 40 evaluation words for which the first-divergence comparison is well-defined
+  - Split the Telugu mechanistic summary so the direct late-site evidence and the exploratory writer-head follow-up are easier to distinguish in Sec. 4.2
+  - Recompiled `v13` successfully and visually spot-checked the Telugu mechanistic page plus both appendix follow-up tables
+- **ICML paper updated again to polish `v14`** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v14.tex`):
+  - Created `v14` from `v13` for presentation-only cleanup after the final review found no remaining technical issues
+  - Forced the writer-head appendix table to render inline with `A.6` rather than floating to a mostly empty final page
+  - The writer-head table now shares the same appendix page as the late-site table, removing the visually awkward near-empty final page noted in review
+  - Recompiled `v14` successfully and visually verified the consolidated appendix layout
+- **ICML paper updated again to reviewer-proof `v15`** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v15.tex`):
+  - Created `v15` from `v14` to tighten the remaining regime-map calibration and evidence-mapping wording issues from the latest review
+  - Softened the Bengali/Tamil language in Sec. 3 and Sec. 6 so those languages are no longer assigned explicit two-axis regime positions without displayed stage-sensitive evidence
+  - Clarified that the five-language figure is a broad phase map, while direct axis-defining evidence is shown only for Hindi, Marathi, and Telugu in Table 1
+  - Narrowed the Telugu mechanistic citations so the `L34` late-site claim points only to the late-site appendix table, while the exploratory writer-head sentence points only to the writer-head appendix table
+  - Recompiled `v15` successfully and visually spot-checked the updated behavioral-regime page, Telugu mechanistic page, and appendix follow-up page
+- **ICML draft frozen as canonical final submission file**:
+  - Confirmed via a fresh skeptical review pass that the previously repeated Bengali/Tamil overreach and Telugu citation-scope complaints are stale relative to `v16`
+  - Copied `gemma_1b_icl_paper_submission_8plus2_icml2026_v16.tex` to the canonical freeze file `gemma_1b_icl_paper_submission_8plus2_icml2026_final.tex`
+  - Compiled the canonical final file successfully to `gemma_1b_icl_paper_submission_8plus2_icml2026_final.pdf`
+  - The versioned lineage (`v4` ... `v16`) remains intact, while the non-versioned `final` file now serves as the single review/submission target to reduce stale rereviews against older drafts
+- **ICML paper updated to `v17` and re-frozen as canonical final** (`gemma_1b_icl_paper_submission_8plus2_icml2026_v17.tex` / `..._final.tex`):
+  - Treated the latest long-form review as a fresh audit rather than assuming every point was live; separated stale complaints from real manuscript gaps
+  - Added an implementation-facing akshara segmentation note in Metrics: NFC normalization, whitespace splitting, combining-mark attachment, and virama / ZWJ / ZWNJ carry rules, explicitly shared across `CER`, `E_ak`, and `CER_tail`
+  - Tightened the Hindi localization paragraph with direct last-token sweep numbers and explicit prompt-final alignment wording
+  - Made the deployed Hindi patch scale explicit (`alpha=2.0`) in both the body text and Figure 5 caption
+  - Fixed Figure 5 notation drift by replacing the panel-B `Δentry` label with `ΔE_ak` in a versioned figure asset (`fig_hindi_practical_patch_tikz_v17.tex`)
+  - Tightened the Telugu oracle-patch protocol with explicit teacher-forced shared-prefix conditioning, the `191/200` usable-item rule, and the `191/191` first-akshara-boundary alignment fact
+  - Strengthened the Telugu temperature-sweep interpretation with item-level `any exact bank copy` rates (`0.421 -> 0.614 -> 0.719`) in addition to the existing sample-level rates
+  - Added a new reproducibility / audit artifact via `expe

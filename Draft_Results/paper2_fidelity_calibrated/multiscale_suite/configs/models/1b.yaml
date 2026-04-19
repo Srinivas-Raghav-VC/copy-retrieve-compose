@@ -1,0 +1,10 @@
+model_key: 1b
+family: gemma-3
+hf_hint: google/gemma-3-1b-it
+context_tokens: 32768
+sliding_window: 512
+global_layers: [5, 11, 17, 23]
+role: core mechanistic target
+notes:
+  - Architecture confirmed from authenticated HF config.
+  - Use as the main claim-bearing mechanistic regime.
