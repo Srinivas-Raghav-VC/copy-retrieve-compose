@@ -19,15 +19,7 @@ The current codebase is organized around a few main areas:
 - `Draft_Results/` — older or supporting pipelines, legacy scripts, and dataset preparation utilities retained for reproducibility and comparison
 - `research/` — project specs, journals, and supporting research-operating-system documents
 
-## Important scope note
-
-This is a research repository, not a polished library package. The code is a mix of:
-
-- current reusable infrastructure
-- experiment scripts tied to specific papers / reviews
-- legacy supporting code preserved for auditability
-
-The main publishable code paths today are in `experiments/`, `research/modules/`, and `tests/`.
+The main code paths today are in `experiments/`, `research/modules/`, and `tests/`.
 
 ## Quick checks
 
@@ -41,6 +33,4 @@ pytest -q \
   tests/test_run_config.py
 ```
 
-## What is intentionally not tracked
-
-The repository excludes local caches, virtual environments, agent state, and most generated results / logs. Large raw artifacts should be stored outside Git or added later through a dedicated data-release path if needed.
+The repository excludes local caches, virtual environments, agent state, and most generated results / logs.
